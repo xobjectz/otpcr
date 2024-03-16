@@ -10,7 +10,7 @@ name = "otpcr"
 description = "OTP-CR-117/19"
 version = "1"
 authors = [
-    {name = "Bart Thate", email = "bthate@dds.nl"},
+    {name = "xobjectz", email = "objx@proton.me"},
 ]
 readme = "README.rst"
 license = {text="Public Domain"}
@@ -22,6 +22,10 @@ classifiers = [
     'Topic :: Utilities'
 ]
 
+[project.scripts]
+"otpcr" = "otpcr.__main__:wrapped"
+
+
 [project.urls]
 "home" = "https://pypi.org/project/otpcr"
 "bugs" = "https://github.com/xobjectz/otpcr/issues"
@@ -32,3 +36,10 @@ packages = [
     "otpcr",
 ]
 zip-safe=true
+
+
+[tool.setuptools.data-files]
+"share/doc/otpcr" = [
+    "README.rst",
+    "files/verbatim2.png"
+]
