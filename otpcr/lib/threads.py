@@ -12,7 +12,7 @@ import time
 import types
 
 
-from .runtime import Errors
+from runtime import Errors
 
 
 "classes"

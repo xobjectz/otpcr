@@ -10,7 +10,7 @@ import time
 import threading
 
 
-from .threads import launch
+from threads import launch
 
 
 "classes"

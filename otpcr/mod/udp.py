@@ -13,10 +13,10 @@ import threading
 import time
 
 
-from .objects import Object
-from .runtime import Broker
-from .handler import Client
-from .threads import launch
+from objects import Object
+from runtime import Broker
+from handler import Client
+from threads import launch
 
 
 def init():

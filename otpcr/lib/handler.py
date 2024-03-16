@@ -11,10 +11,10 @@ import threading
 import _thread
 
 
-from .default import Default
-from .objects import Object
-from .runtime import Broker, Errors, parse_cmd
-from .threads import launch
+from default import Default
+from objects import Object
+from runtime import Broker, Errors, parse_cmd
+from threads import launch
 
 
 "classes"

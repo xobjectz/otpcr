@@ -9,7 +9,7 @@
 import json
 
 
-from .objects import Object, construct
+from objects import Object, construct
 
 
 "classes"

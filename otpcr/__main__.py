@@ -15,22 +15,30 @@ import termios
 import time
 
 
-import otpcr
+PKGDIR = os.path.dirname(__file__)
+LIBDIR = os.path.join(PKGDIR, "lib")
+MODDIR = os.path.join(PKGDIR, "mod")
 
 
-from .default import Default
-from .handler import Client, Event, cmnd
-from .runtime import Errors, debug, forever, init, parse_cmd
-from .persist import Workdir
+sys.path.insert(0, LIBDIR)
+
+
+from default import Default
+from handler import Client, Event, cmnd
+from runtime import Errors, debug, forever, init, parse_cmd
+from persist import Workdir
 
 
 Cfg         = Default()
-Cfg.mod     = "cmd,mod"
+Cfg.mod     = "cmd,mod,req"
 Cfg.name    = "otpcr"
-Cfg.version = 1
+Cfg.version = 2
 Cfg.wd      = os.path.expanduser(f"~/.{Cfg.name}")
 Cfg.pidfile = os.path.join(Cfg.wd, f"{Cfg.name}.pid")
 Workdir.wd = Cfg.wd
+
+
+from otpcr import mod as mods
 
 
 class Console(Client):
@@ -107,18 +115,18 @@ def cmd(event):
 
 
 def ver(event):
-    event.reply(f"OBJX {Cfg.version}")
+    event.reply(f"OTPCR {Cfg.version}")
     
 
 def main():
+    parse_cmd(Cfg, " ".join(sys.argv[1:]))
+    Workdir.skel()
     Client.add(cmd)
     Client.add(ver)
-    Workdir.skel()
     Errors.enable(print)
-    parse_cmd(Cfg, " ".join(sys.argv[1:]))
     readline.redisplay()
     if 'a' in Cfg.opts:
-        Cfg.mod = ",".join(otpcr.__dir__())
+        Cfg.mod = ",".join(mods.__dir__())
     if "v" in Cfg.opts:
         dte = time.ctime(time.time()).replace("  ", " ")
         debug(f"{Cfg.name.upper()} {Cfg.opts.upper()} started {dte}")
@@ -127,16 +135,16 @@ def main():
         print(txt)
         return
     if "d" in Cfg.opts:
-        Cfg.mod = ",".join(otpcr.__dir__())
+        Cfg.mod = ",".join(mods.__dir__())
         Cfg.user = getpass.getuser()
         daemon(Cfg.pidfile, "v" in Cfg.opts)
         privileges(Cfg.user)
-        Cfg.mod = ",".join([x for x in otpcr.__dir__() if len(x) == 3])
-        init(otpcr, Cfg.mod)
+        Cfg.mod = ",".join(mods.__dir__())
+        init(mods, Cfg.mod)
         forever()
         return
     if "c" in Cfg.opts:
-        init(otpcr, Cfg.mod)
+        init(mods, Cfg.mod)
         csl = Console()
         if 'z' in Cfg.opts:
             csl.threaded = False
@@ -144,7 +152,7 @@ def main():
         forever()
         return
     if Cfg.otxt:
-        Cfg.mod = ",".join([x for x in otpcr.__dir__() if len(x) == 3])
+        Cfg.mod = ",".join([x for x in mods.__dir__() if len(x) == 3])
         return cmnd(Cfg.otxt, print)
 
 

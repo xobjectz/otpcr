@@ -12,8 +12,8 @@ import traceback
 import _thread
 
 
-from .default import Default
-from .objects import Object, keys, values
+from default import Default
+from objects import Object, keys, values
 
 
 "defines"

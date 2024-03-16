@@ -6,8 +6,8 @@
 "status of bots"
 
 
-from .handler import Client
-from .runtime import Broker, Errors
+from handler import Client
+from runtime import Broker, Errors
 
 
 "commands"

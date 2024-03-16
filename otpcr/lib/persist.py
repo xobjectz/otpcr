@@ -11,11 +11,12 @@ import os
 import pathlib
 import time
 
-from .decoder import load
-from .encoder import dump
-from .default import Default
-from .objects import Object, fqn, search, update
-from .locking import disklock
+
+from decoder import load
+from encoder import dump
+from default import Default
+from objects import Object, fqn, search, update
+from locking import disklock
 
 
 "classes"

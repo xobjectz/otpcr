@@ -14,11 +14,11 @@ import time
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 
-from .default import Default
-from .objects import Object
-from .runtime import Errors, debug
-from .persist import Persist, Workdir
-from .threads import launch
+from default import Default
+from objects import Object
+from runtime import Errors, debug
+from persist import Persist, Workdir
+from threads import launch
 
 
 def init():

@@ -9,9 +9,9 @@
 import time
 
 
-from .objects import Object
-from .handler import Client
-from .persist import Persist,  find, fntime, laps, sync
+from objects import Object
+from handler import Client
+from persist import Persist, find, fntime, laps, sync
 
 
 class Log(Object):

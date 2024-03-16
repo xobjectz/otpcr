@@ -6,9 +6,9 @@
 "fleet"
 
 
-from .handler import Client
-from .runtime import Broker
-from .threads import name
+from handler import Client
+from runtime import Broker
+from threads import name
 
 
 def flt(event):
