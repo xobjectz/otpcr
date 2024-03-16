@@ -15,8 +15,6 @@ PKGDIR = os.path.dirname(os.path.dirname(__file__))
 LIBDIR = os.path.join(PKGDIR, "lib")
 MODDIR = os.path.join(PKGDIR, "mod")
 
-print(LIBDIR)
-
 
 sys.path.insert(0, LIBDIR)
 

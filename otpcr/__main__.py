@@ -1,6 +1,6 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0212,E0402,W0105
+# pylint: disable=C,R,W0212,E0402,W0105,W0613
 
 
 "objects client"
@@ -146,8 +146,6 @@ def main():
     if "c" in Cfg.opts:
         init(mods, Cfg.mod)
         csl = Console()
-        if 'z' in Cfg.opts:
-            csl.threaded = False
         csl.start()
         forever()
         return
