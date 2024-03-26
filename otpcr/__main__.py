@@ -1,47 +1,78 @@
+#!/usr/bin/env python3
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0212,E0402,W0105,W0613
+# pylint: disable=C,R,W0105,W0201,W0212,W0613,E0402,E0611
+# ruff: noqa: E402
 
 
-"objects client"
+""" OTPCR - OTP-CR-117/19
+
+    otpcr <cmd> [key=val] [key==val]
+    otpcr [-a] [-c] [-d] [-h] [-v]
+
+COMMANDS
+
+    cmd    list available commands
+    mod    list available modules
+
+USAGE
+
+    $ otpcr [cmnd] mod=module1,module2,module3
+    $ otpcr -c mod=module1,module2,module3
+
+OPTIONS
+
+    -a     load all modules
+    -c     start console
+    -d     start daemon
+    -h     display help
+    -v     use verbose
+"""
 
 
 import getpass
 import os
 import pwd
-import readline
+import readline # pylint: disable=W0611
 import sys
 import termios
 import time
 
 
-PKGDIR = os.path.dirname(__file__)
-LIBDIR = os.path.join(PKGDIR, "lib")
-MODDIR = os.path.join(PKGDIR, "mod")
-
-
-sys.path.insert(0, LIBDIR)
-
-
-from default import Default
-from handler import Client, Event, cmnd
-from runtime import Errors, debug, forever, init, parse_cmd
-from persist import Workdir
+from .broker  import Broker
+from .errors  import debug
+from .handler import Client, Event, cmnd, parse_cmd
+from .object  import Default, spl
+from .errors  import Errors
+from .persist import Workdir
 
 
 Cfg         = Default()
-Cfg.mod     = "cmd,mod,req"
+Cfg.mod     = "cmd,mod"
 Cfg.name    = "otpcr"
-Cfg.version = 2
+Cfg.version = "3"
 Cfg.wd      = os.path.expanduser(f"~/.{Cfg.name}")
 Cfg.pidfile = os.path.join(Cfg.wd, f"{Cfg.name}.pid")
 Workdir.wd = Cfg.wd
 
 
-from otpcr import mod as mods
+from otpcr import modules
+
+
+if os.path.exists("mods"):
+    import mods
+else:
+    mods = None
+
+
+dte = time.ctime(time.time()).replace("  ", " ")
 
 
 class Console(Client):
+
+    def __init__(self):
+        Client.__init__(self)
+        Broker.add(self)
 
     def announce(self, txt):
         pass
@@ -86,6 +117,20 @@ def daemon(pidfile, verbose=False):
         fds.write(str(os.getpid()))
 
 
+def init(pkg, modstr, disable="", wait=False):
+    mds = []
+    for modname in spl(modstr):
+        if modname in spl(disable):
+            continue
+        module = getattr(pkg, modname, None)
+        if not module:
+            continue
+        if "init" in dir(module):
+            module.init()
+            mds.append(module)
+    return mds
+
+
 def privileges(username):
     pwnam = pwd.getpwnam(username)
     os.setgid(pwnam.pw_gid)
@@ -107,50 +152,41 @@ def wrap(func):
             termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, old2)
 
 
-"runtime"
-
-
-def cmd(event):
-    event.reply(",".join(sorted(list(Client.cmds))))
-
-
 def ver(event):
-    event.reply(f"OTPCR {Cfg.version}")
-    
+    event.reply(f"{Cfg.name.upper()} {Cfg.version}")
+
 
 def main():
-    parse_cmd(Cfg, " ".join(sys.argv[1:]))
     Workdir.skel()
-    Client.add(cmd)
-    Client.add(ver)
     Errors.enable(print)
-    readline.redisplay()
+    Client.add(ver)
+    parse_cmd(Cfg, " ".join(sys.argv[1:]))
     if 'a' in Cfg.opts:
         Cfg.mod = ",".join(mods.__dir__())
     if "v" in Cfg.opts:
-        dte = time.ctime(time.time()).replace("  ", " ")
         debug(f"{Cfg.name.upper()} {Cfg.opts.upper()} started {dte}")
     if "h" in Cfg.opts:
-        from . import __doc__ as txt
-        print(txt)
+        print(__doc__)
         return
     if "d" in Cfg.opts:
         Cfg.mod = ",".join(mods.__dir__())
         Cfg.user = getpass.getuser()
         daemon(Cfg.pidfile, "v" in Cfg.opts)
         privileges(Cfg.user)
-        Cfg.mod = ",".join(mods.__dir__())
-        init(mods, Cfg.mod)
-        forever()
+        init(modules, Cfg.mod, Cfg.sets.dis, True)
+        init(mods, Cfg.mod, Cfg.sets.dis, True)
+        while 1:
+            time.sleep(1.0)
         return
     if "c" in Cfg.opts:
-        init(mods, Cfg.mod)
+        init(modules, Cfg.mod, Cfg.sets.dis, True)
+        init(mods, Cfg.mod, Cfg.sets.dis, True)
         csl = Console()
         csl.start()
-        forever()
+        while 1:
+            time.sleep(1.0)
         return
     if Cfg.otxt:
-        Cfg.mod = ",".join([x for x in mods.__dir__() if len(x) == 3])
         return cmnd(Cfg.otxt, print)
 
 

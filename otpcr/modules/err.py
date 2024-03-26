@@ -6,11 +6,9 @@
 "status of bots"
 
 
-from handler import Client
-from runtime import Broker, Errors
-
-
-"commands"
+from ..broker  import Broker
+from ..handler import Client
+from ..errors  import Errors
 
 
 def err(event):

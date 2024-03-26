@@ -11,12 +11,11 @@ import re
 import time as ttime
 
 
-from objects import update
-from runtime import Broker
-from handler import Client, Event
-from persist import Persist, find, laps, sync
-from repeats import Timer
-from threads import launch
+from ..broker import Broker
+from ..handler import Client, Event
+from ..object import update
+from ..persist import Persist, find, laps, sync
+from ..thread import Timer, launch
 
 
 def init():
@@ -64,9 +63,6 @@ class NoDate(Exception):
 
 
 Persist.add(Timer)
-
-
-"utilities"
 
 
 def extract_date(daystr):

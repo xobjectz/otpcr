@@ -10,18 +10,12 @@ import threading
 import time
 
 
-from objects import Object, update
-from handler import Client
-from persist import laps
-
-
-"defines"
+from ..object  import Object, update
+from ..handler import Client
+from ..persist import laps
 
 
 STARTTIME = time.time()
-
-
-"commands"
 
 
 def thr(event):

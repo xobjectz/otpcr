@@ -6,8 +6,8 @@
 "locate"
 
 
-from objects import fmt
-from persist import Persist, Workdir, find
+from ..object  import fmt
+from ..persist import Persist, Workdir, find
 
 
 def fnd(event):

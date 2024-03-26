@@ -79,7 +79,7 @@ p.s.
 """
 
 
-from handler import Client
+from ..handler import Client
 
 
 def req(event):

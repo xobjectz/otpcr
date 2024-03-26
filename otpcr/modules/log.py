@@ -3,15 +3,15 @@
 # pylint: disable=R,C,E0402
 
 
-"llog text"
+"log text"
 
 
 import time
 
 
-from objects import Object
-from handler import Client
-from persist import Persist, find, fntime, laps, sync
+from ..handler import Client
+from ..object  import Object
+from ..persist import Persist, find, fntime, laps, sync
 
 
 class Log(Object):

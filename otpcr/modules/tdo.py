@@ -9,9 +9,9 @@
 import time
 
 
-from objects import Object
-from handler import Client
-from persist import Persist, fntime, find, laps, sync
+from ..handler import Client
+from ..object  import Object
+from ..persist import Persist, fntime, find, laps, sync
 
 
 class NoDate(Exception):

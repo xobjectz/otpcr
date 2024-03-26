@@ -6,19 +6,14 @@
 "available modules"
 
 
-from handler import Client
+from ..handler import Client
 
 
 from . import __dir__
 
 
-"commands"
-
-
 def mod(event):
-    res = []
-    res.extend(__dir__())
-    event.reply(",".join(sorted(res)))
+    event.reply(",".join(sorted(__dir__())))
 
 
 Client.add(mod)

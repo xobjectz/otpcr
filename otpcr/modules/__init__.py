@@ -7,20 +7,7 @@
 "modules"
 
 
-import os
-import sys
-
-
-PKGDIR = os.path.dirname(os.path.dirname(__file__))
-LIBDIR = os.path.join(PKGDIR, "lib")
-MODDIR = os.path.join(PKGDIR, "mod")
-
-
-sys.path.insert(0, LIBDIR)
-
-
-from otpcr.mod import cmd, err, flt, fnd, irc, log, mod, req, rss, rst
-from otpcr.mod import tdo, thr, tmr, udp
+from . import cmd, err, flt, fnd, irc, log, mod, req, rss, tdo, thr, tmr
 
 
 def __dir__():
