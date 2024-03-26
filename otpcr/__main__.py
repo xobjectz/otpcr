@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0105,W0201,W0212,W0613,E0402,E0611
+# pylint: disable=C,R,W0105,W0201,W0212,W0613,E0401,E0402,E0611
 # ruff: noqa: E402
 
 
@@ -42,7 +42,7 @@ import time
 from .broker  import Broker
 from .errors  import debug
 from .handler import Client, Event, cmnd, parse_cmd
-from .object  import Default, spl
+from .object  import Default, cdir, spl
 from .errors  import Errors
 from .persist import Workdir
 
@@ -112,7 +112,7 @@ def daemon(pidfile, verbose=False):
     os.chdir("/")
     if os.path.exists(pidfile):
         os.unlink(pidfile)
-    Workdir.cdir(os.path.dirname(pidfile))
+    cdir(os.path.dirname(pidfile))
     with open(pidfile, "w", encoding="utf-8") as fds:
         fds.write(str(os.getpid()))
 
