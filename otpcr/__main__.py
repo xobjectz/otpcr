@@ -95,7 +95,7 @@ def daemon(pidfile, verbose=False):
         fds.write(str(os.getpid()))
 
 
-def init(pkg, modstr, disable="", wait=False):
+def init(pkg, modstr, disable=""):
     mds = []
     for modname in spl(modstr):
         if modname in spl(disable):
@@ -148,18 +148,17 @@ def main():
         print(__doc__)
         return
     if "d" in Cfg.opts:
-        Cfg.mod = ",".join(mods.__dir__())
+        Cfg.mod = ",".join(modules.__dir__())
         Cfg.user = getpass.getuser()
         daemon(Cfg.pidfile, "v" in Cfg.opts)
         privileges(Cfg.user)
-        init(modules, Cfg.mod, Cfg.sets.dis, True)
-        init(mods, Cfg.mod, Cfg.sets.dis, True)
+        init(modules, Cfg.mod)
         while 1:
             time.sleep(1.0)
         return
     if "c" in Cfg.opts:
-        init(modules, Cfg.mod, Cfg.sets.dis, True)
-        init(mods, Cfg.mod, Cfg.sets.dis, True)
+        init(modules, Cfg.mod)
+        init(mods, Cfg.mod)
         csl = Console()
         csl.start()
         while 1:
