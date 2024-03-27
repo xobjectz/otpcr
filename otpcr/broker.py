@@ -17,17 +17,6 @@ methods to retrieve an object from the broker.
 Broker is operating at an class level where the class level attributes
 are manipulated instead of an object inherited from that class.
 
-::
-
-    >>> from objr.broker import Broker
-    >>> from objr.object import Object
-    >>> b = Broker()
-    >>> o = Object()
-    >>> b.add(o)
-    >>> oo = b.get(repr(o))
-    >>> o is oo
-    True
-
 """
 
 

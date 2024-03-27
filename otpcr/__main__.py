@@ -5,29 +5,7 @@
 # ruff: noqa: E402
 
 
-""" OTPCR - OTP-CR-117/19
-
-    otpcr <cmd> [key=val] [key==val]
-    otpcr [-a] [-c] [-d] [-h] [-v]
-
-COMMANDS
-
-    cmd    list available commands
-    mod    list available modules
-
-USAGE
-
-    $ otpcr [cmnd] mod=module1,module2,module3
-    $ otpcr -c mod=module1,module2,module3
-
-OPTIONS
-
-    -a     load all modules
-    -c     start console
-    -d     start daemon
-    -h     display help
-    -v     use verbose
-"""
+"main"
 
 
 import getpass
@@ -56,7 +34,7 @@ Cfg.pidfile = os.path.join(Cfg.wd, f"{Cfg.name}.pid")
 Workdir.wd = Cfg.wd
 
 
-from otpcr import modules
+from . import modules
 
 
 if os.path.exists("mods"):
@@ -163,6 +141,7 @@ def main():
     parse_cmd(Cfg, " ".join(sys.argv[1:]))
     if 'a' in Cfg.opts:
         Cfg.mod = ",".join(mods.__dir__())
+        Cfg.mod += "," + ",".join(modules.__dir__())
     if "v" in Cfg.opts:
         debug(f"{Cfg.name.upper()} {Cfg.opts.upper()} started {dte}")
     if "h" in Cfg.opts:

@@ -3,11 +3,7 @@
 # pylint: disable=C,R,W0105,W0212,W0613,W0718,E0402,E1102
 
 
-"""event hander
-
-Event handler module
-
-"""
+"event hsndler"
 
 
 import queue
@@ -23,7 +19,7 @@ from .thread import launch
 
 class Event(Default):
 
-    "Event class"
+    "Event"
 
     def __init__(self):
         Default.__init__(self)
@@ -53,7 +49,7 @@ class Event(Default):
 
 class Handler:
 
-    "Handler class"
+    "Handler"
 
     def __init__(self):
         self.cbs = Object()
@@ -101,7 +97,7 @@ class Handler:
 
 class Client(Handler):
 
-    "Client class"
+    "Client"
 
     cmds = Object()
 
