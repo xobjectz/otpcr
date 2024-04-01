@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "otpcr"
 description = "OTP-CR-117/19"
-version = "3"
+version = "4"
 authors = [
     {name = "xobjectz", email = "objx@proton.me"},
 ]
