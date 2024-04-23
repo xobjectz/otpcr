@@ -25,7 +25,6 @@ classifiers = [
 [project.scripts]
 "otpcr" = "otpcr.__main__:wrapped"
 
-
 [project.urls]
 "home" = "https://pypi.org/project/otpcr"
 "bugs" = "https://github.com/xobjectz/otpcr/issues"
@@ -42,5 +41,9 @@ zip-safe=true
 [tool.setuptools.data-files]
 "share/doc/otpcr" = [
     "README.rst",
-    "files/verbatim2.png"
+    "docs/MANUAL.rst",
+    "files/verbatim4.png",
+    "files/EM_Ack_OTP-CR-117_19.pdf",
+    "files/EM_T07_OTP-CR-117_19_001.pdf",
+    "files/EM_T04_OTP-CR-117_19.pdf"
 ]
