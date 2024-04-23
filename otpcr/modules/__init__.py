@@ -7,7 +7,7 @@
 "modules"
 
 
-from . import cmd, err, flt, fnd, log, mdl, mod, req, rst, tdo
+from . import cmd, err, flt, fnd, log, mdl, mod, req, tdo
 from . import irc, rss, thr, wsd
 
 
