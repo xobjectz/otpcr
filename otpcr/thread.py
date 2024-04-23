@@ -32,8 +32,7 @@ class Thread(threading.Thread):
         return self
 
     def __next__(self):
-        for k in dir(self):
-            yield k
+        yield from dir(self)
 
     def join(self, timeout=1.0):
         "join this thread."
