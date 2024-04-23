@@ -1,9 +1,9 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R
+# pylint: disable=R0903
 
 
-"working directory"
+"workdir"
 
 
 import datetime

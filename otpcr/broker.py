@@ -1,34 +1,9 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0105,W0212,W0613,W0718,E0402,E1102
+#
 
 
-"""broker
-
-This Broker class stores objects on their repr name and can thus be
-retrieved by a client presenting a repr of an object.
-
-Client can carry a string (the repr) around instead of a memory
-reference to the object.
-
-Adding an object takes the repr and stores it in a dict, the rest are
-methods to retrieve an object from the broker.
-
-Broker is operating at an class level where the class level attributes
-are manipulated instead of an object inherited from that class.
-
-::
-
-    >>> from objx import Object
-    >>> from objr import Broker
-    >>> b = Broker()
-    >>> o = Object()
-    >>> b.add(o)
-    >>> oo = b.get(repr(o))
-    >>> o is oo
-    True
-
-"""
+"broker"
 
 
 from .object import Object, keys

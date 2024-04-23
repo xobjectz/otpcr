@@ -1,6 +1,6 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0105
+#
 
 
 "runtime"
@@ -18,6 +18,28 @@ from .repeater import *
 from .thread   import *
 from .timer    import *
 from .workdir  import *
+
+
+def __object__():
+    return (
+        'Object',
+        'construct',
+        'dump',
+        'dumps',
+        'edit',
+        'fmt',
+        'fqn',
+        'hook',
+        'items',
+        'keys',
+        'load',
+        'loads',
+        'read',
+        'search',
+        'update',
+        'values',
+        'write'
+    )
 
 
 def __dir__():
@@ -47,7 +69,7 @@ def __dir__():
         'spl',
         'sync',
         'whitelist'
-    )
+    ) + __object__()
 
 
-__all__ = __dir__()
+__all__ = sorted(__dir__())

@@ -1,6 +1,6 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0105
+# pylint: disable=R0903
 
 
 "errors"
@@ -23,10 +23,12 @@ class Errors:
 
 
 def debug(txt):
+    "print to console."
     Errors.out(txt)
 
 
 def enable(func):
+    "set output function."
     Errors.out = func
 
 

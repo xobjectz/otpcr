@@ -1,32 +1,7 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0105,W0201,W0212,W0613,E0401,E0402,W0611
+# pylint: disable=C,R,W0212
 # ruff: noqa: E402
-
-
-"""NAME
-
-    OTPCR - 117/19
-
-SYNOPSIS
-
-    otpcr <cmd> [key=val] [key==val]
-
-OPTIONS
-
-    -a     load all modules
-    -c     start console
-    -d     start daemon
-    -h     display help
-    -v     use verbose
-
-EXAMPLE
-
-    otpcr -cav
-
-COPYRIGHT
-
-    OTPCR is Public Domain."""
 
 
 "main"
@@ -41,26 +16,17 @@ import termios
 import time
 
 
-sys.path.insert(0, os.getcwd())
+from .client  import Client, cmnd, parse_cmd, spl
+from .command import Command
+from .default import Default
+from .errors  import debug, enable, errors
+from .event   import Event
+from .object  import cdir
+from .runtime import broker
+from .workdir import Workdir, skel
 
 
-from otpcr.client  import Client, cmnd, parse_cmd, spl
-from otpcr.command import Command
-from otpcr.default import Default
-from otpcr.errors  import debug, enable, errors
-from otpcr.event   import Event
-from otpcr.object  import cdir
-from otpcr.runtime import broker
-from otpcr.workdir import Workdir, skel
-
-
-from otpcr import modules
-
-
-if os.path.exists("mods"):
-    import mods
-else:
-    mods = None
+from . import modules
 
 
 Cfg             = Default()
@@ -71,6 +37,8 @@ Cfg.name        = "otpcr"
 Cfg.version     = "6"
 Cfg.wd          = os.path.expanduser(f"~/.{Cfg.name}")
 Cfg.pidfile     = os.path.join(Cfg.wd, f"{Cfg.name}.pid")
+
+
 Workdir.workdir = Cfg.wd
 
 
@@ -79,30 +47,36 @@ dte = time.ctime(time.time()).replace("  ", " ")
 
 class Console(Client):
 
+    "Console"
+
     def __init__(self):
         Client.__init__(self)
         broker.add(self)
 
     def announce(self, txt):
-        pass
+        "disable announce."
 
     def callback(self, evt):
+        "wait for callback."
         Client.callback(self, evt)
         evt.wait()
 
     def poll(self):
+        "poll console and create event."
         evt = Event()
         evt.orig = object.__repr__(self)
         evt.txt = input("> ")
         evt.type = "command"
         return evt
 
-    def say(self, channel, txt):
+    def say(self, _channel, txt):
+        "print to console"
         txt = txt.encode('utf-8', 'replace').decode()
         print(txt)
 
 
 def daemon(pidfile, verbose=False):
+    "switch to background."
     pid = os.fork()
     if pid != 0:
         os._exit(0)
@@ -127,6 +101,7 @@ def daemon(pidfile, verbose=False):
 
 
 def init(pkg, modstr, disable=""):
+    "init"
     mds = []
     for modname in spl(modstr):
         if skip(modname, disable):
@@ -141,12 +116,14 @@ def init(pkg, modstr, disable=""):
 
 
 def privileges(username):
+    "drop privileges."
     pwnam = pwd.getpwnam(username)
     os.setgid(pwnam.pw_gid)
     os.setuid(pwnam.pw_uid)
 
 
 def skip(name, skipped):
+    "check for skipping"
     for skp in spl(skipped):
         if skp in name:
             return True
@@ -154,6 +131,7 @@ def skip(name, skipped):
 
 
 def wrap(func):
+    "restore console."
     old2 = None
     try:
         old2 = termios.tcgetattr(sys.stdin.fileno())
@@ -169,10 +147,12 @@ def wrap(func):
 
 
 def ver(event):
+    "show version."
     event.reply(f"{Cfg.name.upper()} {Cfg.version}")
 
 
 def main():
+    "main"
     Command.add(ver)
     enable(print)
     skel()
@@ -181,14 +161,11 @@ def main():
         Cfg.dis += "," + Cfg.sets.dis
     if 'a' in Cfg.opts:
         Cfg.mod = ",".join(modules.__dir__())
-        if mods:
-            Cfg.mod += "," + ",".join(mods.__dir__())
     if "v" in Cfg.opts:
         debug(f"{Cfg.name.upper()} {Cfg.opts.upper()} started {dte}")
     if "h" in Cfg.opts:
         print(__doc__)
-        return
-    if "d" in Cfg.opts:
+    elif "d" in Cfg.opts:
         Cfg.mod = ",".join(modules.__dir__())
         Cfg.user = getpass.getuser()
         daemon(Cfg.pidfile, "v" in Cfg.opts)
@@ -196,30 +173,22 @@ def main():
         init(modules, Cfg.mod)
         while 1:
             time.sleep(1.0)
-        return
-    if "c" in Cfg.opts:
+    elif "c" in Cfg.opts:
         init(modules, Cfg.mod, Cfg.dis)
-        if mods:
-            Cfg.mod += "," + ",".join(mods.__dir__())
-            init(mods, Cfg.mod)
         csl = Console()
         csl.start()
         while 1:
             time.sleep(1.0)
-        return
-    if Cfg.otxt:
-        return cmnd(Cfg.otxt, print)
-
-
-def daemoned():
-    Cfg.opts += "d"
-    main()
+    elif Cfg.otxt:
+        cmnd(Cfg.otxt, print)
 
 
 def wrapped():
+    "wrap main function."
     wrap(main)
-    errors()
 
 
 if __name__ == "__main__":
+    readline.redisplay()
     wrapped()
+    errors()

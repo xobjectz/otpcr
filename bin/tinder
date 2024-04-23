@@ -49,7 +49,7 @@ Cfg.debug       = True
 Cfg.name        = "tinder"
 Cfg.silent      = False
 Cfg.skip        = ["debug",]
-Cfg.version     = "110"
+Cfg.version     = "6"
 Cfg.wd          = ".test"
 Workdir.workdir = Cfg.wd
 
