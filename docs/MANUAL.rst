@@ -162,7 +162,6 @@ FILES
 
     ~/.otpcr
     ~/.local/bin/otpcr
-    ~/.local/bin/otpcrd
     ~/.local/pipx/venvs/otpcr/
 
 AUTHOR
