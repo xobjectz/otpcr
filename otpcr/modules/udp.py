@@ -1,6 +1,6 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C0115,C0116,W0105,E0402,R0903
+# pylint: disable=W0105
 
 
 "udp to irc relay"
@@ -13,19 +13,26 @@ import threading
 import time
 
 
-from ..object  import Object, values
+from dataclasses import dataclass
+
+
 from ..command import Command
-from ..runtime import broker
+from ..object  import Object, values
 from ..thread  import launch
+from ..runtime import broker
 
 
 def init():
+    "start udp to irc relay."
     udpd = UDP()
     udpd.start()
     return udpd
 
 
+@dataclass
 class Cfg(Object):
+
+    "Cfg"
 
     addr = ""
     host = "localhost"
@@ -33,6 +40,8 @@ class Cfg(Object):
 
 
 class UDP(Object):
+
+    "UDP"
 
     def __init__(self):
         Object.__init__(self)
@@ -45,12 +54,14 @@ class UDP(Object):
         self.ready = threading.Event()
 
     def output(self, txt, addr=None):
+        "output to fleet."
         if addr:
             Cfg.addr = addr
         for bot in values(broker.objs):
             bot.announce(txt.replace("\00", ""))
 
     def loop(self):
+        "udp input loop."
         try:
             self._sock.bind((Cfg.host, Cfg.port))
         except socket.gaierror:
@@ -66,6 +77,7 @@ class UDP(Object):
             self.output(data, addr)
 
     def exit(self):
+        "stop relay."
         self.stopped = True
         self._sock.settimeout(0.01)
         self._sock.sendto(
@@ -74,15 +86,21 @@ class UDP(Object):
                          )
 
     def start(self):
+        "start relay."
         launch(self.loop)
 
 
 def toudp(host, port, txt):
+    "send udp packet to bot."
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.sendto(bytes(txt.strip(), "utf-8"), (host, port))
 
 
+"commands"
+
+
 def udp(event):
+    "send udp command."
     if event.rest:
         toudp(Cfg.host, Cfg.port, event.rest)
         event.reply(f"{len(event.rest)} characters sent")
@@ -116,6 +134,9 @@ def udp(event):
             toudp(Cfg.host, Cfg.port, txt)
         if stop:
             break
+
+
+"register"
 
 
 Command.add(udp)

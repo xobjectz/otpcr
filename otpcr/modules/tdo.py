@@ -19,11 +19,13 @@ from ..workdir import sync
 
 class NoDate(Exception):
 
-    pass
+    "no matching date"
 
 
 class Todo(Object):
 
+    "Todo"
+ 
     def __init__(self):
         Object.__init__(self)
         self.txt = ''
@@ -33,6 +35,7 @@ whitelist(Todo)
 
 
 def dne(event):
+    "flag todo as done."
     if not event.args:
         event.reply("dne <txt>")
         return
@@ -52,6 +55,7 @@ Command.add(dne)
 
 
 def tdo(event):
+    "add todo."
     if not event.rest:
         nmr = 0
         for fnm, obj in find('todo'):

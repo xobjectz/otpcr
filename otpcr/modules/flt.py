@@ -1,6 +1,6 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R
+#
 
 
 "fleet"
@@ -13,6 +13,7 @@ from ..thread  import name
 
 
 def flt(event):
+    "list of bots."
     bots = values(broker.objs)
     try:
         event.reply(bots[int(event.args[0])])

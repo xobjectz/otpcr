@@ -1,7 +1,6 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0212,E0402
-
+# pylint: disable=C,R,W0105,W0212
 
 "mailbox"
 
@@ -37,6 +36,8 @@ MONTH = {
 
 class Email(Object):
 
+    "Email"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.text = ""
@@ -46,6 +47,7 @@ whitelist(Email)
 
 
 def to_date(date):
+    "match date in string." 
     date = date.replace("_", ":")
     res = date.split()
     ddd = ""
@@ -82,6 +84,7 @@ def to_date(date):
 
 
 def cor(event):
+    "correspondence"
     if not event.args:
         event.reply("cor <email>")
         return
@@ -100,6 +103,7 @@ Command.add(cor)
 
 
 def eml(event):
+    "emnail"
     if not event.args:
         event.reply("eml <searchtxtinemail>")
         return
@@ -114,6 +118,7 @@ Command.add(eml)
 
 
 def mbx(event):
+    "mailbox"
     if not event.args:
         return
     fn = os.path.expanduser(event.args[0])

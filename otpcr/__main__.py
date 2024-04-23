@@ -1,6 +1,6 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0212
+# pylint: disable=W0212
 # ruff: noqa: E402
 
 
@@ -35,11 +35,11 @@ Cfg.mod         = "cmd,mod"
 Cfg.opts        = ""
 Cfg.name        = "otpcr"
 Cfg.version     = "6"
-Cfg.wd          = os.path.expanduser(f"~/.{Cfg.name}")
-Cfg.pidfile     = os.path.join(Cfg.wd, f"{Cfg.name}.pid")
+Cfg.wdr          = os.path.expanduser(f"~/.{Cfg.name}")
+Cfg.pidfile     = os.path.join(Cfg.wdr, f"{Cfg.name}.pid")
 
 
-Workdir.workdir = Cfg.wd
+Workdir.workdir = Cfg.wdr
 
 
 dte = time.ctime(time.time()).replace("  ", " ")
