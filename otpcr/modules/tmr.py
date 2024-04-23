@@ -11,11 +11,16 @@ import re
 import time as ttime
 
 
-from ..broker import Broker
-from ..handler import Client, Event
-from ..object import update
-from ..persist import Persist, find, laps, sync
-from ..thread import Timer, launch
+from ..client  import laps
+from ..command import Command
+from ..event   import Event
+from ..find    import find
+from ..runtime import broker
+from ..timer   import Timer
+from ..thread  import launch
+from ..persist import whitelist
+from ..object  import update
+from ..workdir import sync
 
 
 def init():
@@ -24,7 +29,7 @@ def init():
             continue
         diff = float(obj.time) - ttime.time()
         if diff > 0:
-            bot = Broker.first()
+            bot = broker.first()
             evt = Event()
             update(evt, obj)
             evt.orig = object.__repr__(bot)
@@ -62,7 +67,7 @@ class NoDate(Exception):
     pass
 
 
-Persist.add(Timer)
+whitelist(Timer)
 
 
 def extract_date(daystr):
@@ -225,4 +230,4 @@ def tmr(event):
     launch(timer.start)
 
 
-Client.add(tmr)
+Command.add(tmr)

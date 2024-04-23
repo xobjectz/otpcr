@@ -9,9 +9,12 @@
 import time
 
 
-from ..handler import Client
+from ..client  import laps
 from ..object  import Object
-from ..persist import Persist, fntime, find, laps, sync
+from ..command import Command
+from ..find    import fntime, find
+from ..persist import whitelist
+from ..workdir import sync
 
 
 class NoDate(Exception):
@@ -26,7 +29,7 @@ class Todo(Object):
         self.txt = ''
 
 
-Persist.add(Todo)
+whitelist(Todo)
 
 
 def dne(event):
@@ -45,7 +48,7 @@ def dne(event):
         event.reply("nothing todo")
 
 
-Client.add(dne)
+Command.add(dne)
 
 
 def tdo(event):
@@ -64,4 +67,4 @@ def tdo(event):
     event.reply('ok')
 
 
-Client.add(tdo)
+Command.add(tdo)

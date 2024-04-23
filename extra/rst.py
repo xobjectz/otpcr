@@ -14,10 +14,12 @@ import time
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 
-from otpcr.errors  import Errors, debug
-from otpcr.object  import Default, Object
-from otpcr.persist import Persist, Workdir
-from otpcr.thread  import launch
+from ..default import Default
+from ..errors  import debug, later
+from ..find    import fns
+from ..object  import Object
+from ..thread  import launch
+from ..workdir import Workdir
 
 
 def init():
@@ -71,7 +73,7 @@ class REST(HTTPServer, Object):
     def error(self, request, addr):
         exctype, excvalue, tb = sys.exc_info()
         exc = exctype(excvalue)
-        Errors.add(exc)
+        later(exc)
         debug('%s %s' % (addr, excvalue))
 
 
@@ -96,11 +98,11 @@ class RESTHandler(BaseHTTPRequestHandler):
         if self.path == "/":
             self.write_header("text/html")
             txt = ""
-            for fnm in Persist.fns():
+            for fnm in fns():
                 txt += f'<a href="http://{Config.hostname}:{Config.port}/{fnm}">{fnm}</a>\n'
             self.send(html(txt.strip()))
             return
-        fnm = Workdir.wd + os.sep + "store" + os.sep + self.path
+        fnm = Workdir.workdir + os.sep + "store" + os.sep + self.path
         try:
             f = open(fnm, "r", encoding="utf-8")
             txt = f.read()
@@ -109,7 +111,7 @@ class RESTHandler(BaseHTTPRequestHandler):
             self.send(html(txt))
         except (TypeError, FileNotFoundError, IsADirectoryError) as ex:
             self.send_response(404)
-            Errors.add(ex)
+            later(ex)
             self.end_headers()
 
     def log(self, code):

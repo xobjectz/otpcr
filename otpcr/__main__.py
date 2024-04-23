@@ -1,8 +1,32 @@
-#!/usr/bin/env python3
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0105,W0201,W0212,W0613,E0401,E0402,E0611
+# pylint: disable=C,R,W0105,W0201,W0212,W0613,E0401,E0402,W0611
 # ruff: noqa: E402
+
+
+"""NAME
+
+    OTPCR - 117/19
+
+SYNOPSIS
+
+    otpcr <cmd> [key=val] [key==val]
+
+OPTIONS
+
+    -a     load all modules
+    -c     start console
+    -d     start daemon
+    -h     display help
+    -v     use verbose
+
+EXAMPLE
+
+    otpcr -cav
+
+COPYRIGHT
+
+    OTPCR is Public Domain."""
 
 
 "main"
@@ -11,36 +35,42 @@
 import getpass
 import os
 import pwd
-import readline # pylint: disable=W0611
+import readline
 import sys
 import termios
 import time
 
 
-from .broker  import Broker
-from .errors  import debug
-from .handler import Client, Event, cmnd, parse_cmd
-from .object  import Default, cdir, spl
-from .errors  import Errors
-from .persist import Workdir
+sys.path.insert(0, os.getcwd())
 
 
-Cfg         = Default()
-Cfg.mod     = "cmd,mod"
-Cfg.name    = "otpcr"
-Cfg.version = "4"
-Cfg.wd      = os.path.expanduser(f"~/.{Cfg.name}")
-Cfg.pidfile = os.path.join(Cfg.wd, f"{Cfg.name}.pid")
-Workdir.wd = Cfg.wd
+from otpcr.client  import Client, cmnd, parse_cmd, spl
+from otpcr.command import Command
+from otpcr.default import Default
+from otpcr.errors  import debug, enable, errors
+from otpcr.event   import Event
+from otpcr.object  import cdir
+from otpcr.runtime import broker
+from otpcr.workdir import Workdir, skel
 
 
-from . import modules
+from otpcr import modules
 
 
 if os.path.exists("mods"):
     import mods
 else:
     mods = None
+
+
+Cfg             = Default()
+Cfg.mod         = "cmd,mod"
+Cfg.opts        = ""
+Cfg.name        = "otpcr"
+Cfg.version     = "5"
+Cfg.wd          = os.path.expanduser(f"~/.{Cfg.name}")
+Cfg.pidfile     = os.path.join(Cfg.wd, f"{Cfg.name}.pid")
+Workdir.workdir = Cfg.wd
 
 
 dte = time.ctime(time.time()).replace("  ", " ")
@@ -50,7 +80,7 @@ class Console(Client):
 
     def __init__(self):
         Client.__init__(self)
-        Broker.add(self)
+        broker.add(self)
 
     def announce(self, txt):
         pass
@@ -98,7 +128,7 @@ def daemon(pidfile, verbose=False):
 def init(pkg, modstr, disable=""):
     mds = []
     for modname in spl(modstr):
-        if modname in spl(disable):
+        if skip(modname, disable):
             continue
         module = getattr(pkg, modname, None)
         if not module:
@@ -113,6 +143,13 @@ def privileges(username):
     pwnam = pwd.getpwnam(username)
     os.setgid(pwnam.pw_gid)
     os.setuid(pwnam.pw_uid)
+
+
+def skip(name, skipped):
+    for skp in spl(skipped):
+        if skp in name:
+            return True
+    return False
 
 
 def wrap(func):
@@ -135,13 +172,14 @@ def ver(event):
 
 
 def main():
-    Workdir.skel()
-    Errors.enable(print)
-    Client.add(ver)
+    Command.add(ver)
+    enable(print)
+    skel()
     parse_cmd(Cfg, " ".join(sys.argv[1:]))
     if 'a' in Cfg.opts:
-        Cfg.mod = ",".join(mods.__dir__())
-        Cfg.mod += "," + ",".join(modules.__dir__())
+        Cfg.mod = ",".join(modules.__dir__())
+        if mods:
+            Cfg.mod += "," + ",".join(mods.__dir__())
     if "v" in Cfg.opts:
         debug(f"{Cfg.name.upper()} {Cfg.opts.upper()} started {dte}")
     if "h" in Cfg.opts:
@@ -157,8 +195,10 @@ def main():
             time.sleep(1.0)
         return
     if "c" in Cfg.opts:
-        init(modules, Cfg.mod)
-        init(mods, Cfg.mod)
+        init(modules, Cfg.mod, Cfg.sets.dis)
+        if mods:
+            Cfg.mod += "," + ",".join(mods.__dir__())
+            init(mods, Cfg.mod)
         csl = Console()
         csl.start()
         while 1:
@@ -168,9 +208,14 @@ def main():
         return cmnd(Cfg.otxt, print)
 
 
+def daemoned():
+    Cfg.opts += "d"
+    main()
+
+
 def wrapped():
     wrap(main)
-    Errors.show()
+    errors()
 
 
 if __name__ == "__main__":

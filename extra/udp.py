@@ -13,10 +13,10 @@ import threading
 import time
 
 
-from ..broker import Broker
-from ..handler import Client
-from ..object import Object
-from ..thread import launch
+from ..object  import Object, values
+from ..command import Command
+from ..runtime import broker
+from ..thread  import launch
 
 
 def init():
@@ -47,7 +47,7 @@ class UDP(Object):
     def output(self, txt, addr=None):
         if addr:
             Cfg.addr = addr
-        for bot in Broker.all():
+        for bot in values(broker.objs):
             bot.announce(txt.replace("\00", ""))
 
     def loop(self):
@@ -118,4 +118,4 @@ def udp(event):
             break
 
 
-Client.add(udp)
+Command.add(udp)

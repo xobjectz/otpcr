@@ -1,16 +1,9 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0105,W0613,E0101
+# pylint: disable=C,R,W0105
 
 
-"""a clean namespace
-
-This module allows for easy json save//load to/from disk of objects. It
-provides an "clean namespace" Object class that only has dunder
-methods, so the namespace is not cluttered with method names. This makes
-storing and reading to/from json possible.
-
-"""
+"objects"
 
 
 import json
@@ -24,7 +17,7 @@ disklock = _thread.allocate_lock()
 
 class Object:
 
-    "Base class."
+    "Object"
 
     def __contains__(self, key):
         return key in dir(self)
@@ -167,10 +160,10 @@ def write(obj, pth):
 
 class ObjectDecoder(json.JSONDecoder):
 
-    "Object decoded"
+    "ObjectDecoder"
 
     def __init__(self, *args, **kwargs):
-        return json.JSONDecoder.__init__(self, *args)
+        json.JSONDecoder.__init__(self, *args, **kwargs)
 
     def decode(self, s, _w=None):
         "decoding string to object."
@@ -210,10 +203,10 @@ def loads(string, *args, **kw):
 
 class ObjectEncoder(json.JSONEncoder):
 
-    "Object encoder."
+    "ObjectEncoder"
 
     def __init__(self, *args, **kwargs):
-        return json.JSONEncoder.__init__(self, *args, **kwargs)
+        json.JSONEncoder.__init__(self, *args, **kwargs)
 
     def default(self, o):
         "return stringable value."
@@ -251,20 +244,6 @@ def dumps(*args, **kw):
     return json.dumps(*args, **kw)
 
 
-class Default(Object):
-
-    "Object that return a default value if key does not exist."
-
-    __slots__ = ("__default__",)
-
-    def __init__(self):
-        Object.__init__(self)
-        self.__default__ = ""
-
-    def __getattr__(self, key):
-        return self.__dict__.get(key, self.__default__)
-
-
 def cdir(pth):
     "create directory."
     if os.path.exists(pth):
@@ -273,21 +252,11 @@ def cdir(pth):
     os.makedirs(pth, exist_ok=True)
 
 
-def spl(txt):
-    "split comma separated string into a list."
-    try:
-        res = txt.split(',')
-    except (TypeError, ValueError):
-        res = txt
-    return [x for x in res if x]
-
-
 "interface"
 
 
 def __dir__():
     return (
-        'Default',
         'Object',
         'construct',
         'dump',

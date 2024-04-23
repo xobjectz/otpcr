@@ -3,11 +3,7 @@
 # pylint: disable=C,R,W0105,W0718
 
 
-"""threads
-
-Thread class.
-
-"""
+"thread"
 
 
 import queue
@@ -16,12 +12,12 @@ import time
 import types
 
 
-from .errors import Errors
+from .errors import later
 
 
 class Thread(threading.Thread):
 
-    "Thread with deferred exception handling."
+    "Thread"
 
     def __init__(self, func, thrname, *args, daemon=True, **kwargs):
         super().__init__(None, self.run, thrname, (), {}, daemon=daemon)
@@ -49,55 +45,10 @@ class Thread(threading.Thread):
         func, args = self.queue.get()
         try:
             self._result = func(*args)
-        except Exception as exc:
-            Errors.add(exc)
-            if args and "ready" in dir(args[0]):
+        except Exception as ex:
+            later(ex)
+            if args and "Event" in str(type(args[0])):
                 args[0].ready()
-
-
-class Timer:
-
-    "run a function at a specific time."
-
-    def __init__(self, sleep, func, *args, thrname=None):
-        self.args  = args
-        self.func  = func
-        self.sleep = sleep
-        self.name  = thrname or str(self.func).split()[2]
-        self.state = {}
-        self.timer = None
-
-    def run(self):
-        "run the payload in a thread."
-        self.state["latest"] = time.time()
-        launch(self.func, *self.args)
-
-    def start(self):
-        "start timer."
-        timer = threading.Timer(self.sleep, self.run)
-        timer.name   = self.name
-        timer.daemon = True
-        timer.sleep  = self.sleep
-        timer.state  = self.state
-        timer.func   = self.func
-        timer.state["starttime"] = time.time()
-        timer.state["latest"]    = time.time()
-        timer.start()
-        self.timer   = timer
-
-    def stop(self):
-        "stop timer."
-        if self.timer:
-            self.timer.cancel()
-
-
-class Repeater(Timer):
-
-    "Repeat a timer every x seconds."
-
-    def run(self):
-        launch(self.start)
-        super().run()
 
 
 def launch(func, *args, **kwargs):
@@ -122,19 +73,3 @@ def name(obj):
     if '__name__' in dir(obj):
         return f'{obj.__class__.__name__}.{obj.__name__}'
     return None
-
-
-"interface"
-
-
-def __dir__():
-    return (
-        'Repeater',
-        'Thread',
-        'Timer',
-        'launch',
-        'name'
-    )
-
-
-__all__ = __dir__()

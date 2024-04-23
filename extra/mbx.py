@@ -11,9 +11,12 @@ import os
 import time
 
 
-from ..handler import Client
 from ..object  import Object, fmt, update
-from ..persist import Persist, find, fntime, laps, sync
+from ..client  import laps
+from ..command import Command
+from ..find    import find, fntime
+from ..persist import whitelist
+from ..workdir import sync
 
 
 MONTH = {
@@ -39,7 +42,7 @@ class Email(Object):
         self.text = ""
 
 
-Persist.add(Email)
+whitelist(Email)
 
 
 def to_date(date):
@@ -93,7 +96,7 @@ def cor(event):
         event.reply("%s %s %s" % (nr, fmt(email, txt, plain=True), laps(time.time() - fntime(email.__stp__))))
 
 
-Client.add(cor)
+Command.add(cor)
 
 
 def eml(event):
@@ -107,7 +110,7 @@ def eml(event):
             event.reply("%s %s %s" % (nr, fmt(o, "From,Subject"), laps(time.time() - fntime(fn))))
 
 
-Client.add(eml)
+Command.add(eml)
 
 
 def mbx(event):
@@ -140,4 +143,4 @@ def mbx(event):
         event.reply("ok %s" % nr)
 
 
-Client.add(mbx)
+Command.add(mbx)

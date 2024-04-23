@@ -9,9 +9,12 @@
 import time
 
 
-from ..handler import Client
+from ..client  import laps
+from ..command import Command
 from ..object  import Object
-from ..persist import Persist, find, fntime, laps, sync
+from ..find    import find, fntime
+from ..workdir import  sync
+from ..persist import whitelist
 
 
 class Log(Object):
@@ -21,7 +24,7 @@ class Log(Object):
         self.txt = ''
 
 
-Persist.add(Log)
+whitelist(Log)
 
 
 def log(event):
@@ -40,4 +43,4 @@ def log(event):
     event.reply('ok')
 
 
-Client.add(log)
+Command.add(log)

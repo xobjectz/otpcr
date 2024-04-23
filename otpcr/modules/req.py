@@ -79,11 +79,11 @@ p.s.
 """
 
 
-from ..handler import Client
+from ..command import Command
 
 
 def req(event):
     event.reply(__doc__)
 
 
-Client.add(req)
+Command.add(req)
