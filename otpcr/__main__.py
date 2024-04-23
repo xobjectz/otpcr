@@ -64,10 +64,11 @@ else:
 
 
 Cfg             = Default()
+Cfg.dis         = "mbx,rst,udp"
 Cfg.mod         = "cmd,mod"
 Cfg.opts        = ""
 Cfg.name        = "otpcr"
-Cfg.version     = "5"
+Cfg.version     = "6"
 Cfg.wd          = os.path.expanduser(f"~/.{Cfg.name}")
 Cfg.pidfile     = os.path.join(Cfg.wd, f"{Cfg.name}.pid")
 Workdir.workdir = Cfg.wd
@@ -176,6 +177,8 @@ def main():
     enable(print)
     skel()
     parse_cmd(Cfg, " ".join(sys.argv[1:]))
+    if Cfg.sets.dis:
+        Cfg.dis += "," + Cfg.sets.dis
     if 'a' in Cfg.opts:
         Cfg.mod = ",".join(modules.__dir__())
         if mods:
@@ -195,7 +198,7 @@ def main():
             time.sleep(1.0)
         return
     if "c" in Cfg.opts:
-        init(modules, Cfg.mod, Cfg.sets.dis)
+        init(modules, Cfg.mod, Cfg.dis)
         if mods:
             Cfg.mod += "," + ",".join(mods.__dir__())
             init(mods, Cfg.mod)
