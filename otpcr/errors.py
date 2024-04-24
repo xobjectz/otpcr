@@ -15,7 +15,7 @@ class Errors:
     "Errors"
 
     errors = []
-
+    filter = []    
 
     @staticmethod
     def out(txt):
@@ -24,6 +24,9 @@ class Errors:
 
 def debug(txt):
     "print to console."
+    for skp in Errors.filter:
+        if skp in txt:
+            return
     Errors.out(txt)
 
 
