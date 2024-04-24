@@ -170,7 +170,7 @@ def main():
         Cfg.user = getpass.getuser()
         daemon(Cfg.pidfile, "v" in Cfg.opts)
         privileges(Cfg.user)
-        init(modules, Cfg.mod)
+        init(modules, Cfg.mod, Cfg.dis)
         while 1:
             time.sleep(1.0)
     elif "c" in Cfg.opts:
