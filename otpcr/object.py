@@ -12,7 +12,7 @@ import pathlib
 import _thread
 
 
-disklock = _thread.allocate_lock()
+lock = _thread.allocate_lock()
 
 
 class Object:
@@ -117,7 +117,7 @@ def keys(obj):
 
 def read(obj, pth):
     "read an object from file path."
-    with disklock:
+    with lock:
         with open(pth, 'r', encoding='utf-8') as ofile:
             update(obj, load(ofile))
 
@@ -152,7 +152,7 @@ def values(obj):
 
 def write(obj, pth):
     "write an object to disk."
-    with disklock:
+    with lock:
         cdir(os.path.dirname(pth))
         with open(pth, 'w', encoding='utf-8') as ofile:
             dump(obj, ofile, indent=4)
