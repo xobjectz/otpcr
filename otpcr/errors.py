@@ -15,7 +15,7 @@ class Errors:
     "Errors"
 
     errors = []
-    filter = []    
+    filter = []
 
     @staticmethod
     def out(txt):

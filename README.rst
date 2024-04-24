@@ -6,7 +6,6 @@
 |
 |
 
-
 Hello Office of the Prosecutor, ``OTP-CR-117/19``
 
 i write you in the context of communications and claims under art.15 of 
