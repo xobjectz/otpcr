@@ -8,9 +8,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "otpcr"
 description = "OTP-CR-117/19"
-version = "6"
+version = "7"
 authors = [
-    {name = "xobjectz", email = "objx@proton.me"},
+    {name = "Bart Thate", email = "bthate@dds.nl"},
 ]
 readme = "README.rst"
 license = {text="Public Domain"}
