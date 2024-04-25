@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=R0903
 
 
 "persist"
@@ -10,7 +8,7 @@ from .object  import Object
 from .workdir import liststore
 
 
-class Persist(Object):
+class Persist(Object): # pylint: disable=R0903
 
     "Persist"
 

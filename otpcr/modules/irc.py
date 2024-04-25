@@ -1,7 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=C,R,W0105,W0718
-# ruff: noqa: F841
 
 
 "internet relay chat"
@@ -50,7 +47,7 @@ def init():
 def shutdown():
     "shutdown irc bot."
     for bot in values(broker.objs):
-        if "irc" not in type(bot):
+        if "irc" not in str(type(bot)).lower():
             continue
         debug(f"IRC stopping {repr(bot)}")
         bot.state.pongcheck = True
@@ -59,7 +56,7 @@ def shutdown():
         bot.stop()
 
 
-class Config(Default):
+class Config(Default): # pylint: disable=R0902,R0903
 
     "Config"
 
@@ -280,7 +277,7 @@ class IRC(Client, Output):
                 BrokenPipeError
                ) as _ex:
             pass
-        except Exception as ex:
+        except Exception as ex: # pylint: disable=W0718
             later(ex)
 
     def doconnect(self, server, nck, port=6667):
@@ -363,6 +360,7 @@ class IRC(Client, Output):
 
     def parsing(self, txt):
         "parse text into an event."
+        # pylint: disable=R0912,R0915
         rawstr = str(txt)
         rawstr = rawstr.replace('\u0001', '')
         rawstr = rawstr.replace('\001', '')
@@ -542,9 +540,6 @@ class IRC(Client, Output):
         self.events.ready.wait()
 
 
-"callbacks"
-
-
 def cb_auth(bot, evt):
     "auth callback."
     bot.docommand(f'AUTHENTICATE {bot.cfg.password}')
@@ -630,9 +625,6 @@ def cb_quit(bot, evt):
         bot.stop()
 
 
-"commands"
-
-
 def cfg(event):
     "configure command."
     config = Config()
@@ -683,9 +675,6 @@ def pwd(event):
     base = base64.b64encode(enc)
     dcd = base.decode('ascii')
     event.reply(dcd)
-
-
-"register"
 
 
 Command.add(cfg)

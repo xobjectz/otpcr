@@ -1,6 +1,7 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0105,W0212
+# pylint: disable=C,R
+
 
 "mailbox"
 
@@ -136,7 +137,7 @@ def mbx(event):
         pass
     for m in thing:
         o = Email()
-        update(o, m._headers)
+        update(o, m._headers) # pylint: disable=W0212
         o.text = ""
         for payload in m.walk():
             if payload.get_content_type() == 'text/plain':

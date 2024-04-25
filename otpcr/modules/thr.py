@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-#
 
 
 "show running threads"

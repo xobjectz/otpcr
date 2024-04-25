@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=W0105
 
 
 "objects"
@@ -250,31 +248,3 @@ def cdir(pth):
         return
     pth = pathlib.Path(pth)
     os.makedirs(pth, exist_ok=True)
-
-
-"interface"
-
-
-def __dir__():
-    return (
-        'Object',
-        'construct',
-        'dump',
-        'dumps',
-        'edit',
-        'fmt',
-        'fqn',
-        'hook',
-        'items',
-        'keys',
-        'load',
-        'loads',
-        'read',
-        'search',
-        'update',
-        'values',
-        'write'
-    )
-
-
-__all__ = __dir__()

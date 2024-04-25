@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=R0903
 
 
 "command"
@@ -9,7 +7,7 @@
 from .object import Object
 
 
-class Command:
+class Command: # pylint: disable=R0903
 
     "Command"
 

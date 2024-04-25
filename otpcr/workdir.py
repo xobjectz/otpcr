@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=R0903
 
 
 "workdir"
@@ -13,7 +11,7 @@ import os
 from .object import Object, cdir, fqn, read, write
 
 
-class Workdir(Object):
+class Workdir(Object): # pylint: disable=R0903
 
     "Workdir"
 

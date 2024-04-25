@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=R0903,W0105
 
 
 "rich site syndicate"
@@ -51,12 +49,12 @@ TEMPLATE = """<opml version="1.0">
         <outline title="rssbot opml" text="24/7 feed fetcher">"""
 
 
-class Feed(Default):
+class Feed(Default): # pylint: disable=R0903
 
     "Feed"
 
 
-class Rss(Default):
+class Rss(Default): # pylint: disable=R0903
 
     "Rss"
 
@@ -66,7 +64,7 @@ class Rss(Default):
         self.rss          = ''
 
 
-class Seen(Default):
+class Seen(Default): # pylint: disable=R0903
 
     "Seen"
 
@@ -324,9 +322,6 @@ def useragent(txt):
     return 'Mozilla/5.0 (X11; Linux x86_64) ' + txt
 
 
-"commands"
-
-
 def dpl(event):
     "set display items."
     if len(event.args) < 2:
@@ -417,9 +412,6 @@ def rss(event):
     feed.rss = event.args[0]
     sync(feed)
     event.reply('ok')
-
-
-"register"
 
 
 Command.add(dpl)

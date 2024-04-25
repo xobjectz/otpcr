@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=W0105
 
 
 "udp to irc relay"
@@ -11,9 +9,6 @@ import socket
 import sys
 import threading
 import time
-
-
-from dataclasses import dataclass
 
 
 from ..command import Command
@@ -29,8 +24,7 @@ def init():
     return udpd
 
 
-@dataclass
-class Cfg(Object):
+class Cfg(Object): # pylint: disable=R0903
 
     "Cfg"
 
@@ -96,9 +90,6 @@ def toudp(host, port, txt):
     sock.sendto(bytes(txt.strip(), "utf-8"), (host, port))
 
 
-"commands"
-
-
 def udp(event):
     "send udp command."
     if event.rest:
@@ -134,9 +125,6 @@ def udp(event):
             toudp(Cfg.host, Cfg.port, txt)
         if stop:
             break
-
-
-"register"
 
 
 Command.add(udp)

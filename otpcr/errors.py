@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=R0903
 
 
 "errors"
@@ -10,7 +8,7 @@ import io
 import traceback
 
 
-class Errors:
+class Errors: # pylint: disable=R0903
 
     "Errors"
 

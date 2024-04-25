@@ -1,7 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=W0212
-# ruff: noqa: E402
 
 
 "main"
@@ -77,6 +74,7 @@ class Console(Client):
 
 def daemon(pidfile, verbose=False):
     "switch to background."
+    # pylint: disable=W0212
     pid = os.fork()
     if pid != 0:
         os._exit(0)

@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=C,R,W0611,E0402
 
 
 "locate"
@@ -36,4 +34,4 @@ def fnd(event):
         event.reply("no result")
 
 
-#Command.add(fnd)
+Command.add(fnd)

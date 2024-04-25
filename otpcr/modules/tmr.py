@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=W0105
 
 
 "timer"
@@ -21,6 +19,21 @@ from ..runtime import broker
 from ..thread  import launch
 from ..timer   import Timer
 from ..workdir import sync
+
+
+def init():
+    "start timers."
+    for _fn, obj in find("timer"):
+        if "time" not in obj:
+            continue
+        diff = float(obj.time) - ttime.time()
+        if diff > 0:
+            bot = broker.first()
+            evt = Event()
+            update(evt, obj)
+            evt.orig = object.__repr__(bot)
+            timer = Timer(diff, evt.show)
+            launch(timer.start)
 
 
 MONTHS = [
@@ -80,7 +93,7 @@ def get_day(daystr):
             if ymre:
                 (day, month) = ymre.groups()
                 yea = ttime.strftime("%Y", ttime.localtime())
-        except Exception as ex:
+        except Exception as ex: # pylint: disable=W0212
             raise NoDate(daystr) from ex
     if day:
         day = int(day)
@@ -171,9 +184,6 @@ def today():
     return str(datetime.datetime.today()).split()[0]
 
 
-"commands"
-
-
 def tmr(event):
     "add a timer."
     result = ""
@@ -219,27 +229,6 @@ def tmr(event):
     sync(timer)
     launch(timer.start)
     return result
-
-
-"runtime"
-
-
-def init():
-    "start timers."
-    for _fn, obj in find("timer"):
-        if "time" not in obj:
-            continue
-        diff = float(obj.time) - ttime.time()
-        if diff > 0:
-            bot = broker.first()
-            evt = Event()
-            update(evt, obj)
-            evt.orig = object.__repr__(bot)
-            timer = Timer(diff, evt.show)
-            launch(timer.start)
-
-
-"register"
 
 
 Command.add(tmr)

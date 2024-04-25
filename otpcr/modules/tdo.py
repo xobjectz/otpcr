@@ -17,12 +17,12 @@ from ..persist import whitelist
 from ..workdir import sync
 
 
-class NoDate(Exception):
+class NoDate(Exception): # pylint: disable=R0903
 
     "no matching date"
 
 
-class Todo(Object):
+class Todo(Object): # pylint: disable=R0903
 
     "Todo"
  

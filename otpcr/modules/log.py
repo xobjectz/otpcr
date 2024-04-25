@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=C0209,R0903
 
 
 "log text"
@@ -17,7 +15,7 @@ from ..workdir import  sync
 from ..persist import whitelist
 
 
-class Log(Object):
+class Log(Object): # pylint: disable=R0903
 
     "Log"
 

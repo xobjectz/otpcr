@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# pylint: disable=R,C,W0105
 
 
 "rest"
@@ -20,6 +18,18 @@ from ..find    import fns
 from ..object  import Object
 from ..thread  import launch
 from ..workdir import Workdir
+
+
+def init():
+    "start object server."
+    result = None
+    try:
+        result = REST((Config.hostname, int(Config.port)), RESTHandler)
+    except OSError:
+        pass
+    if result:
+        launch(result.start)
+    return result
 
 
 class Config(Default):
@@ -125,18 +135,3 @@ class RESTHandler(BaseHTTPRequestHandler):
 def html(txt):
     "html template."
     return f"<!doctype html><html>{txt}</html>"
-
-
-"runtime"
-
-
-def init():
-    "start object server."
-    result = None
-    try:
-        result = REST((Config.hostname, int(Config.port)), RESTHandler)
-    except OSError:
-        pass
-    if result:
-        launch(result.start)
-    return result
