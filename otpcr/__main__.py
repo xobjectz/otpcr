@@ -34,7 +34,7 @@ Cfg.dis         = "mbx,mdl,rst,udp"
 Cfg.mod         = "cmd,mod"
 Cfg.opts        = ""
 Cfg.name        = "otpcr"
-Cfg.version     = "6"
+Cfg.version     = "8"
 Cfg.wdr         = os.path.expanduser(f"~/.{Cfg.name}")
 Cfg.pidfile     = os.path.join(Cfg.wdr, f"{Cfg.name}.pid")
 
