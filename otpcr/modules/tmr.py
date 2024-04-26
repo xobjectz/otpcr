@@ -9,16 +9,16 @@ import re
 import time as ttime
 
 
-from ..client  import laps
-from ..command import Command
-from ..event   import Event
-from ..find    import find
-from ..object  import update
-from ..persist import whitelist
-from ..runtime import broker
-from ..thread  import launch
-from ..timer   import Timer
-from ..workdir import sync
+from ..client    import laps
+from ..command   import Command
+from ..event     import Event
+from ..find      import find
+from ..object    import update
+from ..runtime   import broker
+from ..thread    import launch
+from ..timer     import Timer
+from ..whitelist import whitelist
+from ..workdir   import sync
 
 
 def init():
