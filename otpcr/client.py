@@ -162,3 +162,14 @@ def spl(txt):
     except (TypeError, ValueError):
         res = txt
     return [x for x in res if x]
+
+
+def __dir__():
+    return (
+        'Client',
+        'cmnd',
+        'command',
+        'lapse',
+        'parse_cmd',
+        'spl'
+    )

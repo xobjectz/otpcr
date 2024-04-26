@@ -9,12 +9,12 @@
 import time
 
 
-from ..client  import laps
-from ..object  import Object
-from ..command import Command
-from ..find    import fntime, find
-from ..persist import whitelist
-from ..workdir import sync
+from ..client    import laps
+from ..object    import Object
+from ..command   import Command
+from ..find      import fntime, find
+from ..whitelist import whitelist
+from ..workdir   import sync
 
 
 class NoDate(Exception): # pylint: disable=R0903

@@ -38,3 +38,9 @@ class Event(Default): # pylint: disable=R0902
             self._thr.join()
         self._ready.wait()
         return self.result
+
+
+def __dir__():
+    return (
+        'Event',
+    )

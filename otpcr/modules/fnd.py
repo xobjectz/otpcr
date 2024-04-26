@@ -4,11 +4,11 @@
 "locate"
 
 
-from ..command import Command
-from ..find    import find
-from ..object  import fmt
-from ..persist import long
-from ..workdir import liststore, skel
+from ..command   import Command
+from ..find      import find
+from ..object    import fmt
+from ..whitelist import long
+from ..workdir   import liststore, skel
 
 
 def fnd(event):

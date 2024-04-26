@@ -13,3 +13,9 @@ class Default(Object): # pylint: disable=R0902,R0903
 
     def __getattr__(self, key):
         return self.__dict__.get(key, "")
+
+
+def __dir__():
+    return (
+        'Default',
+    )

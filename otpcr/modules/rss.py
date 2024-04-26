@@ -16,16 +16,16 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote_plus, urlencode
 
 
-from ..client   import laps, spl
-from ..command  import Command
-from ..default  import Default
-from ..find     import find, fntime, last
-from ..object   import Object, fmt, update, values
-from ..persist  import whitelist
-from ..repeater import Repeater
-from ..runtime  import broker
-from ..thread   import launch
-from ..workdir  import sync
+from ..client     import laps, spl
+from ..command    import Command
+from ..default    import Default
+from ..find       import find, fntime, last
+from ..object     import Object, fmt, update, values
+from ..repeater   import Repeater
+from ..runtime    import broker
+from ..thread     import launch
+from ..whitelist  import whitelist
+from ..workdir    import sync
 
 
 def init():

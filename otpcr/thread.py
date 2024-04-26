@@ -70,3 +70,11 @@ def name(obj):
     if '__name__' in dir(obj):
         return f'{obj.__class__.__name__}.{obj.__name__}'
     return None
+
+
+def __dir__():
+    return (
+        'Thread',
+        'launch',
+        'name'
+    )

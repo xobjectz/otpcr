@@ -33,10 +33,22 @@ def enable(func):
     Errors.out = func
 
 
+def errors():
+    "show exceptions"
+    for exc in Errors.errors:
+        out(exc)
+
+
 def later(exc):
     "add an exception"
     excp = exc.with_traceback(exc.__traceback__)
     Errors.errors.append(excp)
+
+
+def out(exc):
+    "check if output function is set."
+    txt = str(tostr(exc))
+    Errors.out(txt)
 
 
 def tostr(exc):
@@ -54,13 +66,13 @@ def tostr(exc):
     return res
 
 
-def out(exc):
-    "check if output function is set."
-    txt = str(tostr(exc))
-    Errors.out(txt)
-
-
-def errors():
-    "show exceptions"
-    for exc in Errors.errors:
-        out(exc)
+def __dir__():
+    return (
+        'Errors',
+        'debug',
+        'enable',
+        'errors',
+        'later',
+        'tostr',
+        'out'
+    )

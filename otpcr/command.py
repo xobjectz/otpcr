@@ -17,3 +17,9 @@ class Command: # pylint: disable=R0903
     def add(func):
         "add command."
         setattr(Command.cmds, func.__name__, func)
+
+
+def __dir__():
+    return (
+        'Command',
+    )

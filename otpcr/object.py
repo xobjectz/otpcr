@@ -248,3 +248,27 @@ def cdir(pth):
         return
     pth = pathlib.Path(pth)
     os.makedirs(pth, exist_ok=True)
+
+
+def __dir__():
+    return (
+        'Object',
+        'construct',
+        'dump',
+        'dumps',
+        'edit',
+        'fmt',
+        'fqn',
+        'hook',
+        'items',
+        'keys',
+        'load',
+        'loads',
+        'read',
+        'search',
+        'update',
+        'values',
+        'write'
+    )
+
+    

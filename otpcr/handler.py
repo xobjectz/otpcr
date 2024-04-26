@@ -59,3 +59,9 @@ class Handler:
     def stop(self):
         "stop the event loop."
         self.stopped.set()
+
+
+def __dir__():
+    return (
+        'Handler',
+    )

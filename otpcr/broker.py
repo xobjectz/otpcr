@@ -33,3 +33,9 @@ class Broker:
     def remove(self, obj):
         "remove object from broker"
         delattr(self.objs, rpr(obj))
+
+
+def __dir__():
+    return (
+        'Broker',
+    )

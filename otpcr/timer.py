@@ -45,3 +45,9 @@ class Timer:
         "stop timer."
         if self.timer:
             self.timer.cancel()
+
+
+def __dir__():
+    return (
+        'Timer',
+    )
