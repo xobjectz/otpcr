@@ -12,5 +12,5 @@ broker = Broker()
 
 def __dir__():
     return (
-        'Broker',
+        'broker',
     )

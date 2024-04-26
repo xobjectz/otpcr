@@ -35,8 +35,6 @@ class Broker:
         delattr(self.objs, rpr(obj))
 
 
-"interface" # pylint: disable=W0105
-
 def __dir__():
     return (
         'Broker',
