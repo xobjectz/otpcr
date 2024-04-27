@@ -1,0 +1,3 @@
+grep -R "import importlib" otpcr
+grep -R "__import__(" otpcr
+grep -R "print(" otpcr

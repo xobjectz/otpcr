@@ -18,7 +18,7 @@ from .default import Default
 from .errors  import debug, enable, errors
 from .event   import Event
 from .object  import cdir
-from .runtime import broker, init
+from .runtime import broker
 from .scanner import scan
 from .workdir import Workdir, skel
 
@@ -28,9 +28,9 @@ from . import modules
 
 Cfg             = Default()
 Cfg.dis         = ""
-Cfg.mod         = "cmd,mod"
+Cfg.mod         = ""
 Cfg.opts        = ""
-Cfg.name        = "otpcr"
+Cfg.name        = __file__.split(os.sep)[-2]
 Cfg.version     = "8"
 Cfg.wdr         = os.path.expanduser(f"~/.{Cfg.name}")
 Cfg.pidfile     = os.path.join(Cfg.wdr, f"{Cfg.name}.pid")
@@ -98,6 +98,22 @@ def daemon(pidfile, verbose=False):
         fds.write(str(os.getpid()))
 
 
+
+def init(pkg, modstr, disable=""):
+    "init"
+    mds = []
+    for modname in spl(modstr):
+        if skip(modname, disable):
+            continue
+        module = getattr(pkg, modname, None)
+        if not module:
+            continue
+        if "init" in dir(module):
+            module.init()
+            mds.append(module)
+    return mds
+
+
 def privileges(username):
     "drop privileges."
     pwnam = pwd.getpwnam(username)
@@ -133,8 +149,7 @@ def main():
     parse_cmd(Cfg, " ".join(sys.argv[1:]))
     if Cfg.sets.dis:
         Cfg.dis += "," + Cfg.sets.dis
-    if 'a' in Cfg.opts:
-        Cfg.mod = ",".join(modules.__dir__())
+    Cfg.mod = ",".join(modules.__dir__())
     if "v" in Cfg.opts:
         debug(f"{Cfg.name.upper()} {Cfg.opts.upper()} started {dte}")
     scan(modules, Cfg.mod, Cfg.dis)

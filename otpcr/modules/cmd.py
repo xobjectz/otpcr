@@ -4,8 +4,7 @@
 "list of commands"
 
 
-from ..command import Command
-
 def cmd(event):
     "list commands."
+    from ..command import Command
     event.reply(",".join(sorted(list(Command.cmds))))

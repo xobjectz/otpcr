@@ -10,7 +10,7 @@ import inspect
 from .object import Object
 
 
-class Command: # pylint: disable=R0903
+class Command(Object): # pylint: disable=R0903
 
     "Command"
 

@@ -9,6 +9,7 @@ import inspect
 
 from .client    import spl
 from .command   import scan as scancmd
+from .errors    import later
 from .whitelist import scan as scancls
 
 
@@ -22,8 +23,11 @@ def init(pkg, modstr, disable=""):
         if not module:
             continue
         if "init" in dir(module):
-            module.init()
-            mds.append(module)
+            try:
+                module.init()
+                mds.append(module)
+            except Exception as ex: # pylint: disable=W0105
+                later(ex)
     return mds
 
 

@@ -11,11 +11,12 @@ from . import cmd, irc, log, req, rss, tdo
 
 def __dir__():
     return (
+       'cmd',
        'irc',
        'log',
        'req',
        'rss',
-       'tdo'
+       'tdo',
     )
 
 
