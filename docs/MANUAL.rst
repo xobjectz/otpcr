@@ -99,7 +99,7 @@ USAGE
     see list of commands
 
     $ otpcr cmd
-    cmd,err,mod,req,thr,ver
+    cfg,cmd,dne,dpl,exp,log,mre,nme,pwd,rem,req,res,rss,tdo,ver
 
     list of modules
 

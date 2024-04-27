@@ -27,7 +27,7 @@ from . import modules
 
 
 Cfg             = Default()
-Cfg.dis         = "mbx,mdl,rst,udp"
+Cfg.dis         = ""
 Cfg.mod         = "cmd,mod"
 Cfg.opts        = ""
 Cfg.name        = "otpcr"
