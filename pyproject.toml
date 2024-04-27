@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "otpcr"
-description = "OTP-CR-117/19"
+description = "The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court."
 version = "8"
 authors = [
     {name = "Bart Thate", email = "bthate@dds.nl"},
@@ -33,7 +33,7 @@ classifiers = [
 [tool.setuptools]
 packages = [
     'otpcr',
-    'otpcr.modules',
+    'otpcr.modules'
 ]
 zip-safe=true
 
