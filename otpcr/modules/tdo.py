@@ -21,7 +21,7 @@ class NoDate(Exception): # pylint: disable=R0903
 class Todo(Object): # pylint: disable=R0903
 
     "Todo"
- 
+
     def __init__(self):
         Object.__init__(self)
         self.txt = ''

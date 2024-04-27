@@ -11,7 +11,6 @@ import threading
 import time
 
 
-from ..command import Command
 from ..object  import Object, values
 from ..thread  import launch
 from ..runtime import broker

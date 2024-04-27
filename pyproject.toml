@@ -42,8 +42,6 @@ zip-safe=true
 "share/doc/otpcr" = [
     "README.rst",
     "docs/MANUAL.rst",
-    "files/otpcrsmile.png",
-    "files/otpcrwall.png",
     "files/bevestigd.jpg",
     "files/bevestigd.pdf",
     "files/informed.jpg",

@@ -23,6 +23,7 @@ def add(func):
 
 
 def scan(mod) -> None:
+    "scan module for commands."
     for key, cmd in inspect.getmembers(mod, inspect.isfunction):
         if key.startswith("cb"):
             continue

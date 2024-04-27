@@ -23,7 +23,6 @@ from ..object     import Object, fmt, update, values
 from ..repeater   import Repeater
 from ..runtime    import broker
 from ..thread     import launch
-from ..whitelist  import whitelist
 from ..workdir    import sync
 
 

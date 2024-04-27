@@ -15,12 +15,10 @@ import time
 
 from .client  import Client, cmnd, parse_cmd, spl
 from .default import Default
-from .errors  import debug, enable, errors
+from .errors  import debug, enable, errors, later
 from .event   import Event
 from .object  import cdir
 from .runtime import broker
-from .scanner import scan
-from .whitelist import whitelist
 from .workdir import Workdir, skel
 
 
@@ -116,7 +114,7 @@ def init(pkg, modstr, disable=""):
             try:
                 module.init()
                 mds.append(module)
-            except Exception as ex: # pylint: disable=W0105
+            except Exception as ex: # pylint: disable=W0718
                 later(ex)
     return mds
 
