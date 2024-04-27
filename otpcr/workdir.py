@@ -60,3 +60,16 @@ def sync(obj, pth=None):
     pth2 = store(pth)
     write(obj, pth2)
     return pth
+
+
+def __dir__():
+    return (
+        'Workdir',
+        'fetch',
+        'ident',
+        'liststore',
+        'skel',
+        'store',
+        'strip',
+        'sync'
+    )
