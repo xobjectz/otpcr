@@ -28,7 +28,6 @@ from ..workdir   import sync
 
 
 NAME    = __file__.split(os.sep)[-3]
-get     = broker.get
 saylock = _thread.allocate_lock()
 
 
@@ -583,9 +582,7 @@ def cb_log(bot, evt):
 
 def cb_ready(bot, evt):
     "bot is ready callback."
-    bot = get(evt.orig)
-    if bot:
-        bot.events.ready.set()
+    bot.events.ready.set()
 
 
 def cb_001(bot, evt):
