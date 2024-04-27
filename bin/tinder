@@ -24,6 +24,7 @@ from otpcr.default import Default
 from otpcr.errors  import errors
 from otpcr.event   import Event
 from otpcr.object  import Object, keys
+from otpcr.scanner import scan
 from otpcr.thread  import launch
 from otpcr.workdir import Workdir
 
@@ -54,6 +55,7 @@ Cfg.wd          = ".test"
 Workdir.workdir = Cfg.wd
 
 
+dte = time.ctime(STARTTIME).replace("  ", " ")
 events = []
 paylock = _thread.allocate_lock()
 
@@ -147,6 +149,7 @@ def wrap(func):
 
 def main():
     "main"
+    scan(modules, Cfg.mod)
     nrs = Cfg.index or 1
     nrcommand = len(Command.cmds) or 1
     thrs = []
@@ -164,12 +167,9 @@ def main():
 
 
 if __name__ == "__main__":
-    parse_cmd(Cfg, " ".join(sys.argv[1:]))
-    dte = time.ctime(time.time()).replace("  ", " ")
     cprint(f"{Cfg.name.upper()} TINDER {Cfg.opts.upper()} started {dte}".replace("  ", " "))
+    parse_cmd(Cfg, " ".join(sys.argv[1:]))
     Cfg.mod =  ",".join(modules.__dir__())
-    if mods:
-        Cfg.mod += ",".join(mods.__dir__())
     if "p" in Cfg.opts:
         profile.runctx(main.__code__, globals(), locals())
     else:

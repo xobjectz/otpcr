@@ -20,7 +20,12 @@ from .event   import Event
 from .object  import cdir
 from .runtime import broker
 from .scanner import scan
+from .whitelist import whitelist
 from .workdir import Workdir, skel
+
+
+from .command   import scan as scancmd
+from .whitelist import scan as scancls
 
 
 from . import modules
@@ -98,7 +103,6 @@ def daemon(pidfile, verbose=False):
         fds.write(str(os.getpid()))
 
 
-
 def init(pkg, modstr, disable=""):
     "init"
     mds = []
@@ -109,8 +113,25 @@ def init(pkg, modstr, disable=""):
         if not module:
             continue
         if "init" in dir(module):
-            module.init()
-            mds.append(module)
+            try:
+                module.init()
+                mds.append(module)
+            except Exception as ex: # pylint: disable=W0105
+                later(ex)
+    return mds
+
+
+def scan(pkg, modstr, disable=""):
+    "scan modules for commands and classes"
+    mds = []
+    for modname in spl(modstr):
+        if skip(modname, disable):
+            continue
+        module = getattr(pkg, modname, None)
+        if not module:
+            continue
+        scancmd(module)
+        scancls(module)
     return mds
 
 
@@ -119,6 +140,14 @@ def privileges(username):
     pwnam = pwd.getpwnam(username)
     os.setgid(pwnam.pw_gid)
     os.setuid(pwnam.pw_uid)
+
+
+def skip(name, skipped):
+    "check for skipping"
+    for skp in spl(skipped):
+        if skp in name:
+            return True
+    return False
 
 
 def wrap(func):
