@@ -4,6 +4,9 @@
 "persist"
 
 
+import inspect
+
+
 from .object  import Object
 from .workdir import liststore
 
@@ -13,6 +16,16 @@ class Whitelist(Object): # pylint: disable=R0903
     "Whitelist"
 
     classes = Object()
+
+
+def scan(mod) -> None:
+    "scan module for classes."
+    for key, clz in inspect.getmembers(mod, inspect.isclass):
+        if key.startswith("cb"):
+            continue
+        if not issubclass(clz, Object):
+            continue
+        whitelist(clz)
 
 
 def whitelist(clz):

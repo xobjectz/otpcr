@@ -11,9 +11,7 @@ import time
 
 from ..client    import laps
 from ..object    import Object
-from ..command   import Command
 from ..find      import fntime, find
-from ..whitelist import whitelist
 from ..workdir   import sync
 
 
@@ -29,9 +27,6 @@ class Todo(Object): # pylint: disable=R0903
     def __init__(self):
         Object.__init__(self)
         self.txt = ''
-
-
-whitelist(Todo)
 
 
 def dne(event):
@@ -51,9 +46,6 @@ def dne(event):
         event.reply("nothing todo")
 
 
-Command.add(dne)
-
-
 def tdo(event):
     "add todo."
     if not event.rest:
@@ -69,6 +61,3 @@ def tdo(event):
     obj.txt = event.rest
     sync(obj)
     event.reply('ok')
-
-
-Command.add(tdo)

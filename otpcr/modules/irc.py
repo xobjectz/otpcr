@@ -16,7 +16,6 @@ import _thread
 
 
 from ..client    import Client, command
-from ..command   import Command
 from ..default   import Default
 from ..event     import Event
 from ..errors    import Errors, debug, later
@@ -675,8 +674,3 @@ def pwd(event):
     base = base64.b64encode(enc)
     dcd = base.decode('ascii')
     event.reply(dcd)
-
-
-Command.add(cfg)
-Command.add(mre)
-Command.add(pwd)

@@ -4,7 +4,6 @@
 "errors"
 
 
-from ..command import Command
 from ..errors  import Errors, tostr
 
 
@@ -16,6 +15,3 @@ def err(event):
         txt = tostr(exc)
         for line in txt.split():
             event.reply(line)
-
-
-Command.add(err)

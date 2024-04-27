@@ -125,6 +125,3 @@ def udp(event):
             toudp(Cfg.host, Cfg.port, txt)
         if stop:
             break
-
-
-Command.add(udp)

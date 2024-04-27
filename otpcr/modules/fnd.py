@@ -4,7 +4,6 @@
 "locate"
 
 
-from ..command   import Command
 from ..find      import find
 from ..object    import fmt
 from ..whitelist import long
@@ -32,6 +31,3 @@ def fnd(event):
         nmr += 1
     if not nmr:
         event.reply("no result")
-
-
-Command.add(fnd)

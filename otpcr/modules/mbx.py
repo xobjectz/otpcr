@@ -13,7 +13,6 @@ import time
 
 from ..object    import Object, fmt, update
 from ..client    import laps
-from ..command   import Command
 from ..find      import find, fntime
 from ..whitelist import whitelist
 from ..workdir   import sync
@@ -100,9 +99,6 @@ def cor(event):
         event.reply("%s %s %s" % (nr, fmt(email, txt, plain=True), laps(time.time() - fntime(email.__stp__))))
 
 
-Command.add(cor)
-
-
 def eml(event):
     "emnail"
     if not event.args:
@@ -113,9 +109,6 @@ def eml(event):
         if event.rest in o.text:
             nr += 1
             event.reply("%s %s %s" % (nr, fmt(o, "From,Subject"), laps(time.time() - fntime(fn))))
-
-
-Command.add(eml)
 
 
 def mbx(event):
@@ -147,6 +140,3 @@ def mbx(event):
         nr += 1
     if nr:
         event.reply("ok %s" % nr)
-
-
-Command.add(mbx)

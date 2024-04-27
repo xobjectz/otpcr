@@ -78,12 +78,6 @@ p.s.
 """
 
 
-from ..command import Command
-
-
 def req(event):
     "reconsider"
     event.reply(__doc__)
-
-
-Command.add(req)

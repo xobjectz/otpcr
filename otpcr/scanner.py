@@ -7,9 +7,10 @@
 import inspect
 
 
-from .commands  import scan
-from .whitelist import whitelist
-    
+from .client    import spl
+from .command   import scan as scancmd
+from .whitelist import scan as scancls
+
 
 def init(pkg, modstr, disable=""):
     "init"
@@ -34,7 +35,7 @@ def skip(name, skipped):
     return False
 
 
-def scanner(pkg, modstr, disable=""):
+def scan(pkg, modstr, disable=""):
     "scan modules for commands and classes"
     mds = []
     for modname in spl(modstr):
@@ -43,6 +44,6 @@ def scanner(pkg, modstr, disable=""):
         module = getattr(pkg, modname, None)
         if not module:
             continue
-        scan(module)
+        scancmd(module)
         scancls(module)
     return mds

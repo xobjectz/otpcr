@@ -14,12 +14,12 @@ import time
 
 
 from .client  import Client, cmnd, parse_cmd, spl
-from .command import Command
 from .default import Default
 from .errors  import debug, enable, errors
 from .event   import Event
 from .object  import cdir
-from .runtime import broker
+from .runtime import broker, init
+from .scanner import scan
 from .workdir import Workdir, skel
 
 
@@ -98,34 +98,11 @@ def daemon(pidfile, verbose=False):
         fds.write(str(os.getpid()))
 
 
-def init(pkg, modstr, disable=""):
-    "init"
-    mds = []
-    for modname in spl(modstr):
-        if skip(modname, disable):
-            continue
-        module = getattr(pkg, modname, None)
-        if not module:
-            continue
-        if "init" in dir(module):
-            module.init()
-            mds.append(module)
-    return mds
-
-
 def privileges(username):
     "drop privileges."
     pwnam = pwd.getpwnam(username)
     os.setgid(pwnam.pw_gid)
     os.setuid(pwnam.pw_uid)
-
-
-def skip(name, skipped):
-    "check for skipping"
-    for skp in spl(skipped):
-        if skp in name:
-            return True
-    return False
 
 
 def wrap(func):
@@ -151,7 +128,6 @@ def ver(event):
 
 def main():
     "main"
-    Command.add(ver)
     enable(print)
     skel()
     parse_cmd(Cfg, " ".join(sys.argv[1:]))
@@ -161,6 +137,7 @@ def main():
         Cfg.mod = ",".join(modules.__dir__())
     if "v" in Cfg.opts:
         debug(f"{Cfg.name.upper()} {Cfg.opts.upper()} started {dte}")
+    scan(modules, Cfg.mod, Cfg.dis)
     if "h" in Cfg.opts:
         print(__doc__)
     elif "d" in Cfg.opts:

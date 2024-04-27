@@ -17,7 +17,6 @@ from urllib.parse import quote_plus, urlencode
 
 
 from ..client     import laps, spl
-from ..command    import Command
 from ..default    import Default
 from ..find       import find, fntime, last
 from ..object     import Object, fmt, update, values
@@ -412,13 +411,3 @@ def rss(event):
     feed.rss = event.args[0]
     sync(feed)
     event.reply('ok')
-
-
-Command.add(dpl)
-Command.add(exp)
-Command.add(nme)
-Command.add(rem)
-Command.add(res)
-Command.add(rss)
-whitelist(Rss)
-whitelist(Seen)
