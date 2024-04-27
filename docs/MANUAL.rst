@@ -127,12 +127,14 @@ COMMANDS
     rss - add a feed
     thr - show the running threads
 
+
 SYSTEMD
 
-::
 
-    save the following it in /etc/systemd/system/otpcr.service and
-    replace "<user>" with the user running pipx
+save the following it in /etc/systemd/system/otpcr.service and
+replace "<user>" with the user running pipx
+
+::
 
     [Unit]
     Description=OTP-CR-117/19
@@ -150,12 +152,14 @@ SYSTEMD
     [Install]
     WantedBy=default.target
 
-    then run this
+then run this
+
+::
 
     $ mkdir ~/.otpcr
     $ sudo systemctl enable otpcr --now
 
-    default channel/server is #otpcr on localhost
+default channel/server is #otpcr on localhost
 
 FILES
 
