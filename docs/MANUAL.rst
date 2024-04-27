@@ -50,6 +50,43 @@ DESCRIPTION
 
     OTPCR is Public Domain.
 
+
+INSTALL
+
+::
+
+    use pipx to install otpcr as a local installed program
+
+    $ pipx install otpcr
+    $ pipx ensurepath
+
+
+CONFIGURATION
+
+::
+
+    $ otpcr cfg 
+    channel=#otpcr commands=True nick=otpcr port=6667 server=localhost
+
+    irc
+
+    $ otpcr cfg server=<server>
+    $ otpcr cfg channel=<channel>
+    $ otpcr cfg nick=<nick>
+
+    sasl
+
+    $ otpcr pwd <nsvnick> <nspass>
+    $ otpcr cfg password=<frompwd>
+
+    rss
+
+    $ otpcr rss <url>
+    $ otpcr dpl <url> <item1,item2>
+    $ otpcr rem <url>
+    $ otpcr nme <url> <name>
+
+
 USAGE
 
 ::
@@ -84,31 +121,6 @@ USAGE
     OTPCR started CV started Sat Dec 2 17:53:24 2023
     >
 
-
-CONFIGURATION
-
-::
-
-    $ otpcr cfg 
-    channel=#otpcr commands=True nick=otpcr port=6667 server=localhost
-
-    irc
-
-    $ otpcr cfg server=<server>
-    $ otpcr cfg channel=<channel>
-    $ otpcr cfg nick=<nick>
-
-    sasl
-
-    $ otpcr pwd <nsvnick> <nspass>
-    $ otpcr cfg password=<frompwd>
-
-    rss
-
-    $ otpcr rss <url>
-    $ otpcr dpl <url> <item1,item2>
-    $ otpcr rem <url>
-    $ otpcr nme <url> <name>
 
 COMMANDS
 
