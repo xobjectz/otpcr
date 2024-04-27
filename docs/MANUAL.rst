@@ -59,6 +59,7 @@ INSTALL
 
     $ pipx install otpcr
     $ pipx ensurepath
+    $ mkdir ~/.otpcr
 
 
 CONFIGURATION
@@ -168,8 +169,8 @@ then run this
 
 ::
 
-    $ mkdir ~/.otpcr
     $ sudo systemctl enable otpcr --now
+
 
 default channel/server is #otpcr on localhost
 
