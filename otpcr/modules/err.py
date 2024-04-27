@@ -1,7 +1,7 @@
 # This file is placed in the Public Domain.
 
 
-"errors"
+"deferred exception handling"
 
 
 from ..errors  import Errors, tostr
