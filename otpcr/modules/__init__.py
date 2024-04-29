@@ -4,19 +4,13 @@
 "modules"
 
 
-from . import cmd, irc, req, rss
-from . import err, flt, thr
+from . import cmd, req
 
 
 def __dir__():
     return (
        'cmd',
-       'err',
-       'flt',
-       'irc',
-       'req',
-       'rss',
-       'thr'
+       'req'
     )
 
 

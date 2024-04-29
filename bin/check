@@ -1,3 +1,5 @@
 grep -R "import importlib" otpcr
 grep -R "__import__(" otpcr
 grep -R "print(" otpcr
+grep -R "import sys" otpcr
+grep -R "import os" otpcr
