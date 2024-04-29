@@ -134,7 +134,8 @@ def main():
     parse_cmd(Cfg, " ".join(sys.argv[1:]))
     if Cfg.sets.dis:
         Cfg.dis += "," + Cfg.sets.dis
-    Cfg.mod = ",".join(modules.__dir__())
+    if "a" in Cfg.opts:
+        Cfg.mod = ",".join(modules.__dir__())
     if "v" in Cfg.opts:
         debug(f"{Cfg.name.upper()} {Cfg.opts.upper()} started {dte}")
     scan(modules, Cfg.mod, Cfg.dis)
