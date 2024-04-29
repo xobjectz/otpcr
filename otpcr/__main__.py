@@ -14,6 +14,7 @@ import time
 
 
 from .client  import Client, cmnd, parse_cmd, spl
+from .command import add
 from .default import Default
 from .errors  import debug, enable, errors, later
 from .event   import Event
@@ -171,6 +172,7 @@ def ver(event):
 
 def main():
     "main"
+    add(ver)
     enable(print)
     skel()
     parse_cmd(Cfg, " ".join(sys.argv[1:]))
