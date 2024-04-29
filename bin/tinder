@@ -24,7 +24,7 @@ from otpcr.default import Default
 from otpcr.errors  import errors
 from otpcr.event   import Event
 from otpcr.object  import Object, keys
-from otpcr.scanner import scan
+from otpcr.runtime import scan
 from otpcr.thread  import launch
 from otpcr.workdir import Workdir
 
