@@ -5,7 +5,7 @@
 
 
 from . import cmd, irc, req, rss
-from . import err, flt, mdl, thr
+from . import err, flt, thr
 
 
 def __dir__():
@@ -14,7 +14,6 @@ def __dir__():
        'err',
        'flt',
        'irc',
-       'mdl',
        'req',
        'rss',
        'thr'
