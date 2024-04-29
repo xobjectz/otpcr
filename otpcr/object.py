@@ -13,7 +13,7 @@ import _thread
 lock = _thread.allocate_lock()
 
 
-class Object:
+class Object: # pylint: disable=R0902
 
     "Object"
 

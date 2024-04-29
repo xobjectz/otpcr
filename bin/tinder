@@ -32,12 +32,6 @@ from otpcr.workdir import Workdir
 from otpcr import modules
 
 
-if os.path.exists("mods"):
-    import files as mods
-else:
-    mods = None
-
-
 LAP = 1
 NRS = 1
 NRCOMMAND = 1
@@ -51,8 +45,10 @@ Cfg.name        = "otpcr"
 Cfg.silent      = False
 Cfg.skip        = ["debug",]
 Cfg.version     = "6"
-Cfg.wd          = ".test"
-Workdir.workdir = Cfg.wd
+Cfg.wdr          = ".test"
+
+
+Workdir.workdir = Cfg.wdr
 
 
 dte = time.ctime(STARTTIME).replace("  ", " ")
