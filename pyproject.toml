@@ -7,8 +7,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "otpcr"
-description = "The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court."
-version = "8"
+description = "OTP-CR-117/19 Communication Record (CR) 117 of the year 2019 (117/19) to the Office of the Prosecutor (OTP) of the International Criminal Court (ICC)"
+version = "9"
 authors = [
     {name = "Bart Thate", email = "bthate@dds.nl"},
 ]
@@ -22,8 +22,6 @@ classifiers = [
     'Topic :: Utilities'
 ]
 
-[project.scripts]
-"otpcr" = "otpcr.__main__:wrapped"
 
 [project.urls]
 "home" = "https://pypi.org/project/otpcr"
@@ -31,6 +29,9 @@ classifiers = [
 "source" = "https://github.com/xobjectz/otpcr"
 
 [tool.setuptools]
+script-files = [
+    'bin/otpcr',
+]
 packages = [
     'otpcr',
     'otpcr.modules'

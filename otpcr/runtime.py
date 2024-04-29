@@ -4,6 +4,8 @@
 "runtime"
 
 
+import time
+
 
 from .broker    import Broker
 from .client    import spl
@@ -13,6 +15,7 @@ from .whitelist import scan as scancls
 
 
 broker = Broker()
+dte    = time.ctime(time.time()).replace("  ", " ")
 
 
 def init(pkg, modstr, disable=""):
@@ -59,6 +62,7 @@ def doskip(name, skipp):
 def __dir__():
     return (
         'broker',
+        'dte',
         'init',
         'scan'
     )

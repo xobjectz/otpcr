@@ -14,12 +14,15 @@ import termios
 import time
 
 
+sys.path.insert(0, os.getcwd())
+
+
 from otpcr.client  import Client, cmnd, parse_cmd
 from otpcr.default import Default
 from otpcr.errors  import debug, enable, errors
 from otpcr.event   import Event
 from otpcr.object  import cdir
-from otpcr.runtime import broker, init, scan
+from otpcr.runtime import broker, dte, init, scan
 from otpcr.workdir import Workdir, skel
 
 
@@ -30,16 +33,11 @@ Cfg             = Default()
 Cfg.dis         = ""
 Cfg.mod         = "cmd,err,flt,mod,thr"
 Cfg.opts        = ""
-Cfg.name        = __file__.split(os.sep)[-2]
+Cfg.name        = __file__.split(os.sep)[-1]
 Cfg.version     = "8"
 Cfg.wdr         = os.path.expanduser(f"~/.{Cfg.name}")
 Cfg.pidfile     = os.path.join(Cfg.wdr, f"{Cfg.name}.pid")
-
-
 Workdir.workdir = Cfg.wdr
-
-
-dte = time.ctime(time.time()).replace("  ", " ")
 
 
 class Console(Client):
@@ -153,12 +151,7 @@ def main():
         cmnd(Cfg.otxt, print)
 
 
-def wrapped():
-    "wrap main function."
-    wrap(main)
-
-
 if __name__ == "__main__":
     readline.redisplay()
-    wrapped()
+    wrap(main)
     errors()
