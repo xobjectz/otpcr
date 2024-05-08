@@ -31,7 +31,7 @@ from otpcr import modules
 
 Cfg             = Default()
 Cfg.dis         = ""
-Cfg.mod         = "cmd,mod"
+Cfg.mod         = "cmd,err,log,mod,tdo,thr,tmr"
 Cfg.opts        = ""
 Cfg.name        = __file__.rsplit(os.sep, maxsplit=1)[-1]
 Cfg.version     = "11"
@@ -94,8 +94,8 @@ def main():
     skel()
     enable(print)
     setout(print)
-    #if "a" in Cfg.opts:
-    Cfg.mod = ",".join(modules.__dir__())
+    if "a" in Cfg.opts:
+        Cfg.mod = ",".join(modules.__dir__())
     if "v" in Cfg.opts:
         dte = " ".join(time.ctime(time.time()).replace("  ", " ").split()[1:])
         debug(f'{dte} {Cfg.name.upper()} {Cfg.opts.upper()} {Cfg.mod.upper()}')
