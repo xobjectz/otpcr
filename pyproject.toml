@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "otpcr"
 description = "The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court."
-version = "12"
+version = "14"
 authors = [
     {name = "Bart Thate", email = "bthate@dds.nl"},
 ]
@@ -43,6 +43,9 @@ zip-safe=true
 [tool.setuptools.data-files]
 "share/doc/otpcr" = [
     "README.rst",
+    "files/wallpaper2.png",
+    "files/Kamer.pdf",
+    "files/Rome-Statute.pdf",
     "files/bevestigd.jpg",
     "files/bevestigd.pdf",
     "files/informed.jpg",
