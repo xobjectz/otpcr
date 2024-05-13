@@ -24,7 +24,6 @@ from otpcr.log     import debug, enable
 from otpcr.object  import Default
 from otpcr.run     import broker, init, scan
 from otpcr.thread  import errors, setout
-from otpcr.utils   import hms
 
 
 from otpcr import modules
