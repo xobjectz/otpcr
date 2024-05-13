@@ -93,8 +93,7 @@ def main():
     setout(print)
     parse(Cfg, " ".join(sys.argv[1:]))
     skel()
-    if "a" in Cfg.opts:
-        Cfg.mod = ",".join(modules.__dir__())
+    Cfg.mod = ",".join(modules.__dir__())
     if "v" in Cfg.opts:
         enable(print)
         dte = " ".join(time.ctime(time.time()).replace("  ", " ").split()[1:])
