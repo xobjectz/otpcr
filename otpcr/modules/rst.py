@@ -16,7 +16,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 
 from ..find   import fns
 from ..log    import debug
-from ..object import Default, Object
+from ..object import Default, Object, fmt
 from ..thread import later, launch
 from ..disk   import Workdir
 
@@ -24,6 +24,7 @@ from ..disk   import Workdir
 def init():
     rest = REST((Config.hostname, int(Config.port)), RESTHandler)
     launch(rest.start)
+    debug(f"started {fmt(Config)}")
     return rest
 
 
@@ -91,11 +92,13 @@ class RESTHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
+        if "favicon" in self.path:
+            return
         if self.path == "/":
             self.write_header("text/html")
             txt = ""
             for fnm in fns():
-                txt += f'<a href="http://{Config.hostname}:{Config.port}/{fnm}">{fnm}</a>\n'
+                txt += f'<a href="http://{Config.hostname}:{Config.port}/{fnm}">{fnm}</a><br>\n'
             self.send(html(txt.strip()))
             return
         fnm = Workdir.workdir + os.sep + "store" + os.sep + self.path
