@@ -24,6 +24,7 @@ from otpcr.log     import debug, enable
 from otpcr.object  import Default
 from otpcr.run     import broker, init, scan
 from otpcr.thread  import errors, setout
+from otpcr.utils   import hms
 
 
 from otpcr import modules
@@ -60,10 +61,9 @@ class Console(Client):
 
     def poll(self):
         "poll console and create event."
-        tme = 
         evt = Event()
         evt.orig = object.__repr__(self)
-        evt.txt = input(f"tme} > ")
+        evt.txt = input("> ")
         evt.type = "command"
         return evt
 
