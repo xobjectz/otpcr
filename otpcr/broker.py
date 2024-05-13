@@ -4,7 +4,7 @@
 "broker"
 
 
-from .object import Object, keys
+from .object import Object, keys, values
 
 
 rpr = object.__repr__
@@ -20,6 +20,10 @@ class Broker:
     def add(self, obj):
         "add an object to the broker."
         setattr(self.objs, rpr(obj), obj)
+
+    def all(self):
+        "return all objects."
+        return values(self.objs)
 
     def first(self):
         "return first object."

@@ -37,6 +37,7 @@ def init():
     irc = IRC()
     irc.start()
     irc.events.joined.wait()
+    debug(f'started irc {fmt(Config,skip="password")}')
     return irc
 
 
