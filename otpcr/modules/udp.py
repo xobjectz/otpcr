@@ -86,7 +86,7 @@ def toudp(host, port, txt):
 def udp(event):
     if event.rest:
         toudp(Cfg.host, Cfg.port, event.rest)
-        event.reply(f"{len(event.rest)} characters sent")
+        debug(f"{len(event.rest)} characters sent")
         return
     if not select.select(
                          [sys.stdin, ],

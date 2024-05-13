@@ -4,9 +4,6 @@
 "runtime"
 
 
-import datetime
-
-
 from .broker  import Broker
 from .client  import scancmd
 from .disk    import scancls
@@ -32,13 +29,6 @@ def init(pkg, modstr, disable=""):
             except Exception as ex: # pylint: disable=W0718
                 later(ex)
     return mds
-
-
-def hour():
-    print(datetime.datetime.now())
-
-def now():
-    os.path.join(*str(datetime.datetime.now()).split())
 
 
 def scan(pkg, modstr, disable=""):

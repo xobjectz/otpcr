@@ -14,9 +14,10 @@ import time
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 
+from ..find   import fns
 from ..log    import debug
 from ..object import Default, Object
-from ..thread import Errors, launch
+from ..thread import later, launch
 from ..disk   import Workdir
 
 
@@ -68,7 +69,7 @@ class REST(HTTPServer, Object):
     def error(self, request, addr):
         exctype, excvalue, tb = sys.exc_info()
         exc = exctype(excvalue)
-        Errors.add(exc)
+        later(exc)
         debug('%s %s' % (addr, excvalue))
 
 
@@ -97,7 +98,7 @@ class RESTHandler(BaseHTTPRequestHandler):
                 txt += f'<a href="http://{Config.hostname}:{Config.port}/{fnm}">{fnm}</a>\n'
             self.send(html(txt.strip()))
             return
-        fnm = Workdir.wd + os.sep + "store" + os.sep + self.path
+        fnm = Workdir.workdir + os.sep + "store" + os.sep + self.path
         try:
             f = open(fnm, "r", encoding="utf-8")
             txt = f.read()
@@ -106,7 +107,7 @@ class RESTHandler(BaseHTTPRequestHandler):
             self.send(html(txt))
         except (TypeError, FileNotFoundError, IsADirectoryError) as ex:
             self.send_response(404)
-            Errors.add(ex)
+            later(ex)
             self.end_headers()
 
     def log(self, code):
