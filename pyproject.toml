@@ -43,7 +43,6 @@ zip-safe=true
 [tool.setuptools.data-files]
 "share/doc/otpcr" = [
     "README.rst",
-    "files/wallpaper2.png",
     "files/Kamer.pdf",
     "files/Rome-Statute.pdf",
     "files/bevestigd.jpg",
