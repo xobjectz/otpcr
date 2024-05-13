@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "otpcr"
 description = "The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court."
-version = "14"
+version = "15"
 authors = [
     {name = "Bart Thate", email = "bthate@dds.nl"},
 ]

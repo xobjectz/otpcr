@@ -34,7 +34,7 @@ Cfg.dis         = ""
 Cfg.mod         = "cmd,err,log,mod,tdo,thr,tmr"
 Cfg.opts        = ""
 Cfg.name        = __file__.rsplit(os.sep, maxsplit=1)[-1]
-Cfg.version     = "14"
+Cfg.version     = "15"
 Cfg.wdr         = os.path.expanduser(f"~/.{Cfg.name}")
 Cfg.pidfile     = os.path.join(Cfg.wdr, f"{Cfg.name}.pid")
 
@@ -60,9 +60,10 @@ class Console(Client):
 
     def poll(self):
         "poll console and create event."
+        tme = 
         evt = Event()
         evt.orig = object.__repr__(self)
-        evt.txt = input("> ")
+        evt.txt = input(f"tme} > ")
         evt.type = "command"
         return evt
 
