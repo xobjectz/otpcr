@@ -1,6 +1,6 @@
 # This file is placed in the Public Domain.
 #
-#
+# pylint: disable=C0301
 
 
 "slogan"
@@ -12,8 +12,10 @@ here in the Netherlands."""
 
 
 def lne(event):
-    event.reply(TXT.split("\n")[0])
+    "diplay first line of slogan."
+    event.reply(TXT.split("\n", maxsplit=1)[0])
 
 
 def slg(event):
+    "slogan"
     event.reply(TXT)
