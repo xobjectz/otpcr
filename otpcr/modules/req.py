@@ -1,15 +1,16 @@
 # This file is placed in the Public Domain.
 
 
-"""| **Information and Evidence Unit**
-| **Office of the Prosecutor**
-| **Post Office Box 19519**
-| **2500 CM The Hague**
-| **The Netherlands**
-|
-| ``OTP-CR-117/19``
-|
-|
+"""OTP-CR-117/19
+
+By law, with the use of poison, killing, torturing, castrating, destroying in whole or in part, 
+
+
+Information and Evidence Unit
+Office of the Prosecutor
+Post Office Box 19519
+2500 CM The Hague
+The Netherlands
 
 
 Hello Office of the Prosecutor, 
