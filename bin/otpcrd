@@ -25,7 +25,7 @@ from otpcr import modules
 
 
 Cfg             = Default()
-Cfg.dis         = ""
+Cfg.dis         = "mdl"
 Cfg.name        = "otpcr"
 Cfg.mod         = "cmd,mod"
 Cfg.version     = "17"
@@ -77,8 +77,8 @@ def main():
     Cfg.user = getpass.getuser()
     daemon(Cfg.pidfile, "-v" in sys.argv)
     privileges(Cfg.user)
-    scan(modules, Cfg.mod)
-    init(modules, Cfg.mod)
+    scan(modules, Cfg.mod, Cfg.dis)
+    init(modules, Cfg.mod, Cfg.dis)
     while 1:
         time.sleep(1.0)
 
