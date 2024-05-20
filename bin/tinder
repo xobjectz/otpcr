@@ -46,7 +46,7 @@ Cfg.mod         = ""
 Cfg.name        = "tinder"
 Cfg.silent      = False
 Cfg.skip        = ["debug",]
-Cfg.version     = "110"
+Cfg.version     = "18"
 Cfg.wdr         = ".test"
 
 
