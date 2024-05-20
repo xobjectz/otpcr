@@ -4,13 +4,17 @@
 "runtime"
 
 
+import time
+
+
 from .broker  import Broker
 from .client  import scancmd
 from .disk    import scancls
 from .thread  import later
 
 
-broker = Broker()
+broker   = Broker()
+starttime = time.time()
 
 
 def init(pkg, modstr, disable=""):

@@ -167,7 +167,7 @@ if __name__ == "__main__":
     Cfg.mod = lsmod(path)
     enable(print)
     dte = " ".join(time.ctime(time.time()).replace("  ", " ").split()[1:])
-    debug(f'{dte} {Cfg.name.upper()} {Cfg.opts.upper()} {Cfg.mod.upper()}')
+    debug(f'{dte} {Cfg.name.upper()} {Cfg.opts.upper()} {Cfg.mod.upper()}'.replace("  ", " "))
     if "p" in Cfg.opts:
         profile.runctx(main.__code__, globals(), locals())
     else:

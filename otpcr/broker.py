@@ -4,10 +4,7 @@
 "broker"
 
 
-from .object import Object, keys, values
-
-
-rpr = object.__repr__
+from .object import Object, keys, rpr, values
 
 
 class Broker:

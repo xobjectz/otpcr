@@ -8,7 +8,7 @@ import os
 import time
 
 
-from .disk import fetch, long, store, strip
+from .disk   import fetch, long, store, strip
 from .object import Default, fqn, search, update
 
 

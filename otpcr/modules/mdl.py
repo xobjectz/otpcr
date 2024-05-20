@@ -262,16 +262,16 @@ demo.part = 7000000000 / demo.population
 
 
 jaar = {}
-jaar["WvGGZ"] = 14206
-jaar["Pvp"] = 20088
-jaar["Wzd"] = 25000
-jaar["Wfz"] = 23820
+jaar["WvGGZ"]  = 14206
+jaar["Pvp"]    = 20088
+jaar["Wzd"]    = 25000
+jaar["Wfz"]    = 23820
 jaar["totaal"] = 168678
 
 
-oorzaak = Object()
-construct(oorzaak, zip(oor, aantal))
+oorzaak  = Object()
 oorzaken = Object()
+construct(oorzaak, zip(oor, aantal))
 
 
 def getalias(txt):
@@ -282,6 +282,7 @@ def getalias(txt):
             result = value
             break
     return result
+
 
 def getday():
     "timestamp of current day."
@@ -305,7 +306,6 @@ def seconds(nrs):
     return 60*60*24*365 / float(nrs)
 
 
-
 def iswanted(k, line):
     "see whether filtered or not."
     for word in line:
@@ -315,7 +315,7 @@ def iswanted(k, line):
 
 
 def daily():
-    "daily job"
+    "daily job."
     while 1:
         time.sleep(24*60*60)
         evt = Event()
@@ -323,7 +323,7 @@ def daily():
 
 
 def hourly():
-    "hourly job"
+    "hourly job."
     while 1:
         time.sleep(60*60)
         evt = Event()
@@ -331,7 +331,7 @@ def hourly():
 
 
 def cbnow(_evt):
-    "now callback"
+    "now callback."
     delta = time.time() - STARTTIME
     txt = laps(delta) + " "
     for name in sorted(keys(oorzaken), key=lambda x: seconds(getnr(x))):
@@ -365,7 +365,7 @@ def cbstats(evt):
                                                                laps(needed),
                                                                nryear,
                                                               )
-        for bot in values(broker.objs):
+        for bot in broker.all():
             bot.announce(txt)
 
 
@@ -424,11 +424,11 @@ def boot():
         setattr(oorzaken, nms, aantal[_nr])
 
 
+boot()
+
+
 def __dir__():
     return (
             'init',
             'now'
            )
-
-
-boot()

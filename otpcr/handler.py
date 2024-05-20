@@ -13,9 +13,6 @@ from .object import Default, Object
 from .thread import launch
 
 
-rpr = object.__repr__
-
-
 class Handler:
 
     "Handler"

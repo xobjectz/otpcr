@@ -10,6 +10,7 @@ import _thread
 
 
 lock = _thread.allocate_lock()
+rpr = object.__repr__
 
 
 class Object: # pylint: disable=R0902
@@ -266,6 +267,7 @@ def __dir__():
         'load',
         'loads',
         'read',
+        'rpr',
         'search',
         'update',
         'values',

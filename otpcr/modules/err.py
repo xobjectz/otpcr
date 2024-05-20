@@ -1,7 +1,7 @@
 # This file is placed in the Public Domain.
 
 
-"deferred exception handling"
+"show errors"
 
 
 from ..thread import Errors, formatexc
