@@ -34,7 +34,7 @@ Cfg.dis         = ""
 Cfg.mod         = "cmd,err,log,mod,tdo,thr,tmr"
 Cfg.opts        = ""
 Cfg.name        = __file__.rsplit(os.sep, maxsplit=1)[-1]
-Cfg.version     = "17"
+Cfg.version     = "18"
 Cfg.wdr         = os.path.expanduser(f"~/.{Cfg.name}")
 Cfg.pidfile     = os.path.join(Cfg.wdr, f"{Cfg.name}.pid")
 
@@ -97,7 +97,7 @@ def main():
     if "v" in Cfg.opts:
         enable(print)
         dte = " ".join(time.ctime(time.time()).replace("  ", " ").split()[1:])
-        debug(f'{dte} {Cfg.name.upper()} {Cfg.opts.upper()} {Cfg.mod.upper()}')
+        debug(f'{dte} {Cfg.name.upper()} {Cfg.opts.upper()} {Cfg.mod.upper()}'.replace("  ", " "))
     if "h" in Cfg.opts:
         print(__doc__)
     scan(modules, Cfg.mod, Cfg.sets.dis)
