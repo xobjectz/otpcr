@@ -31,7 +31,7 @@ from otpcr import modules
 
 Cfg             = Default()
 Cfg.dis         = ""
-Cfg.mod         = "cmd,err,log,mod,tdo,thr,tmr"
+Cfg.mod         = "cmd,err,log,mod,req,tdo,thr"
 Cfg.opts        = ""
 Cfg.name        = __file__.rsplit(os.sep, maxsplit=1)[-1]
 Cfg.version     = "18"
