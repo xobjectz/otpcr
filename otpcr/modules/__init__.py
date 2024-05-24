@@ -8,7 +8,6 @@
 
 
 from . import cmd, err, mod, thr, irc, log, req, rst, rss, slg, tdo, tmr, udp
-from . import mdl, wsd
 
 
 def __dir__():
@@ -17,7 +16,6 @@ def __dir__():
         'err',
         'irc',
         'log',
-        'mdl',
         'mod',
         'req',
         'rss',
@@ -27,7 +25,6 @@ def __dir__():
         'thr',
         'tmr',
         'udp',
-        'wsd'
     )
 
 
