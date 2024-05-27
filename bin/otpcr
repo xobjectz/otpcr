@@ -34,7 +34,7 @@ Cfg.dis         = ""
 Cfg.mod         = "cmd,err,log,mod,req,tdo,thr"
 Cfg.opts        = ""
 Cfg.name        = __file__.rsplit(os.sep, maxsplit=1)[-1]
-Cfg.version     = "18"
+Cfg.version     = "19"
 Cfg.wdr         = os.path.expanduser(f"~/.{Cfg.name}")
 Cfg.pidfile     = os.path.join(Cfg.wdr, f"{Cfg.name}.pid")
 
