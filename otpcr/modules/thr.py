@@ -8,9 +8,11 @@ import threading
 import time
 
 
-from ..client import laps
+from ..client    import laps
 from ..object import Object, update
-from ..run    import starttime
+
+
+STARTTIME = time.time()
 
 
 def thr(event):
@@ -26,7 +28,7 @@ def thr(event):
         elif getattr(obj, 'starttime', None):
             uptime = int(time.time() - obj.starttime)
         else:
-            uptime = int(time.time() - starttime)
+            uptime = int(time.time() - STARTTIME)
         result.append((uptime, thread.name))
     res = []
     for uptime, txt in sorted(result, key=lambda x: x[1]):

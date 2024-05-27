@@ -4,19 +4,34 @@
 "utilities"
 
 
-import datetime
+import uuid
 
 
-def hms():
-    "return hour:minutes:seconds string."
-    return now().split(".")[0]
+def shortid():
+    "create short id."
+    return str(uuid.uuid4())[:8]
 
 
-def date():
-    "return time with date."
-    return str(datetime.datetime.now())
+def skip(name, skipp):
+    "check for skipping"
+    for skp in spl(skipp):
+        if skp in name:
+            return True
+    return False
 
 
-def now():
-    "return string of the current time."
-    return date().split()[-1]
+def spl(txt):
+    "split comma separated string into a list."
+    try:
+        res = txt.split(',')
+    except (TypeError, ValueError):
+        res = txt
+    return [x for x in res if x]
+
+
+def __dir__():
+    return (
+        'shortid',
+        'skip',
+        'spl'
+    )

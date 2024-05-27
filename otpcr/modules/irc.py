@@ -37,7 +37,6 @@ def init():
     irc = IRC()
     irc.start()
     irc.events.joined.wait()
-    debug(f'started irc {fmt(Config,skip="password")}')
     return irc
 
 
@@ -58,7 +57,7 @@ class Config(Default): # pylint: disable=R0902,R0903
     "Config"
 
     channel = f'#{NAME}'
-    commands = True
+    commands = False
     control = '!'
     edited = time.time()
     nick = NAME

@@ -8,7 +8,7 @@ import os
 import time
 
 
-from .disk   import fetch, long, store, strip
+from .disk import fetch, long, store, strip
 from .object import Default, fqn, search, update
 
 
@@ -44,17 +44,19 @@ def find(mtc, selector=None, index=None, deleted=False):
     "find object matching the selector dict."
     clz = long(mtc)
     nrs = -1
+    result = []
     for fnm in sorted(fns(clz), key=fntime):
         obj = Default()
         fetch(obj, fnm)
-        if not deleted and '__deleted__' in obj:
+        if not deleted and '__deleted__' in dir(obj):
             continue
         if selector and not search(obj, selector):
             continue
         nrs += 1
         if index is not None and nrs != int(index):
             continue
-        yield (fnm, obj)
+        result.append((fnm, obj))
+    return result
 
 
 def last(obj, selector=None):

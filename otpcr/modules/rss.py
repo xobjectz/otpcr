@@ -4,6 +4,7 @@
 "rich site syndicate"
 
 
+import html
 import html.parser
 import re
 import time
@@ -35,14 +36,6 @@ DEBUG = False
 
 
 fetchlock = _thread.allocate_lock()
-
-
-TEMPLATE = """<opml version="1.0">
-    <head>
-        <title>rssbot opml</title>
-    </head>
-    <body>
-        <outline title="rssbot opml" text="24/7 feed fetcher">"""
 
 
 class Feed(Default): # pylint: disable=R0903
@@ -154,40 +147,6 @@ class Parser:
     "Parser"
 
     @staticmethod
-    def getvalue(line, attr):
-        "retrieve attribute value."
-        lne = ''
-        index1 = line.find(f'{attr}="')
-        if index1 == -1:
-            return lne
-        index1 += len(attr) + 2
-        index2 = line.find('"', index1)
-        if index2 == -1:
-            index2 = line.find('"/>', index1)
-        if index2 == -1:
-            return lne
-        lne = line[index1:index2]
-        if 'CDATA' in lne:
-            lne = lne.replace('![CDATA[', '')
-            lne = lne.replace(']]', '')
-            #lne = lne[1:-1]
-        return lne
-
-    @staticmethod
-    def getattrs(line, token):
-        "split for attributes."
-        result = ""
-        index1 = line.find(f'<{token} ')
-        if index1 == -1:
-            return result
-        index1 += len(token) + 2
-        index2 = line.find('/>', index1)
-        if index2 == -1:
-            return result
-        result = line[index1:index2]
-        return result.strip()
-
-    @staticmethod
     def getitem(line, item):
         "match items."
         lne = ''
@@ -199,10 +158,7 @@ class Parser:
         if index2 == -1:
             return lne
         lne = line[index1:index2]
-        if 'CDATA' in lne:
-            lne = lne.replace('![CDATA[', '')
-            lne = lne.replace(']]', '')
-            lne = lne[1:-1]
+        lne = cdata(lne)
         return lne.strip()
 
     @staticmethod
@@ -238,18 +194,6 @@ class Parser:
                     val = val.replace("\n", "")
                     val = striphtml(val)
                     setattr(obj, itm, val)
-                else:
-                    att = Parser.getattrs(line, toke)
-                    if not att:
-                        continue
-                    if itm == "link":
-                        itm = "href"
-                    val = Parser.getvalue(att, itm)
-                    if not val:
-                        continue
-                    if itm == "href":
-                        itm = "link"
-                    setattr(obj, itm, val.strip())
             result.append(obj)
         return result
 
@@ -270,6 +214,7 @@ def getfeed(url, items):
             result = Parser.parse(str(rest.data, 'utf-8'), 'item', items) or []
     return result
 
+
 def gettinyurl(url):
     "fetch a tinyurl."
     postarray = [
@@ -287,6 +232,16 @@ def gettinyurl(url):
             if i:
                 return i.groups()
     return []
+
+
+def cdata(line):
+    "retrieve text from CDATA."
+    if 'CDATA' in line:
+        lne = line.replace('![CDATA[', '')
+        lne = lne.replace(']]', '')
+        lne = lne[1:-1]
+        return lne
+    return line
 
 
 def geturl(url):
@@ -329,20 +284,6 @@ def dpl(event):
             update(feed, setter)
             sync(feed)
     event.reply('ok')
-
-
-def exp(event):
-    "export to opml."
-    event.reply(TEMPLATE)
-    nrs = 0
-    for _fn, obj in find("rss"):
-        nrs += 1
-        name = obj.name or f"url{nrs}"
-        txt = f'<outline name={name} display_list={obj.display_list} xmlUrl="{obj.rss}"/>'
-        event.reply(" "*12 + txt)
-    event.reply(" "*8 + "</outline>")
-    event.reply("    <body>")
-    event.reply("</opml>")
 
 
 def nme(event):
