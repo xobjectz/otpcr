@@ -4,10 +4,9 @@
 "attributes"
 
 
-
 from .object import Default, update
 from .utils  import spl
- 
+
 
 class Parser:
 
@@ -15,6 +14,7 @@ class Parser:
 
     @staticmethod
     def getnames(line):
+        "return list of attribute names."
         return [x.split('="')[0]  for x in line.split()]
 
     @staticmethod
@@ -61,14 +61,14 @@ class Parser:
         if items is None:
             items = ",".join(Parser.getnames(txt))
         result = []
-        for attrs in Parser.getattrs(txt, toke):
-            if not attrs:
+        for attrz in Parser.getattrs(txt, toke):
+            if not attrz:
                 continue
             obj = Default()
             for itm in spl(items):
                 if itm == "link":
                     itm = "href"
-                val = Parser.getvalue(attrs, itm)
+                val = Parser.getvalue(attrz, itm)
                 if not val:
                     continue
                 if itm == "href":
