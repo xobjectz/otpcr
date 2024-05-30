@@ -42,7 +42,17 @@ zip-safe=true
 
 [tool.setuptools.data-files]
 "share/doc/otpcr" = [
+    "MANUAL.rst",
     "README.rst",
+    "files/about.rst",
+    "files/evidence.rst",
+    "files/guilty.rst",
+    "files/index.rst",
+    "files/manual.rst",
+    "files/request.rst",
+    "files/writings.rst",
+    "files/OTP1.png",
+    "files/OTP2.png",
     "files/verbatim7.png",
     "files/bylaw.png",
     "files/skull.jpg",
