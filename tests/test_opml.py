@@ -9,7 +9,7 @@
 import unittest
 
 
-from otpcr.modules.rss import Parser
+from otpcr.modules.opm import Parser
 
 
 class TestOPML(unittest.TestCase):
@@ -20,7 +20,7 @@ class TestOPML(unittest.TestCase):
         "test opml parser."
         p = Parser()
         res = p.parse(TXT, "outline", "title,type,text,xmlUrl")
-        self.assertTrue(len(res) == 4)
+        self.assertTrue(len(res) == 20)
 
 
 TXT = """<opml version="1.0">
