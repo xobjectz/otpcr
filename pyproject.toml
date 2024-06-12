@@ -1,20 +1,17 @@
 [build-system]
-requires = [
-    "setuptools>=43.0.0",
-    "wheel"
-]
+requires = ["setuptools>=43.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "otpcr"
 description = "The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court."
-version = "19"
+version = "20"
 authors = [
-    {name = "Bart Thate", email = "bthate@dds.nl"},
+    {name = "Bart Thate", email = "bthate@dds.nl" },
 ]
 readme = "README.rst"
-license = {text="Public Domain"}
-classifiers = [ 
+license = { text="Public Domain"}
+classifiers=[
     'Development Status :: 3 - Alpha',
     'License :: Public Domain',
     'Operating System :: Unix',
@@ -22,52 +19,80 @@ classifiers = [
     'Topic :: Utilities'
 ]
 
+[project.optional-dependencies]
+dev = []
+
 
 [project.urls]
-"home" = "https://pypi.org/project/otpcr"
-"bugs" = "https://github.com/xobjectz/otpcr/issues"
-"source" = "https://github.com/xobjectz/otpcr"
+"home" = "https://pypi.org/project/sbn"
+"bugs" = "https://github.com/bthate/sbn/issues"
+"source" = "https://github.com/bthate/sbn"
+
 
 [tool.setuptools]
 script-files = [
-    'bin/otpcr',
-    'bin/otpcrd'
+    "bin/sbn",
+    "bin/sbnd"
 ]
 packages = [
-    'otpcr',
-    'otpcr.modules'
+   "sbn",
+   "sbn.modules"
 ]
-zip-safe=true
+zip-safe = true
 
 
 [tool.setuptools.data-files]
-"share/doc/otpcr" = [
-    "MANUAL.rst",
+"share/doc/sbn/docs" = [
     "README.rst",
-    "files/about.rst",
-    "files/evidence.rst",
-    "files/guilty.rst",
-    "files/index.rst",
-    "files/manual.rst",
-    "files/request.rst",
-    "files/writings.rst",
-    "files/OTP1.png",
-    "files/OTP2.png",
-    "files/verbatim7.png",
-    "files/bylaw.png",
-    "files/skull.jpg",
-    "files/skull3.png",
-    "files/Kamer.pdf",
-    "files/Rome-Statute.pdf",
-    "files/bevestigd.jpg",
-    "files/bevestigd.pdf",
-    "files/informed.jpg",
-    "files/verbatim5.png",
-    "files/EM_Ack_OTP-CR-117_19.pdf",
-    "files/EM_T07_OTP-CR-117_19_001.pdf",
-    "files/EM_T04_OTP-CR-117_19.pdf",
-    "files/ECHAabilify.png",
-    "files/ECHAclozapine.png",
-    "files/ECHAhaldol.png",
-    "files/ECHAzyprexa.png"
+    "docs/about.rst",
+    "docs/ack3.png",
+    "docs/bevestigd.jpg",
+    "docs/bylaw.png",
+    "docs/conf.py",
+    "docs/ECHAabilify.png",
+    "docs/ECHAclozapine.png",
+    "docs/ECHAhaldol.png",
+    "docs/ECHAzyprexa.png",
+    "docs/evidence.rst",
+    "docs/genocide.jpg",
+    "docs/genocide.png",
+    "docs/guilty.rst",
+    "docs/index.rst",
+    "docs/informed.jpg",
+    "docs/kamer2.png",
+    "docs/manual.rst",
+    "docs/OTP111.png",
+    "docs/OTP222.png",
+    "docs/request.rst",
+    "docs/robots.txt",
+    "docs/skull3.png",
+    "docs/verbatim7.png",
+    "docs/writings.rst"
+]
+
+"share/doc/sbn/docs/_static" = [
+    "docs/_static/sbn.css",
+]
+
+"share/doc/sbn/docs/pdf" =  [
+    "docs/pdf/bevestigd.pdf",
+    "docs/pdf/EM_Ack_OTP-CR-117_19.pdf",
+    "docs/pdf/EM_T04_OTP-CR-117_19.pdf",
+    "docs/pdf/EM_T07_OTP-CR-117_19_001.pdf",
+    "docs/pdf/Kamer.pdf",
+    "docs/pdf/Rome-Statute.pdf"
+]
+
+"share/doc/sbn/docs/_templates" = [
+    "docs/_templates/base.rst",
+    "docs/_templates/class.rst",
+    "docs/_templates/mine.rst",
+    "docs/_templates/module.rst"
+]
+
+[tool.setuptools.exclude-package-data]
+"*" = [
+    "env*",
+    "html*",
+    "test*"
 ]
