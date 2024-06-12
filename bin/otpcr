@@ -50,10 +50,10 @@ from otpcr import modules
 
 Cfg             = Default()
 Cfg.dis         = ""
-Cfg.mod         = "cmd,err,log,mod,req,slg,tdo,thr,tmr"
+Cfg.mod         = "cmd,err,irc,log,mod,req,slg,rss,tdo,thr,tmr"
 Cfg.name        = "otpcr"
 Cfg.opts        = ""
-Cfg.version     = "20"
+Cfg.version     = "21"
 Cfg.wdr         = os.path.expanduser(f"~/.{Cfg.name}")
 Cfg.pidfile     = os.path.join(Cfg.wdr, f"{Cfg.name}.pid")
 

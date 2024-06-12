@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "otpcr"
 description = "The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court."
-version = "20"
+version = "21"
 authors = [
     {name = "Bart Thate", email = "bthate@dds.nl" },
 ]
@@ -42,7 +42,7 @@ zip-safe = true
 
 
 [tool.setuptools.data-files]
-"share/doc/sbn/docs" = [
+"share/doc/otpcr/docs" = [
     "README.rst",
     "docs/about.rst",
     "docs/ack3.png",
@@ -70,11 +70,11 @@ zip-safe = true
     "docs/writings.rst"
 ]
 
-"share/doc/sbn/docs/_static" = [
+"share/doc/otpcr/docs/_static" = [
     "docs/_static/otpcr.css",
 ]
 
-"share/doc/sbn/docs/pdf" =  [
+"share/doc/otpcr/docs/pdf" =  [
     "docs/pdf/bevestigd.pdf",
     "docs/pdf/EM_Ack_OTP-CR-117_19.pdf",
     "docs/pdf/EM_T04_OTP-CR-117_19.pdf",
@@ -83,7 +83,7 @@ zip-safe = true
     "docs/pdf/Rome-Statute.pdf"
 ]
 
-"share/doc/sbn/docs/_templates" = [
+"share/doc/otpcr/docs/_templates" = [
     "docs/_templates/base.rst",
     "docs/_templates/class.rst",
     "docs/_templates/mine.rst",
