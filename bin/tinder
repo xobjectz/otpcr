@@ -9,6 +9,7 @@
 
 import os
 import profile
+import shutil
 import sys
 import termios
 import time
@@ -18,16 +19,19 @@ import _thread
 sys.path.insert(0, os.getcwd())
 
 
-from otpcr.client  import Client, Command, laps, parse
-from otpcr.disk    import Workdir
-from otpcr.handler import Event
-from otpcr.log     import debug, enable
-from otpcr.object  import Default, Object, keys
-from otpcr.run     import scan
-from otpcr.thread  import errors, launch
+from sbn.client   import Client, scan
+from sbn.commands import Commands
+from sbn.default  import Default
+from sbn.errors   import Errors, errors
+from sbn.event    import Event
+from sbn.log      import Logging, debug
+from sbn.object   import Object, keys
+from sbn.parser   import parse
+from sbn.thread   import launch
+from sbn.utils    import laps
 
 
-from otpcr import modules
+from sbn import modules
 
 
 LAP = 1
@@ -37,20 +41,18 @@ PERCALL = 1
 STARTTIME = time.time()
 
 
-path = os.path.dirname(modules.__file__)
+path    = os.path.dirname(modules.__file__)
+workdir = ".test"
 
 
-Cfg             = Default()
-Cfg.debug       = True
-Cfg.mod         = ""
-Cfg.name        = "tinder"
-Cfg.silent      = False
-Cfg.skip        = ["debug",]
-Cfg.version     = "19"
-Cfg.wdr         = ".test"
-
-
-Workdir.workdir = Cfg.wdr
+Cfg         = Default()
+Cfg.debug   = True
+Cfg.mod     = ""
+Cfg.name    = "tinder"
+Cfg.silent  = False
+Cfg.skip    = ["debug",]
+Cfg.version = "13"
+Cfg.wdr     = ".test"
 
 
 events = []
@@ -69,7 +71,7 @@ param.dpl = ["hnrss title,summary,link"]
 param.mre = ["2"]
 param.nme = ["hnrss hackernews"]
 param.pwd = ["bart bla"]
-#param.rem = ["hnrss"]
+param.rem = ["hnrss"]
 param.rss = ["http://hnrss.org/newest"]
 param.ver = [""]
 
@@ -111,7 +113,7 @@ def lsmod(pth):
 
 def payload(clt):
     "do payload."
-    cmds = sorted(list(keys(Command.cmds)))
+    cmds = sorted(list(keys(Commands.cmds)))
     #random.shuffle(cmds)
     with paylock:
         nmr = 0
@@ -141,13 +143,14 @@ def wrap(func):
     finally:
         if old2:
             termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, old2)
-
+    errors()
+    
 
 def main():
     "main"
     scan(modules, Cfg.mod)
     nrs = Cfg.index or 1
-    nrcommand = len(Command.cmds) or 1
+    nrcommand = len(Commands.cmds) or 1
     thrs = []
     cli = CLI()
     cli.start()
@@ -163,13 +166,16 @@ def main():
 
 
 if __name__ == "__main__":
+    Logging.out = Errors.out = print
     parse(Cfg, " ".join(sys.argv[1:]))
+    if "f" in Cfg.opts:
+        if os.path.exists(workdir):
+            shutil.rmtree(workdir)
     Cfg.mod = lsmod(path)
-    enable(print)
     dte = " ".join(time.ctime(time.time()).replace("  ", " ").split()[1:])
     debug(f'{dte} {Cfg.name.upper()} {Cfg.opts.upper()} {Cfg.mod.upper()}'.replace("  ", " "))
     if "p" in Cfg.opts:
         profile.runctx(main.__code__, globals(), locals())
     else:
         wrap(main)
-    errors()
+    sys.exit()

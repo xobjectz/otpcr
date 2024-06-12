@@ -1,7 +1,7 @@
-grep -R "import importlib" otpcr
-grep -R "__import__(" otpcr
-grep -R "print(" otpcr
-#grep -R "import sys" otpcr
-#grep -R "import os" otpcr
-#grep -R "import inspect" otpcr
- 
+grep -R sys sbn
+grep -R "print(" sbn
+grep -R __import__ sbn
+grep -R importlib sbn
+grep -R "import sys" sbn
+#grep -R "import os" sbn
+
