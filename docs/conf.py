@@ -8,8 +8,8 @@
 "Skull, Bones and Number (OTP-CR-117/19)"
 
 
-NAME = "sbn"
-VERSION = "100"
+NAME = "otpcr"
+VERSION = "20"
 
 
 import os
@@ -60,10 +60,10 @@ extensions = [
 # -- Options for HTML output -------------------------------------------------
 
 
-html_title = "Skull, Bones and Number (OTP-CR-117/19)"
-html_style = 'sbn.css'
+html_title = "The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court"
+html_style = 'otpcr.css'
 html_static_path = ["_static"]
-html_css_files = ["sbn.css",]
+html_css_files = ["otpcr.css",]
 html_short_title = "%s %s" % (NAME, VERSION)
 html_sidebars = {
     '**': [

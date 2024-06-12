@@ -24,19 +24,19 @@ dev = []
 
 
 [project.urls]
-"home" = "https://pypi.org/project/sbn"
-"bugs" = "https://github.com/bthate/sbn/issues"
-"source" = "https://github.com/bthate/sbn"
+"home" = "https://pypi.org/project/otpcr"
+"bugs" = "https://github.com/xobjectz/otpcr/issues"
+"source" = "https://github.com/xobjectz/otpcr"
 
 
 [tool.setuptools]
 script-files = [
-    "bin/sbn",
-    "bin/sbnd"
+    "bin/otpcr",
+    "bin/otpcrd"
 ]
 packages = [
-   "sbn",
-   "sbn.modules"
+   "otpcr",
+   "otpcr.modules"
 ]
 zip-safe = true
 
@@ -71,7 +71,7 @@ zip-safe = true
 ]
 
 "share/doc/sbn/docs/_static" = [
-    "docs/_static/sbn.css",
+    "docs/_static/otpcr.css",
 ]
 
 "share/doc/sbn/docs/pdf" =  [

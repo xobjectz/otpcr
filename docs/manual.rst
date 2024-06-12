@@ -9,7 +9,7 @@
 
 **NAME**
 
-    SBN - ``Skull Bones and Number (OTP-CR-117/19)``
+    OTPCR - ``The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court.``
 
 
 **INSTALL**
@@ -17,7 +17,7 @@
 
 ::
 
-    $ pipx install sbn
+    $ pipx install otpcr
     $ pipx ensurepath
 
 
@@ -25,14 +25,14 @@
 
 ::
 
-    sbn  <cmd> [key=val] [key==val]
-    sbn  [-a] [-c] [-v]
-    sbnd [-v]
+    otpcr  <cmd> [key=val] [key==val]
+    otpcr  [-a] [-c] [-v]
+    otpcrd [-v]
 
 
 **DESCRIPTION**
 
-    ``SBN`` holds evidence that king
+    ``OTPCR`` holds evidence that king
     netherlands is doing a genocide, a
     written response where king
     netherlands confirmed taking note
@@ -46,7 +46,7 @@
     torture and kills members of the
     victim groups.
 
-    ``SBN`` contains :ref:`correspondence
+    ``OTPCR`` contains :ref:`correspondence
     <writings>` with the International Criminal
     Court, asking for arrest of the king of the
     netherlands, for the genocide he is committing
@@ -64,14 +64,14 @@
 
     ::
 
-        $ sbn
+        $ otpcr
         $
 
     see list of commands
 
     ::
 
-        $ sbn cmd
+        $ otpcr cmd
         cmd,dne,err,log,mod,req,tdo,thr,tmr
 
 
@@ -79,22 +79,22 @@
 
     ::
 
-        $ sbn -c 
+        $ otpcr -c 
         >
 
     use -v for verbose
 
     ::
 
-        $ sbn -cv
-        May 12 05:51:49 2024 SBN CV CMD,ERR,LOG,MOD,REQ,TDO,THR,TMR
+        $ otpcr -cv
+        May 12 05:51:49 2024 OTPCR CV CMD,ERR,LOG,MOD,REQ,TDO,THR,TMR
         >
 
     start daemon
 
     ::
 
-        $ sbnd
+        $ otpcrd
         $ 
 
 
@@ -102,7 +102,7 @@
 
     ::
 
-        $ sbn req
+        $ otpcr req
         Information and Evidence Unit
         Office of the Prosecutor
         Post Office Box 19519
@@ -116,25 +116,25 @@
 
     ::
 
-        $ sbn cfg server=<server>
-        $ sbn cfg channel=<channel>
-        $ sbn cfg nick=<nick>
+        $ otpcr cfg server=<server>
+        $ otpcr cfg channel=<channel>
+        $ otpcr cfg nick=<nick>
 
     sasl
 
     ::
 
-        $ sbn pwd <nsvnick> <nspass>
-        $ sbn cfg password=<frompwd>
+        $ otpcr pwd <nsvnick> <nspass>
+        $ otpcr cfg password=<frompwd>
 
     rss
 
     ::
 
-        $ sbn rss <url>
-        $ sbn dpl <url> <item1,item2>
-        $ sbn rem <url>
-        $ sbn nme <url> <name>
+        $ otpcr rss <url>
+        $ otpcr dpl <url> <item1,item2>
+        $ otpcr rem <url>
+        $ otpcr nme <url> <name>
 
 
 **COMMANDS**
@@ -150,13 +150,13 @@
 
 **SYSTEMD**
 
-    save the following it in /etc/systemd/system/sbn.service
+    save the following it in /etc/systemd/system/otpcr.service
     and replace "<user>" with the user running pipx
 
     ::
  
         [Unit]
-        Description=Skull Bones and Number (OTP-CR-117/19).
+        Description=The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court
         Requires=network-online.target
         After=network-online.target
 
@@ -164,8 +164,8 @@
         Type=simple
         User=<user>
         Group=<user>
-        WorkingDirectory=/home/<user>/.sbn
-        ExecStart=/home/<user>/.local/pipx/venvs/sbn/bin/sbnd
+        WorkingDirectory=/home/<user>/.otpcr
+        ExecStart=/home/<user>/.local/pipx/venvs/otpcr/bin/otpcrd
         RemainAfterExit=yes
 
         [Install]
@@ -176,20 +176,20 @@
 
     ::
 
-        $ mkdir ~/.sbn
-        $ sudo systemctl enable sbn --now
+        $ mkdir ~/.otpcr
+        $ sudo systemctl enable otpcr --now
 
-    default channel/server is #sbn on localhost
+    default channel/server is #otpcr on localhost
 
 
 **FILES**
 
     ::
 
-        ~/.sbn
-        ~/.local/bin/sbn
-        ~/.local/bin/sbnd
-        ~/.local/pipx/venvs/sbn/*
+        ~/.otpcr
+        ~/.local/bin/otpcr
+        ~/.local/bin/otpcrd
+        ~/.local/pipx/venvs/otpcr/*
 
 
 **AUTHOR**
@@ -203,4 +203,4 @@
 
     ::
 
-        SBN is Public Domain.
+        OTPCR is Public Domain.
