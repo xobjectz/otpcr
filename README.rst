@@ -2,9 +2,6 @@ OTP-CR-117/19
 =============
 
 |
-| By law, with the use of poison, killed, tortured, castrated, destroyed in whole or in part, 
-|
-|
 | **Information and Evidence Unit**
 | **Office of the Prosecutor**
 | **Post Office Box 19519**
