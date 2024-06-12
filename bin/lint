@@ -1,1 +1,1 @@
-pylint sbn bin/sbn bin/sbnd bin/tinder tests
+pylint otpcr bin/otpcr bin/otpcr bin/tinder tests

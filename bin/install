@@ -10,7 +10,7 @@ import subprocess
 import sys
 
 
-NAME = "sbn"
+NAME = "otpcr"
 curdir = os.getcwd()
 
 TXT = '''

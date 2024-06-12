@@ -19,19 +19,19 @@ import _thread
 sys.path.insert(0, os.getcwd())
 
 
-from sbn.client   import Client, scan
-from sbn.commands import Commands
-from sbn.default  import Default
-from sbn.errors   import Errors, errors
-from sbn.event    import Event
-from sbn.log      import Logging, debug
-from sbn.object   import Object, keys
-from sbn.parser   import parse
-from sbn.thread   import launch
-from sbn.utils    import laps
+from otpcr.client   import Client, scan
+from otpcr.commands import Commands
+from otpcr.default  import Default
+from otpcr.errors   import Errors, errors
+from otpcr.event    import Event
+from otpcr.log      import Logging, debug
+from otpcr.object   import Object, keys
+from otpcr.parser   import parse
+from otpcr.thread   import launch
+from otpcr.utils    import laps
 
 
-from sbn import modules
+from otpcr import modules
 
 
 LAP = 1
