@@ -7,14 +7,9 @@
 .. title:: Manual
 
 
-.. raw:: html
-
-    <center><b>MANUAL</b></center>
-    <br>
-
 **NAME**
 
-    ``OTPCR`` --  The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court.
+    SBN - ``Skull Bones and Number (OTP-CR-117/19)``
 
 
 **INSTALL**
@@ -22,7 +17,7 @@
 
 ::
 
-    $ pipx install otpcr
+    $ pipx install sbn
     $ pipx ensurepath
 
 
@@ -30,14 +25,14 @@
 
 ::
 
-    otpcr  <cmd> [key=val] [key==val]
-    otpcr  [-a] [-c] [-v]
-    otpcrd [-v]
+    sbn  <cmd> [key=val] [key==val]
+    sbn  [-a] [-c] [-v]
+    sbnd [-v]
 
 
 **DESCRIPTION**
 
-    ``OTPCR`` holds evidence that king
+    ``SBN`` holds evidence that king
     netherlands is doing a genocide, a
     written response where king
     netherlands confirmed taking note
@@ -49,9 +44,9 @@
     physical (contracted muscles) and
     mental (make people hallucinate)
     torture and kills members of the
-    victim groups :ref:`. <source>`
+    victim groups.
 
-    ``OTPCR`` contains :ref:`correspondence
+    ``SBN`` contains :ref:`correspondence
     <writings>` with the International Criminal
     Court, asking for arrest of the king of the
     netherlands, for the genocide he is committing
@@ -69,14 +64,14 @@
 
     ::
 
-        $ otpcr
+        $ sbn
         $
 
     see list of commands
 
     ::
 
-        $ otpcr cmd
+        $ sbn cmd
         cmd,dne,err,log,mod,req,tdo,thr,tmr
 
 
@@ -84,22 +79,22 @@
 
     ::
 
-        $ otpcr -c 
+        $ sbn -c 
         >
 
     use -v for verbose
 
     ::
 
-        $ otpcr -cv
-        May 12 05:51:49 2024 OTPCR CV CMD,ERR,LOG,MOD,REQ,TDO,THR,TMR
+        $ sbn -cv
+        May 12 05:51:49 2024 SBN CV CMD,ERR,LOG,MOD,REQ,TDO,THR,TMR
         >
 
     start daemon
 
     ::
 
-        $ otpcrd
+        $ sbnd
         $ 
 
 
@@ -107,7 +102,7 @@
 
     ::
 
-        $ otcpr req
+        $ sbn req
         Information and Evidence Unit
         Office of the Prosecutor
         Post Office Box 19519
@@ -121,25 +116,25 @@
 
     ::
 
-        $ otpcr cfg server=<server>
-        $ otpcr cfg channel=<channel>
-        $ otpcr cfg nick=<nick>
+        $ sbn cfg server=<server>
+        $ sbn cfg channel=<channel>
+        $ sbn cfg nick=<nick>
 
     sasl
 
     ::
 
-        $ otpcr pwd <nsvnick> <nspass>
-        $ otpcr cfg password=<frompwd>
+        $ sbn pwd <nsvnick> <nspass>
+        $ sbn cfg password=<frompwd>
 
     rss
 
     ::
 
-        $ otpcr rss <url>
-        $ otpcr dpl <url> <item1,item2>
-        $ otpcr rem <url>
-        $ otpcr nme <url> <name>
+        $ sbn rss <url>
+        $ sbn dpl <url> <item1,item2>
+        $ sbn rem <url>
+        $ sbn nme <url> <name>
 
 
 **COMMANDS**
@@ -155,13 +150,13 @@
 
 **SYSTEMD**
 
-    save the following it in /etc/systemd/system/otpcr.service
+    save the following it in /etc/systemd/system/sbn.service
     and replace "<user>" with the user running pipx
 
     ::
  
         [Unit]
-        Description=The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court.
+        Description=Skull Bones and Number (OTP-CR-117/19).
         Requires=network-online.target
         After=network-online.target
 
@@ -169,9 +164,8 @@
         Type=simple
         User=<user>
         Group=<user>
-        WorkingDirectory=/home/<user>/.otpcr
-        ExecStart=/home/<user>/.local/pipx/venvs/otpcr/bin/otpcrd
-        WatchdogSec=1
+        WorkingDirectory=/home/<user>/.sbn
+        ExecStart=/home/<user>/.local/pipx/venvs/sbn/bin/sbnd
         RemainAfterExit=yes
 
         [Install]
@@ -182,25 +176,20 @@
 
     ::
 
-        $ mkdir ~/.otpcr
-        $ sudo systemctl enable otpcr --now
+        $ mkdir ~/.sbn
+        $ sudo systemctl enable sbn --now
 
-    default channel/server is #otpcr on localhost
-
-
-**SOURCE**
-
-    source is :ref:`here <source>`
+    default channel/server is #sbn on localhost
 
 
 **FILES**
 
     ::
 
-        ~/.otpcr
-        ~/.local/bin/otpcr
-        ~/.local/bin/otpcrd
-        ~/.local/pipx/venvs/otpcr/
+        ~/.sbn
+        ~/.local/bin/sbn
+        ~/.local/bin/sbnd
+        ~/.local/pipx/venvs/sbn/*
 
 
 **AUTHOR**
@@ -214,4 +203,4 @@
 
     ::
 
-        OTPCR is Public Domain.
+        SBN is Public Domain.

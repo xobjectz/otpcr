@@ -1,0 +1,60 @@
+@import 'alabaster.css';
+
+
+div.body a:link, div.body h, div.body p, div.body dd, div.body li, div.body blockquote {
+    -moz-hyphens: false;
+    -ms-hyphens: false;
+    -webkit-hyphens: false;
+    hyphens: false;
+}
+
+
+body {
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva',
+                 'Verdana', sans-serif;
+    font-size: 113%;
+    background-color: #fff;
+    color: #555;
+    margin: 30px;
+    padding: 0px;
+}
+
+
+i {
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva',
+                 'Verdana', sans-serif;
+    font-size: 90%;
+    background-color: #fff;
+    color: #555;
+    margin: 30px;
+    padding: 0px;
+}
+
+
+a {
+    color: #004B6B;
+    text-decoration: none; 
+}
+
+a:link {
+    color: #004B6B;
+    text-decoration: none; 
+}
+
+a mailto {
+    color: #004B6B;
+    text-decoration: none; 
+}
+
+a:hover {
+    color: #6D4100;
+    text-decoration: none;
+}
+
+a.image-reference, a.image-reference:hover {
+    border-bottom: none;
+}
+
+style {
+    text-decoration: none;
+}

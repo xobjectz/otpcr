@@ -4,10 +4,10 @@
 "outline processor markup language"
 
 
-from ..disk   import sync
-from ..find   import find
-from ..object import Default, construct, update
-from ..utils  import shortid, spl
+from ..default import Default
+from ..object  import construct, update
+from ..run     import broker
+from ..utils   import shortid, spl
 
 
 from .rss import Rss
@@ -69,16 +69,16 @@ class Parser:
         return result
 
     @staticmethod
-    def parse(txt, toke="outline", items=None):
+    def parse(txt, toke="outline", itemz=None):
         "parse on outlines."
-        if items is None:
-            items = ",".join(Parser.getnames(txt))
+        if itemz is None:
+            itemz = ",".join(Parser.getnames(txt))
         result = []
         for attrz in Parser.getattrs(txt, toke):
             if not attrz:
                 continue
             obj = Default()
-            for itm in spl(items):
+            for itm in spl(itemz):
                 if itm == "link":
                     itm = "href"
                 val = Parser.getvalue(attrz, itm)
@@ -100,8 +100,10 @@ def exp(event):
     "export to opml."
     event.reply(TEMPLATE)
     nrs = 0
-    for _fn, obj in find("rss"):
+    for _fn, objr in broker.all("rss"):
         nrs += 1
+        obj = Default()
+        update(obj, objr)
         name = obj.name or f"url{nrs}"
         txt = f'<outline name="{name}" display_list="{obj.display_list}" xmlUrl="{obj.rss}"/>'
         event.reply(" "*12 + txt)
@@ -122,18 +124,15 @@ def imp(event):
     nrs = 0
     insertid = shortid()
     for obj in prs.parse(txt, 'outline', "name,display_list,xmlUrl"):
-        nrs += 1
-        if obj.xmlUrl and find("rss", {"rss": obj.xmlUrl}):
-            event.reply(f"skipping {obj.xmlUrl}")
-            continue
+        #if obj.xmlUrl and broker.find({"rss": obj.xmlUrl}):
+        #    event.reply(f"skipping {obj.xmlUrl}")
+        #    continue
         rss = Rss()
         construct(rss, obj)
         rss.rss = rss.xmlUrl
         rss.insertid = insertid
-        sync(rss)
+        broker.add(rss)
+        nrs += 1
     if nrs:
         event.reply(f"added {nrs} urls.")
-
-
-
         

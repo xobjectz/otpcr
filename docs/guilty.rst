@@ -7,21 +7,18 @@
 
 .. title:: Guilty
 
-
-.. raw:: html
-
-    <center><b>GUILTY</b></center>
-    <br>
-
-
 .. _informed:
 
 
 **INFORMED**
 
 
+.. raw:: html
+
+    <br>
+
 .. image:: informed.jpg
-    :height: 8cm
+    :width: 100%
 
 .. raw:: html
 
@@ -31,8 +28,12 @@
 
 **CHAMBER**
 
-.. image:: kamer.png
+.. raw:: html
 
+    <br>
+
+.. image:: kamer2.png
+    :width: 100%
 
 .. raw:: html
 
@@ -44,7 +45,12 @@
 **KING**
 
 
+.. raw:: html
+
+    <br>
+
 .. image:: bevestigd.jpg
+    :width: 100%
 
 .. raw:: html
 
