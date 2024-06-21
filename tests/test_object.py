@@ -9,7 +9,7 @@
 import unittest
 
 
-from otpcr.object import Object, fmt, fqn, items, keys, update, values
+from otpcr.lib.object import Object, fmt, fqn, items, keys, update, values
 
 
 VALIDJSON = '{"test": "bla"}'
@@ -139,11 +139,11 @@ class TestObject(unittest.TestCase):
 
     def test_module(self):
         "test module name."
-        self.assertEqual(Object().__module__, "otpcr.object")
+        self.assertEqual(Object().__module__, "otpcr.lib.object")
 
     def test_fqn(self):
         "test full qualified domain name."
-        self.assertEqual(fqn(Object()), "otpcr.object.Object")
+        self.assertEqual(fqn(Object()), "otpcr.lib.object.Object")
 
     def test_repr(self):
         "test representation."

@@ -1,6 +1,6 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0105
+#
 
 
 "no tests"
@@ -9,18 +9,7 @@
 import unittest
 
 
-from otpcr.modules.opm import Parser
-
-
-class TestOPML(unittest.TestCase):
-
-    "test opml."
-
-    def test_opml(self):
-        "test opml parser."
-        p = Parser()
-        res = p.parse(TXT, "outline", "title,type,text,xmlUrl")
-        self.assertTrue(len(res) == 20)
+from otpcr.mod.opm import Parser
 
 
 TXT = """<opml version="1.0">
@@ -61,3 +50,32 @@ TXT = """<opml version="1.0">
         </outline>
     </body>
 </opml>"""
+
+
+TXT2 = """
+<opml version="1.0">
+    <head>
+        <title>rssbot opml</title>
+    </head>
+    <body>
+        <outline title="rssbot opml" text="24/7 feed fetcher">
+            <outline name="url1" display_list="title,link,author" xmlUrl="http://hnrss.org/newest"/>
+        </outline>
+    </body>
+</opml>
+"""
+
+
+class TestOPML(unittest.TestCase):
+
+    "TestOPML"
+
+    def test_opml(self):
+        "test opml."
+        res = Parser.parse(TXT, "outline", "title,type,text,xmlUrl")
+        self.assertTrue(len(res) == 20)
+
+    def test_import(self):
+        "test import."
+        res = Parser.parse(TXT2, "outline", "name,display_list,xmlUrl")
+        self.assertTrue(len(res) == 1)

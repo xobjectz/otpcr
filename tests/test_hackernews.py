@@ -1,6 +1,6 @@
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R.W0105
+# pylint: disable=C,R,W1503
 
 
 "no tests"
@@ -9,12 +9,10 @@
 import unittest
 
 
-from otpcr.modules.rss import Parser
+from otpcr.mod.rss import Parser
 
 
 class TestParse(unittest.TestCase):
-
-    "test rss feed."
 
     def test_hnrss(self):
         res = Parser.parse(TXT)

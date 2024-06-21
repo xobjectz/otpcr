@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "otpcr"
 description = "The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court."
-version = "21"
+version = "22"
 authors = [
     {name = "Bart Thate", email = "bthate@dds.nl" },
 ]
@@ -19,6 +19,10 @@ classifiers=[
     'Topic :: Utilities'
 ]
 
+[project.scripts]
+"otpct" = "otpct.__main__:wrapped"
+
+
 [project.optional-dependencies]
 dev = []
 
@@ -30,13 +34,12 @@ dev = []
 
 
 [tool.setuptools]
-script-files = [
-    "bin/otpcr",
-    "bin/otpcrd"
-]
 packages = [
    "otpcr",
-   "otpcr.modules"
+   "otpcr.lib",
+   "otpcr.mod",
+   "otpcr.run",
+   "otpcr.usr"
 ]
 zip-safe = true
 

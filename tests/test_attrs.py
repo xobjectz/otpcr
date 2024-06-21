@@ -1,6 +1,5 @@
 # This file is placed in the Public Domain.
 #
-#
 # pylint: disable=C,R,W1503
 
 
@@ -10,7 +9,7 @@
 import unittest
 
 
-from otpcr.modules.opm import Parser
+from otpcr.mod.opm import Parser
 
 
 class TestAttrs(unittest.TestCase):

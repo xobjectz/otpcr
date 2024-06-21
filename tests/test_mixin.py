@@ -1,4 +1,6 @@
 # This file is placed in the Public Domain.
+#
+# pylint: disable=R0903
 
 
 "mixin"
@@ -7,16 +9,17 @@
 import unittest
 
 
-from otpcr.object import Object
+from otpcr.lib.object import Object
 
 
-class Mix: # pylint: disable=R0903
+class Mix:
+
     "class to mixin."
 
     a = "b"
 
 
-class Mixin(Mix, Object): # pylint: disable=R0903
+class Mixin(Mix, Object):
 
     "mixin class"
 

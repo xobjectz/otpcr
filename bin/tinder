@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C,R,W0105,E0401
+# pylint: disable=C0413
 
 
-"created clients"
+"tinder"
 
 
 import os
 import profile
 import shutil
 import sys
-import termios
 import time
 import _thread
 
@@ -19,30 +18,23 @@ import _thread
 sys.path.insert(0, os.getcwd())
 
 
-from otpcr.client   import Client, scan
-from otpcr.commands import Commands
-from otpcr.default  import Default
-from otpcr.errors   import Errors, errors
-from otpcr.event    import Event
-from otpcr.log      import Logging, debug
-from otpcr.object   import Object, keys
-from otpcr.parser   import parse
-from otpcr.thread   import launch
-from otpcr.utils    import laps
+from otpcr.ifc import Commands, CLI, Default, Errors, Event, Logging, Object, Persist
+from otpcr.ifc import keys, laps, launch, parse
 
 
-from otpcr import modules
+from otpcr.run.main import modnames, scan, wrap
+
+
+from otpcr import mod as modules
+from otpcr import usr as mods
 
 
 LAP = 1
 NRS = 1
 NRCOMMAND = 1
-PERCALL = 1
+PERCALL   = 1
 STARTTIME = time.time()
-
-
-path    = os.path.dirname(modules.__file__)
-workdir = ".test"
+CLI.out   = print
 
 
 Cfg         = Default()
@@ -55,40 +47,36 @@ Cfg.version = "13"
 Cfg.wdr     = ".test"
 
 
+Persist.workdir = Cfg.wdr
+
+
 events = []
 paylock = _thread.allocate_lock()
 
 
 param = Object()
-param.cfg = [
-    "server=localhost",
-    "nick=mekker",
-    "port=6697",
-    "commands=true",
-    ""]
 param.cmd = [""]
-param.dpl = ["hnrss title,summary,link"]
-param.mre = ["2"]
+param.dpl = ["hnrss title,url"]
+param.fnd = ["log", "todo"]
+param.imp = ["tests/feeds.opml"]
+param.log = ["bla"]
+param.mod = [""]
+param.mre = [""]
 param.nme = ["hnrss hackernews"]
-param.pwd = ["bart bla"]
+param.pwd = ["bla mekker"]
 param.rem = ["hnrss"]
-param.rss = ["http://hnrss.org/newest"]
+param.res = [""]
+param.tdo = ["mekker"]
 param.ver = [""]
 
 
-class CLI(Client):
+class CLII(CLI):
 
     "CLI"
 
-    def say(self, _channel, txt):
-        "echo on verbose."
-        if "v" not in Cfg.opts:
-            return
-        self.raw(txt)
-
     def raw(self, txt):
-        "print to screen."
-        print(txt)
+        if "v" in Cfg.opts:
+            print(txt)
 
 
 def consume(evts):
@@ -106,53 +94,38 @@ def consume(evts):
     return res
 
 
-def lsmod(pth):
-    "return list of modules in a directory."
-    return ",".join(sorted([x[:-3] for x in os.listdir(pth) if not x.startswith("__") and not x.endswith("~")]))
-
-
 def payload(clt):
     "do payload."
     cmds = sorted(list(keys(Commands.cmds)))
-    #random.shuffle(cmds)
     with paylock:
         nmr = 0
-        for cmd in cmds:
-            for ex in getattr(param, cmd, [""]):
+        for cmdd in cmds:
+            for ex in getattr(param, cmdd, [""]):
                 evt = Event()
-                evt.orig = object.__repr__(clt)
-                evt.txt = cmd + " " + ex
+                evt.channel = "#nixt"
+                evt.orig = repr(clt)
+                evt.txt = cmdd + " " + ex
                 evt.type = "command"
+                print(evt)
                 clt.put(evt)
                 events.append(evt)
                 nmr += 1
         return nmr
 
-
-def wrap(func):
-    "reset terminal."
-    old2 = None
-    try:
-        old2 = termios.tcgetattr(sys.stdin.fileno())
-    except termios.error:
-        pass
-    try:
-        func()
-    except (KeyboardInterrupt, EOFError):
-        print("")
-    finally:
-        if old2:
-            termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, old2)
-    errors()
-    
-
 def main():
     "main"
-    scan(modules, Cfg.mod)
+    Logging.out = Errors.out = print
+    Cfg.dis = Cfg.sets.dis
+    Cfg.mod = ",".join(modnames())
+    if "v" in Cfg.opts:
+        dte = " ".join(time.ctime(time.time()).replace("  ", " ").split()[1:])
+        print(f'{dte} {Cfg.name.upper()} {Cfg.opts.upper()} {Cfg.mod.upper()}'.replace("  ", " "))
+    scan(modules, Cfg.mod, Cfg.dis)
+    scan(mods, Cfg.mod, Cfg.dis)
     nrs = Cfg.index or 1
     nrcommand = len(Commands.cmds) or 1
     thrs = []
-    cli = CLI()
+    cli = CLII()
     cli.start()
     for _nr in range(nrs):
         thrs.append(launch(payload, cli))
@@ -162,18 +135,15 @@ def main():
     endtime = time.time()
     lap = laps(endtime-STARTTIME)
     percall = (endtime-STARTTIME)/(nrs*nrcommand)
-    print(f"{lap} {nrs} {nrcommand} {percall}")
+    if "v" in Cfg.opts:
+        print(f"{lap} {nrs} {nrcommand} {percall}")
 
 
 if __name__ == "__main__":
-    Logging.out = Errors.out = print
     parse(Cfg, " ".join(sys.argv[1:]))
     if "f" in Cfg.opts:
-        if os.path.exists(workdir):
-            shutil.rmtree(workdir)
-    Cfg.mod = lsmod(path)
-    dte = " ".join(time.ctime(time.time()).replace("  ", " ").split()[1:])
-    debug(f'{dte} {Cfg.name.upper()} {Cfg.opts.upper()} {Cfg.mod.upper()}'.replace("  ", " "))
+        if os.path.exists(Persist.workdir):
+            shutil.rmtree(Persist.workdir)
     if "p" in Cfg.opts:
         profile.runctx(main.__code__, globals(), locals())
     else:

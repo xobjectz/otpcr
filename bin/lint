@@ -1,1 +1,1 @@
-pylint otpcr bin/otpcr bin/otpcr bin/tinder tests
+pylint otpcr bin/tinder tests
