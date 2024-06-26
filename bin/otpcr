@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # This file is placed in the Public Domain.
-# pylint: disable=W0212,E0401
+# pylint: disable=C0413,W0212,E0401
 
 
 "main"
@@ -26,7 +26,7 @@ from otpcr.help     import TXT
 from otpcr.log      import Logging
 from otpcr.main     import cmnd, init, scan
 from otpcr.parse    import parse
-from otpcr.persist  import Persist, skel
+from otpcr.persist  import skel
 from otpcr.run      import Cfg
 
 
