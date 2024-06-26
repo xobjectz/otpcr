@@ -11,6 +11,7 @@ import os
 import profile
 import shutil
 import sys
+import termios
 import time
 import _thread
 
@@ -18,15 +19,30 @@ import _thread
 sys.path.insert(0, os.getcwd())
 
 
-from otpcr.ifc import Commands, CLI, Default, Errors, Event, Logging, Object, Persist
-from otpcr.ifc import keys, laps, launch, parse
+from otpcr.commands import Commands
+from otpcr.cli      import CLI
+from otpcr.default  import Default
+from otpcr.errors   import Errors
+from otpcr.event    import Event
+from otpcr.log      import Logging
+from otpcr.main     import scan
+from otpcr.run      import broker
+from otpcr.object   import Object, ident, keys
+from otpcr.parse    import parse
+from otpcr.persist  import Persist
+from otpcr.run      import broker
+from otpcr.thread   import launch
+from otpcr.utils    import laps
 
 
-from otpcr.run.main import modnames, scan, wrap
+from otpcr import modules
+from otpcr import user
 
 
-from otpcr import mod as modules
-from otpcr import usr as mods
+if os.path.exists("mods"):
+    import mods as MODS
+else:
+    MODS = None
 
 
 LAP = 1
@@ -72,8 +88,6 @@ param.ver = [""]
 
 class CLII(CLI):
 
-    "CLI"
-
     def raw(self, txt):
         if "v" in Cfg.opts:
             print(txt)
@@ -94,6 +108,11 @@ def consume(evts):
     return res
 
 
+def modnames():
+    "list all modules."
+    return sorted({x for x in dir(modules) + dir(user) + dir(MODS) if not x.startswith("__")})
+
+
 def payload(clt):
     "do payload."
     cmds = sorted(list(keys(Commands.cmds)))
@@ -102,15 +121,31 @@ def payload(clt):
         for cmdd in cmds:
             for ex in getattr(param, cmdd, [""]):
                 evt = Event()
-                evt.channel = "#nixt"
+                evt.channel = "#objr"
                 evt.orig = repr(clt)
                 evt.txt = cmdd + " " + ex
                 evt.type = "command"
-                print(evt)
                 clt.put(evt)
                 events.append(evt)
                 nmr += 1
         return nmr
+
+
+def wrap(func):
+    "reset terminal."
+    old2 = None
+    try:
+        old2 = termios.tcgetattr(sys.stdin.fileno())
+    except termios.error:
+        pass
+    try:
+        func()
+    except (KeyboardInterrupt, EOFError):
+        print("")
+    finally:
+        if old2:
+            termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, old2)
+
 
 def main():
     "main"
@@ -118,10 +153,11 @@ def main():
     Cfg.dis = Cfg.sets.dis
     Cfg.mod = ",".join(modnames())
     if "v" in Cfg.opts:
-        dte = " ".join(time.ctime(time.time()).replace("  ", " ").split()[1:])
-        print(f'{dte} {Cfg.name.upper()} {Cfg.opts.upper()} {Cfg.mod.upper()}'.replace("  ", " "))
+        DTE = " ".join(time.ctime(time.time()).replace("  ", " ").split()[1:])
+        print(f'{DTE} {Cfg.name.upper()} {Cfg.opts.upper()} {Cfg.mod.upper()}'.replace("  ", " "))
     scan(modules, Cfg.mod, Cfg.dis)
-    scan(mods, Cfg.mod, Cfg.dis)
+    scan(user, Cfg.mod, Cfg.dis)
+    scan(MODS, Cfg.mod, Cfg.dis)
     nrs = Cfg.index or 1
     nrcommand = len(Commands.cmds) or 1
     thrs = []

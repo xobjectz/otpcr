@@ -19,6 +19,7 @@
 
     $ pipx install otpcr
     $ pipx ensurepath
+    $ mkdir ~/.otpcr
 
 
 **SYNOPSIS**
@@ -26,8 +27,16 @@
 ::
 
     otpcr  <cmd> [key=val] [key==val]
-    otpcr  [-a] [-c] [-v]
-    otpcrd [-v]
+    otpcr  [-a] [-c] [-d] [-i] [-v]
+
+    options are:
+
+    -a     load all modules
+    -c     start console
+    -d     run in the background
+    -h     show help
+    -i     start services
+    -v     use verbose
 
 
 **DESCRIPTION**
@@ -90,11 +99,17 @@
         May 12 05:51:49 2024 OTPCR CV CMD,ERR,LOG,MOD,REQ,TDO,THR,TMR
         >
 
+    use -i to run init on modules
+
+    ::
+
+        $ otpcr -caiv 
+
     start daemon
 
     ::
 
-        $ otpcrd
+        $ otpcr -d
         $ 
 
 
@@ -165,7 +180,7 @@
         User=<user>
         Group=<user>
         WorkingDirectory=/home/<user>/.otpcr
-        ExecStart=/home/<user>/.local/pipx/venvs/otpcr/bin/otpcrd
+        ExecStart=/home/<user>/.local/pipx/venvs/otpcr/bin/otpcr -d
         RemainAfterExit=yes
 
         [Install]
@@ -176,7 +191,6 @@
 
     ::
 
-        $ mkdir ~/.otpcr
         $ sudo systemctl enable otpcr --now
 
     default channel/server is #otpcr on localhost
@@ -188,7 +202,6 @@
 
         ~/.otpcr
         ~/.local/bin/otpcr
-        ~/.local/bin/otpcrd
         ~/.local/pipx/venvs/otpcr/*
 
 
