@@ -156,7 +156,7 @@ commands are mostely for irc and rss management::
 save the following it in /etc/systemd/system/otpcr.service and replace "<user>" with the user running pipx::
  
     [Unit]
-    Description=Office of the Prosecutor's Communication Record 117 of the year 2019.
+    Description=Office of the Prosecutor's Communication Record 117 of 2019.
     Requires=network-online.target
     After=network-online.target
 
