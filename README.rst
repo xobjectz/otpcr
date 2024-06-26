@@ -1,15 +1,48 @@
 **NAME**
 
-::
 
-    OTPCR - The 117 communication record
+**OTPCR** - The 117 communication record
             of the year 2019
             to the Office of the Prosecutor
             of the International Criminal Court.
 
 
+**SYNOPSIS**
+
+::
+
+    otpcr <cmd> [key=val] [key==val]
+    otpcr [-a] [-c] [-d] [-i] [-v]
+
+
+**DESCRIPTION**
+
+OTPCR holds evidence that king netherlands
+is doing a genocide, a written response
+where king netherlands confirmed taking note
+of “what i have written”, namely proof that
+medicine he uses in treatement laws like
+zyprexa, haldol, abilify and clozapine are
+poison that make impotent, is both physical
+(contracted muscles) and mental (make people
+hallucinate) torture and kills members of the
+victim groups.
+
+OTPCR contains correspondence with the
+International Criminal Court, asking for the
+arrest of king netherlands, for the genocide
+he is committing with his new treatement laws.
+
+Current status is a "no basis to proceed"
+judgement of the prosecutor which requires
+a "basis to prosecute" to have the king
+actually arrested and, thereby, his genocide
+stopped.
+
+
 **INSTALL**
 
+you can install otpcr with the use of pipx::
 
 ::
 
@@ -18,84 +51,38 @@
     $ mkdir ~/.otpcr
 
 
-**SYNOPSIS**
-
-::
-
-    otpcr  <cmd> [key=val] [key==val]
-    otpcr  [-a] [-c] [-d] [-i] [-v]
-
-    options are:
-
-    -a     load all modules
-    -c     start console
-    -d     run in the background
-    -h     show help
-    -i     start services
-    -v     use verbose
-
-
-**DESCRIPTION**
-
-    OTPCR holds evidence that king netherlands
-    is doing a genocide, a written response
-    where king netherlands confirmed taking note
-    of “what i have written”, namely proof that
-    medicine he uses in treatement laws like
-    zyprexa, haldol, abilify and clozapine are
-    poison that make impotent, is both physical
-    (contracted muscles) and mental (make people
-    hallucinate) torture and kills members of the
-    victim groups.
-
-    OTPCR contains correspondence with the
-    International Criminal Court, asking for the
-    arrest of king netherlands, for the genocide
-    he is committing with his new treatement laws.
-
-    Current status is a "no basis to proceed"
-    judgement of the prosecutor which requires
-    a "basis to prosecute" to have the king
-    actually arrested and, thereby, his genocide
-    stopped.
-
-
 **USAGE**
 
-    without any argument the bot does nothing
+without any argument the bot does nothing::
 
-    ::
+    $ otpcr
+    $
 
-        $ otpcr
-        $
+see list of commands::
 
-    see list of commands
+    $ otpcr cmd
+    cmd,dne,err,log,mod,req,tdo,thr,tmr
 
-    ::
-
-        $ otpcr cmd
-        cmd,dne,err,log,mod,req,tdo,thr,tmr
-
-    start a console
+start a console::
 
     $ otpcr -c 
     >
 
-    use -v for verbose
+use -v for verbose::
 
     $ otpcr -cv
     May 12 05:51:49 2024 OTPCR CV CMD,ERR,LOG,MOD,REQ,TDO,THR,TMR
     >
 
-    use -i to run init on modules
+use -i to run init on modules::
 
     $ otpcr -caiv 
 
-    start daemon
+start daemon::
 
     $ otpcr -d
 
-    show request to the prosecutor
+show request to the prosecutor::
 
     $ otpcr req
     Information and Evidence Unit
@@ -107,30 +94,41 @@
 
 **CONFIGURATION**
 
-::
-
-    irc
+irc::
 
     $ otpcr cfg server=<server>
     $ otpcr cfg channel=<channel>
     $ otpcr cfg nick=<nick>
 
-    sasl
+sasl::
 
     $ otpcr pwd <nsvnick> <nspass>
     $ otpcr cfg password=<frompwd>
 
-    rss
+rss::
 
     $ otpcr rss <url>
     $ otpcr dpl <url> <item1,item2>
     $ otpcr rem <url>
     $ otpcr nme <url> <name>
 
-    opml
+opml::
 
     $ otpcr imp <filename>
     $ otpcr exp
+
+
+**OPTIONS**
+
+
+::
+
+    -a     load all modules
+    -c     start console
+    -d     run in the background
+    -h     show help
+    -i     start services
+    -v     use verbose
 
 
 **COMMANDS**
@@ -156,12 +154,8 @@
 
 **SYSTEMD**
 
-::
-
-    save the following it in /etc/systemd/system/otpcr.service
-    and replace "<user>" with the user running pipx
-
-::
+save the following it in /etc/systemd/system/otpcr.service
+and replace "<user>" with the user running pipx::
  
     [Unit]
     Description=The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court
@@ -179,13 +173,11 @@
     [Install]
     WantedBy=default.target
 
-::
-
-    then run this
+then run this::
 
     $ sudo systemctl enable otpcr --now
 
-    default channel/server is #otpcr on localhost
+default channel/server is #otpcr on localhost
 
 
 **FILES**
@@ -199,13 +191,11 @@
 
 **AUTHOR**
 
-::
 
-    Bart Thate <bthate@dds.nl>
+**Bart Thate** <bthate@dds.nl>
 
 
 **COPYRIGHT**
 
-::
 
-    OTPCR is Public Domain.
+**OTPCR** is Public Domain.
