@@ -32,6 +32,8 @@
 
 **DESCRIPTION**
 
+::
+
     ``OTPCR`` holds evidence that king
     netherlands is doing a genocide, a
     written response where king
@@ -60,151 +62,151 @@
 
 **USAGE**
 
-    without any argument the bot does nothing
+without any argument the bot does nothing
 
-    ::
+::
 
-        $ otpcr
-        $
+    $ otpcr
+    $
 
-    see list of commands
+see list of commands
 
-    ::
+::
 
-        $ otpcr cmd
-        cmd,dne,err,log,mod,req,tdo,thr,tmr
-
-
-    start a console
-
-    ::
-
-        $ otpcr -c 
-        >
-
-    use -v for verbose
-
-    ::
-
-        $ otpcr -cv
-        May 12 05:51:49 2024 OTPCR CV CMD,ERR,LOG,MOD,REQ,TDO,THR,TMR
-        >
-
-    use -i to run init on modules
-
-    ::
-
-        $ otpcr -caiv 
-
-    start daemon
-
-    ::
-
-        $ otpcr -d
-        $ 
+    $ otpcr cmd
+    cmd,dne,err,log,mod,req,tdo,thr,tmr
 
 
-    show request to the prosecutor
+start a console
 
-    ::
+::
 
-        $ otpcr req
-        Information and Evidence Unit
-        Office of the Prosecutor
-        Post Office Box 19519
-        2500 CM The Hague
-        The Netherlands
+    $ otpcr -c 
+    >
+
+use -v for verbose
+
+::
+
+    $ otpcr -cv
+    May 12 05:51:49 2024 OTPCR CV CMD,ERR,LOG,MOD,REQ,TDO,THR,TMR
+    >
+
+use -i to run init on modules
+
+::
+
+    $ otpcr -caiv 
+
+start daemon
+
+::
+
+    $ otpcr -d
+    $ 
+
+
+show request to the prosecutor
+
+::
+
+    $ otpcr req
+    Information and Evidence Unit
+    Office of the Prosecutor
+    Post Office Box 19519
+    2500 CM The Hague
+    The Netherlands
 
 
 **CONFIGURATION**
 
-    irc
+irc
 
-    ::
+::
 
-        $ otpcr cfg server=<server>
-        $ otpcr cfg channel=<channel>
-        $ otpcr cfg nick=<nick>
+    $ otpcr cfg server=<server>
+    $ otpcr cfg channel=<channel>
+    $ otpcr cfg nick=<nick>
 
-    sasl
+sasl
 
-    ::
+::
 
-        $ otpcr pwd <nsvnick> <nspass>
-        $ otpcr cfg password=<frompwd>
+    $ otpcr pwd <nsvnick> <nspass>
+    $ otpcr cfg password=<frompwd>
 
-    rss
+rss
 
-    ::
+::
 
-        $ otpcr rss <url>
-        $ otpcr dpl <url> <item1,item2>
-        $ otpcr rem <url>
-        $ otpcr nme <url> <name>
+    $ otpcr rss <url>
+    $ otpcr dpl <url> <item1,item2>
+    $ otpcr rem <url>
+    $ otpcr nme <url> <name>
 
 
 **COMMANDS**
 
-    ::
+::
 
-        cfg - irc configuration
-        cmd - commands
-        mre - displays cached output
-        pwd - sasl nickserv name/pass
-        req - reconsider
+    cfg - irc configuration
+    cmd - commands
+    mre - displays cached output
+    pwd - sasl nickserv name/pass
+    req - reconsider
 
 
 **SYSTEMD**
 
-    save the following it in /etc/systemd/system/otpcr.service
-    and replace "<user>" with the user running pipx
+save the following it in /etc/systemd/system/otpcr.service
+and replace "<user>" with the user running pipx
 
-    ::
+::
  
-        [Unit]
-        Description=The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court
-        Requires=network-online.target
-        After=network-online.target
+    [Unit]
+    Description=The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court
+    Requires=network-online.target
+    After=network-online.target
 
-        [Service]
-        Type=simple
-        User=<user>
-        Group=<user>
-        WorkingDirectory=/home/<user>/.otpcr
-        ExecStart=/home/<user>/.local/pipx/venvs/otpcr/bin/otpcr -d
-        RemainAfterExit=yes
+    [Service]
+    Type=simple
+    User=<user>
+    Group=<user>
+    WorkingDirectory=/home/<user>/.otpcr
+    ExecStart=/home/<user>/.local/pipx/venvs/otpcr/bin/otpcr -d
+    RemainAfterExit=yes
 
-        [Install]
-        WantedBy=default.target
+    [Install]
+    WantedBy=default.target
 
 
-    then run this
+then run this
 
-    ::
+::
 
-        $ sudo systemctl enable otpcr --now
+    $ sudo systemctl enable otpcr --now
 
-    default channel/server is #otpcr on localhost
+default channel/server is #otpcr on localhost
 
 
 **FILES**
 
-    ::
+::
 
-        ~/.otpcr
-        ~/.local/bin/otpcr
-        ~/.local/pipx/venvs/otpcr/*
+    ~/.otpcr
+    ~/.local/bin/otpcr
+    ~/.local/pipx/venvs/otpcr/*
 
 
 **AUTHOR**
 
-    ::
+::
 
-        Bart Thate <bthate@dds.nl>
+    Bart Thate <bthate@dds.nl>
 
 
 **COPYRIGHT**
 
-    ::
+::
 
-        OTPCR is Public Domain.
+    OTPCR is Public Domain.
