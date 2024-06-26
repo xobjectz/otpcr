@@ -1,10 +1,15 @@
+README
+######
+
+
 **NAME**
 
+::
 
-**OTPCR** - The 117 communication record
-            of the year 2019
-            to the Office of the Prosecutor
-            of the International Criminal Court.
+   OTPCR - The 117 communication record
+           of the year 2019
+           to the Office of the Prosecutor
+           of the International Criminal Court.
 
 
 **SYNOPSIS**
@@ -120,8 +125,7 @@ opml::
 
 **OPTIONS**
 
-
-::
+here is a list of commandline options ``otpcr`` provides::
 
     -a     load all modules
     -c     start console
@@ -133,7 +137,7 @@ opml::
 
 **COMMANDS**
 
-::
+commands are mostely for irc and rss management::
 
     cfg - irc configuration
     cmd - commands
@@ -154,8 +158,7 @@ opml::
 
 **SYSTEMD**
 
-save the following it in /etc/systemd/system/otpcr.service
-and replace "<user>" with the user running pipx::
+save the following it in /etc/systemd/system/otpcr.service and replace "<user>" with the user running pipx::
  
     [Unit]
     Description=The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court
@@ -182,7 +185,7 @@ default channel/server is #otpcr on localhost
 
 **FILES**
 
-::
+pipx stores the ``otpcr`` documentation in it;s local pipx environment::
 
     ~/.otpcr
     ~/.local/bin/otpcr
@@ -191,11 +194,12 @@ default channel/server is #otpcr on localhost
 
 **AUTHOR**
 
+I am reachable at the following email::
 
-**Bart Thate** <bthate@dds.nl>
+    Bart Thate <bthate@dds.nl>
 
 
 **COPYRIGHT**
 
 
-**OTPCR** is Public Domain.
+this code and documentation used in this piece of software is ment to be part of the Public Domain.
