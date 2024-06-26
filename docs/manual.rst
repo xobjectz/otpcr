@@ -9,7 +9,7 @@
 
 **NAME**
 
-    **OTPCR** - ``The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court.``
+    **OTPCR** - Office of the Prosecutor's Communication Record 117 of the year 2019.
 
 
 **SYNOPSIS**
