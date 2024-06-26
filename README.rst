@@ -1,5 +1,5 @@
-README
-######
+OTP-CR-117/19
+#############
 
 
 **NAME**
@@ -48,8 +48,6 @@ stopped.
 **INSTALL**
 
 you can install otpcr with the use of pipx::
-
-::
 
     $ pipx install otpcr
     $ pipx ensurepath
