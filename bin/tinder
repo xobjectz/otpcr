@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # This file is placed in the Public Domain.
 #
-# pylint: disable=C0413
+# pylint: disable=C0103,C0413,E0401
 
 
 "tinder"
@@ -26,11 +26,9 @@ from otpcr.errors   import Errors
 from otpcr.event    import Event
 from otpcr.log      import Logging
 from otpcr.main     import scan
-from otpcr.run      import broker
-from otpcr.object   import Object, ident, keys
+from otpcr.object   import Object, keys
 from otpcr.parse    import parse
 from otpcr.persist  import Persist
-from otpcr.run      import broker
 from otpcr.thread   import launch
 from otpcr.utils    import laps
 
@@ -87,6 +85,8 @@ param.ver = [""]
 
 
 class CLII(CLI):
+
+    "commands line interface"
 
     def raw(self, txt):
         if "v" in Cfg.opts:
