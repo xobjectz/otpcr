@@ -9,34 +9,24 @@
 
 **NAME**
 
-    OTPCR - ``The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court.``
-
-
-**INSTALL**
-
-
-::
-
-    $ pipx install otpcr
-    $ pipx ensurepath
-    $ mkdir ~/.otpcr
+    **OTPCR** - ``The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court.``
 
 
 **SYNOPSIS**
 
-::
+    ::
 
-    otpcr  <cmd> [key=val] [key==val]
-    otpcr  [-a] [-c] [-d] [-i] [-v]
+        otpcr  <cmd> [key=val] [key==val]
+        otpcr  [-a] [-c] [-d] [-i] [-v]
 
-    options are:
+        options are:
 
-    -a     load all modules
-    -c     start console
-    -d     run in the background
-    -h     show help
-    -i     start services
-    -v     use verbose
+        -a     load all modules
+        -c     start console
+        -d     run in the background
+        -h     show help
+        -i     start services
+        -v     use verbose
 
 
 **DESCRIPTION**
@@ -66,6 +56,15 @@
     requires a :ref:`"basis to prosecute" <reconsider>`
     to have the king actually arrested.
 
+
+**INSTALL**
+
+
+    ::
+
+        $ pipx install otpcr
+        $ pipx ensurepath
+        $ mkdir ~/.otpcr
 
 **USAGE**
 
@@ -158,9 +157,19 @@
 
         cfg - irc configuration
         cmd - commands
+        dlt - remove a user
+        dpl - sets display items
+        exp - export opml
+        fnd - find objects 
+        imp - import opml
+        log - log some text
+        met - add a user
         mre - displays cached output
         pwd - sasl nickserv name/pass
-        req - reconsider
+        rem - removes a rss feed
+        req - request 
+        rss - add a feed
+        thr - show the running threads
 
 
 **SYSTEMD**
@@ -207,13 +216,9 @@
 
 **AUTHOR**
 
-    ::
-
-        Bart Thate <bthate@dds.nl>
+    Bart Thate <bthate@dds.nl>
 
 
 **COPYRIGHT**
 
-    ::
-
-        OTPCR is Public Domain.
+    **OTPCR** is Public Domain.

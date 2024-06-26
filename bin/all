@@ -1,4 +1,0 @@
-bin/clean -f
-bin/create
-bin/install
-bin/docs
