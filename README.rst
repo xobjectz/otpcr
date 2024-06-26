@@ -91,7 +91,6 @@
 
     $ otpcr -d
 
-
     show request to the prosecutor
 
     $ otpcr req
