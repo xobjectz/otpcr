@@ -22,7 +22,7 @@ OTP-CR-117/19
 
 **DESCRIPTION**
 
-OTPCR holds evidence that king netherlands
+``OTPCR`` holds evidence that king netherlands
 is doing a genocide, a written response
 where king netherlands confirmed taking note
 of “what i have written”, namely proof that
@@ -33,7 +33,7 @@ poison that make impotent, is both physical
 hallucinate) torture and kills members of the
 victim groups.
 
-OTPCR contains correspondence with the
+``OTPCR`` contains correspondence with the
 International Criminal Court, asking for the
 arrest of king netherlands, for the genocide
 he is committing with his new treatement laws.
@@ -47,7 +47,7 @@ stopped.
 
 **INSTALL**
 
-you can install otpcr with the use of pipx::
+you can install ``otpcr`` with the use of pipx::
 
     $ pipx install otpcr
     $ pipx ensurepath
@@ -199,5 +199,6 @@ I am reachable at the following email::
 
 **COPYRIGHT**
 
+::
 
-this code and documentation used in this piece of software is ment to be part of the Public Domain.
+    OTPCR is placed in the Public Domain.
