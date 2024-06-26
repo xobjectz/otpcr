@@ -19,9 +19,6 @@ classifiers=[
     'Topic :: Utilities'
 ]
 
-[project.scripts]
-"otpct" = "otpct.__main__:wrapped"
-
 
 [project.optional-dependencies]
 dev = []
@@ -34,12 +31,13 @@ dev = []
 
 
 [tool.setuptools]
+script-files = [
+    "bin/otpcr",
+]
 packages = [
    "otpcr",
-   "otpcr.lib",
-   "otpcr.mod",
-   "otpcr.run",
-   "otpcr.usr"
+   "otpcr.modules",
+   "otpcr.user"
 ]
 zip-safe = true
 
