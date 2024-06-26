@@ -1,15 +1,21 @@
 # This file is placed in the Public Domain.
 
 
-"package"
+"runtime"
 
 
-from . import mod, usr
+from .object  import *
+from .object  import __dir__ as __odir__
+from .decoder import *
+from .default import *
+from .encoder import *
+from .config  import *
 
 
-def getmod(name):
-    "return module."
-    mods = getattr(mod, name, None)
-    if not mods:
-        mods = getattr(usr, name, None)
-    return mods
+def __dir__():
+    return sorted((
+        'dumps',
+        'loads',
+        'read',
+        'write'
+    ) + __odir__())
