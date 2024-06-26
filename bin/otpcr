@@ -34,7 +34,7 @@ from otpcr import modules
 from otpcr import user
 
 
-Cfg.version = "22"
+Cfg.version = "23"
 
 
 if os.path.exists("mods"):
