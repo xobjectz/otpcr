@@ -60,52 +60,39 @@
 
 **USAGE**
 
-without any argument the bot does nothing
-
 ::
+
+    without any argument the bot does nothing
 
     $ otpcr
     $
 
-see list of commands
-
-::
+    see list of commands
 
     $ otpcr cmd
     cmd,dne,err,log,mod,req,tdo,thr,tmr
 
-
-start a console
-
-::
+    start a console
 
     $ otpcr -c 
     >
 
-use -v for verbose
-
-::
+    use -v for verbose
 
     $ otpcr -cv
     May 12 05:51:49 2024 OTPCR CV CMD,ERR,LOG,MOD,REQ,TDO,THR,TMR
     >
 
-use -i to run init on modules
-
-::
+    use -i to run init on modules
 
     $ otpcr -caiv 
 
-start daemon
-
-::
+    start daemon
 
     $ otpcr -d
 
 
-show request to the prosecutor
-
-::
+    show request to the prosecutor
 
     $ otpcr req
     Information and Evidence Unit
@@ -117,34 +104,27 @@ show request to the prosecutor
 
 **CONFIGURATION**
 
-irc
-
 ::
+
+    irc
 
     $ otpcr cfg server=<server>
     $ otpcr cfg channel=<channel>
     $ otpcr cfg nick=<nick>
 
-sasl
-
-::
+    sasl
 
     $ otpcr pwd <nsvnick> <nspass>
     $ otpcr cfg password=<frompwd>
 
-rss
-
-::
+    rss
 
     $ otpcr rss <url>
     $ otpcr dpl <url> <item1,item2>
     $ otpcr rem <url>
     $ otpcr nme <url> <name>
 
-
-opml
-
-::
+    opml
 
     $ otpcr imp <filename>
     $ otpcr exp
@@ -163,8 +143,10 @@ opml
 
 **SYSTEMD**
 
-save the following it in /etc/systemd/system/otpcr.service
-and replace "<user>" with the user running pipx
+::
+
+    save the following it in /etc/systemd/system/otpcr.service
+    and replace "<user>" with the user running pipx
 
 ::
  
@@ -184,14 +166,13 @@ and replace "<user>" with the user running pipx
     [Install]
     WantedBy=default.target
 
-
-then run this
-
 ::
+
+    then run this
 
     $ sudo systemctl enable otpcr --now
 
-default channel/server is #otpcr on localhost
+    default channel/server is #otpcr on localhost
 
 
 **FILES**
