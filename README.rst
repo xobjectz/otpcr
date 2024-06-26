@@ -1,6 +1,8 @@
 **NAME**
 
-    OTPCR - ``The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court.``
+::
+
+    OTPCR - The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court.
 
 
 **INSTALL**
@@ -39,25 +41,25 @@
     written response where king
     netherlands confirmed taking note
     of “what i have written”, namely
-    :ref:`proof  <evidence>` that medicine
-    he uses in treatement laws like zyprexa,
-    haldol, abilify and clozapine are
-    poison that make impotent, is both
-    physical (contracted muscles) and
-    mental (make people hallucinate)
-    torture and kills members of the
-    victim groups.
+    proof that medicine he uses in
+    treatement laws like zyprexa, haldol,
+    abilify and clozapine are poison that
+    make impotent, is both physical
+    (contracted muscles) and mental
+    (make people hallucinate) torture and
+    kills members of the victim groups.
 
     ``OTPCR`` contains :ref:`correspondence
-    <writings>` with the International Criminal
-    Court, asking for arrest of the king of the
-    netherlands, for the genocide he is committing
-    with his new treatement laws.
+    <writings>` with the International
+    Criminal Court, asking for arrest of the
+    king of the netherlands, for the genocide
+    he is committing with his new treatement
+    laws.
 
-    Current status is a :ref:`"no basis to proceed"
-    <writings>` judgement of the prosecutor which
-    requires a :ref:`"basis to prosecute" <reconsider>`
-    to have the king actually arrested.
+    Current status is a "no basis to proceed"
+    judgement of the prosecutor which requires
+    a "basis to prosecute" to have the king
+    actually arrested.
 
 
 **USAGE**
@@ -103,7 +105,6 @@ start daemon
 ::
 
     $ otpcr -d
-    $ 
 
 
 show request to the prosecutor
@@ -143,6 +144,14 @@ rss
     $ otpcr dpl <url> <item1,item2>
     $ otpcr rem <url>
     $ otpcr nme <url> <name>
+
+
+opml
+
+::
+
+    $ otpcr imp <filename>
+    $ otpcr exp
 
 
 **COMMANDS**
