@@ -135,9 +135,19 @@
 
     cfg - irc configuration
     cmd - commands
+    dlt - remove a user
+    dpl - sets display items
+    exp - export opml
+    fnd - find objects 
+    imp - import opml
+    log - log some text
+    met - add a user
     mre - displays cached output
     pwd - sasl nickserv name/pass
-    req - reconsider
+    rem - removes a rss feed
+    req - request 
+    rss - add a feed
+    thr - show the running threads
 
 
 **SYSTEMD**
