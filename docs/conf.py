@@ -5,11 +5,11 @@
 # ruff: noqa: E402, E501
 
 
-"Skull, Bones and Number (OTP-CR-117/19)"
+"Office of the Prosecutor's Communication Record 117 of the year 2019."
 
 
 NAME = "otpcr"
-VERSION = "20"
+VERSION = "23"
 
 
 import os
@@ -60,7 +60,7 @@ extensions = [
 # -- Options for HTML output -------------------------------------------------
 
 
-html_title = "The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court"
+html_title = "Office of the Prosecutor's Communication Record 117 of the year 2019."
 html_style = 'otpcr.css'
 html_static_path = ["_static"]
 html_css_files = ["otpcr.css",]

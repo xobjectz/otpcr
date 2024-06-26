@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "otpcr"
-description = "The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court."
+description = "Office of the Prosecutor's Communication Record 117 of the year 2019."
 version = "23"
 authors = [
     {name = "Bart Thate", email = "bthate@dds.nl" },
@@ -57,6 +57,7 @@ zip-safe = true
     "docs/evidence.rst",
     "docs/genocide.jpg",
     "docs/genocide.png",
+    "docs/genocideblack.png",
     "docs/guilty.rst",
     "docs/index.rst",
     "docs/informed.jpg",
@@ -67,6 +68,7 @@ zip-safe = true
     "docs/reconsider.rst",
     "docs/request.rst",
     "docs/robots.txt",
+    "docs/since.png",
     "docs/skull3.png",
     "docs/verbatim7.png",
     "docs/writings.rst"
