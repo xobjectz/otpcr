@@ -100,4 +100,10 @@ def popen2(txt):
     proc.wait()
 
 
+if not os.path.exists("env"):
+    popen("python3 -mvirtualenv env")
+    popen(f"env/bin/pip3 install {NAME} -f dist --upgrade --force")
+    popen2("env/bin/python3 env/bin/pip3 install -I %s" % " ".join([f"{x}" for x in TXT.split("\n") if "#" not in x]))
+
+
 popen("env/bin/sphinx-build docs html")

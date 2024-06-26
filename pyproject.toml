@@ -64,6 +64,7 @@ zip-safe = true
     "docs/manual.rst",
     "docs/OTP111.png",
     "docs/OTP222.png",
+    "docs/reconsider.rst",
     "docs/request.rst",
     "docs/robots.txt",
     "docs/skull3.png",
