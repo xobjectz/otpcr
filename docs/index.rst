@@ -1,16 +1,16 @@
-.. _about:
+.. _home:
 
 
 .. raw:: html
 
     <br><br>
 
-.. title:: About
+.. title:: Home
 
 
 .. raw:: html
 
-    <center><b>OTP-CR-117/19</b></center>
+    <center><b><a href="source.html">OTP-CR-117/19</a></b></center>
     <br>
 
 In 2018 i informed the king of the netherlands that what he calls

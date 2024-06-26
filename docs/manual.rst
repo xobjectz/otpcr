@@ -7,9 +7,22 @@
 .. title:: Manual
 
 
+.. raw:: html
+
+    <center>
+    <b>
+
+MANUAL
+
+.. raw:: html
+
+    </b>
+    </center>
+
+
 **NAME**
 
-    **OTPCR** - Office of the Prosecutor's Communication Record 117 of the year 2019.
+    **OTPCR** - Office of the Prosecutor's Communication Record 117 of 2019.
 
 
 **SYNOPSIS**
@@ -180,7 +193,7 @@
     ::
  
         [Unit]
-        Description=The 117 communication record of the year 2019 to the Office of the Prosecutor of the International Criminal Court
+        Description=Office of the Prosecutor's Communication Record 117 of 2019.
         Requires=network-online.target
         After=network-online.target
 

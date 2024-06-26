@@ -5,7 +5,7 @@
 # ruff: noqa: E402, E501
 
 
-"Office of the Prosecutor's Communication Record 117 of the year 2019."
+"Office of the Prosecutor's Communication Record 117 of 2019."
 
 
 NAME = "otpcr"
@@ -60,7 +60,7 @@ extensions = [
 # -- Options for HTML output -------------------------------------------------
 
 
-html_title = "Office of the Prosecutor's Communication Record 117 of the year 2019."
+html_title = "Office of the Prosecutor's Communication Record 117 of 2019."
 html_style = 'otpcr.css'
 html_static_path = ["_static"]
 html_css_files = ["otpcr.css",]
@@ -110,7 +110,7 @@ intersphinx_cache_limit = 1
 rst_prolog = '''.. image:: genocide.png
     :width: 100%
     :height: 2.6cm
-    :target: about.html
+    :target: index.html
 
 .. raw:: html
 
@@ -123,7 +123,6 @@ rst_prolog = '''.. image:: genocide.png
 
 rst_epilog = '''.. raw:: html
 
-    <br>
     <center>
     <b>
 

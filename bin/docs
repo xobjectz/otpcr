@@ -100,6 +100,8 @@ def popen2(txt):
     proc.wait()
 
 
+if not os.path.exists("dist"):
+    popen("python3 setup.py sdist")
 if not os.path.exists("env"):
     popen("python3 -mvirtualenv env")
     popen(f"env/bin/pip3 install {NAME} -f dist --upgrade --force")
