@@ -2,7 +2,9 @@
 
 ::
 
-    OTPCR - The 117 communication record of the year 2019 to the Office of the Prosecutor
+    OTPCR - The 117 communication record
+            of the year 2019
+            to the Office of the Prosecutor
             of the International Criminal Court.
 
 
@@ -35,42 +37,44 @@
 
 **DESCRIPTION**
 
-::
-
     OTPCR holds evidence that king netherlands
-    is doing a genocide, a written response where
-    king netherlands confirmed taking note of “what
-    i have written”, namely proof that medicine he
-    uses in treatement laws like zyprexa, haldol,
-    abilify and clozapine are poison that make impotent,
-    is both physical (contracted muscles) and mental
-    (make people hallucinate) torture and kills members
-    of the victim groups.
+    is doing a genocide, a written response
+    where king netherlands confirmed taking note
+    of “what i have written”, namely proof that
+    medicine he uses in treatement laws like
+    zyprexa, haldol, abilify and clozapine are
+    poison that make impotent, is both physical
+    (contracted muscles) and mental (make people
+    hallucinate) torture and kills members of the
+    victim groups.
 
-    OTPCR contains correspondence with the International
-    Criminal Court, asking for the arrest of king
-    netherlands, for the genocide he is committing with
-    his new treatement laws.
+    OTPCR contains correspondence with the
+    International Criminal Court, asking for the
+    arrest of king netherlands, for the genocide
+    he is committing with his new treatement laws.
 
-    Current status is a "no basis to proceed" judgement of
-    the prosecutor which requires a "basis to prosecute" to
-    have the king actually arrested and, thereby, his genocide
+    Current status is a "no basis to proceed"
+    judgement of the prosecutor which requires
+    a "basis to prosecute" to have the king
+    actually arrested and, thereby, his genocide
     stopped.
 
 
 **USAGE**
 
-::
-
     without any argument the bot does nothing
 
-    $ otpcr
-    $
+    ::
+
+        $ otpcr
+        $
 
     see list of commands
 
-    $ otpcr cmd
-    cmd,dne,err,log,mod,req,tdo,thr,tmr
+    ::
+
+        $ otpcr cmd
+        cmd,dne,err,log,mod,req,tdo,thr,tmr
 
     start a console
 
