@@ -123,6 +123,7 @@ rst_prolog = '''.. image:: genocide.png
 
 rst_epilog = '''.. raw:: html
 
+    <br>
     <center>
     <b>
 
