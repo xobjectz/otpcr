@@ -2,7 +2,7 @@
 
 .. raw:: html
 
-    <br><br>
+    <br>
 
 .. title:: Manual
 
@@ -15,7 +15,7 @@
 
 **NAME**
 
-    **OTPCR** - Office of the Prosecutor's Communication Record 117 of 2019.
+    ``OTPCR`` - Office of the Prosecutor's Communication Record 117 of 2019.
 
 
 **SYNOPSIS**
@@ -227,4 +227,4 @@
 
 **COPYRIGHT**
 
-    **OTPCR** is Public Domain.
+    ``OTPCR`` is Public Domain.

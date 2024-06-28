@@ -1,23 +1,19 @@
 .. _{{ fullname }}:
 
 
-.. raw:: html
-
-    <br>
-
 .. title:: {{ fullname }}
 
 
 .. raw:: html
 
     <center>
-    <b>
+    <h3>
 
-**{{ fullname }}**
+**{{ name }}** - :ref:`src <source>`
 
 .. raw:: html
 
-    </b>
+    </h3>
     </center>
 
 
@@ -25,14 +21,3 @@
     :members:
     :private-members:
     :undoc-members:
-
-
-.. raw:: html
-
-    <center><b>
-
-:ref:`home  <home>` - :ref:`manual <manual>` - :ref:`source <source>`
-
-.. raw: html
-
-    </b></center>'''
