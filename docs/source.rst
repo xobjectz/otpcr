@@ -8,13 +8,6 @@
 .. title:: Source
 
 
-.. raw:: html
-
-    <center><b>SOURCE</b></center>
-    <br>
-
-
-
 **OTPCR**
 
 .. raw:: html
@@ -29,7 +22,6 @@
     otpcr.cli
     otpcr.commands
     otpcr.config
-    otpcr.console
     otpcr.decoder
     otpcr.default
     otpcr.encoder

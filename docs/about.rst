@@ -1,11 +1,11 @@
-.. _about:
+.. _home:
 
 
 .. raw:: html
 
-    <br><br>
+    <br>
 
-.. title:: About
+.. title:: Home
 
 
 .. raw:: html

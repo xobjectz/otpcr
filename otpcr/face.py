@@ -6,7 +6,7 @@
 
 
 from . import utils
-from . import broker, cli, commands, console, errors, event, handler
+from . import broker, cli, commands, errors, event, handler
 from . import help, log, parse, persist, repeater, thread, timer
 
 
@@ -14,7 +14,6 @@ from .utils    import *
 from .broker   import *
 from .cli      import *
 from .commands import *
-from .console  import *
 from .errors   import *
 from .event    import *
 from .handler  import *
