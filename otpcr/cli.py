@@ -15,11 +15,12 @@ class CLI(Handler):
     "CLI"
 
     cache = Object()
-    out = print
+    out = None
 
-    def __init__(self):
+    def __init__(self, outer):
         Handler.__init__(self)
         self.register("command", command)
+        self.out = outer
 
     def say(self, _channel, txt):
         "echo on verbose."

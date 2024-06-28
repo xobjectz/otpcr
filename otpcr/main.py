@@ -13,10 +13,9 @@ from .persist  import Persist
 from .utils    import spl
 
 
-def cmnd(txt, outer=print):
+def cmnd(txt, outer):
     "do a command using the provided output function."
-    cli = CLI()
-    cli.out = outer
+    cli = CLI(outer)
     evn = Event()
     evn.txt = txt
     command(cli, evn)
