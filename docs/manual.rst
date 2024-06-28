@@ -15,7 +15,7 @@
 
 **NAME**
 
-    ``OTPCR`` - Office of the Prosecutor's Communication Record 117 of 2019.
+    ``OTPCR`` - Office of the Prosecutor's Communication Record 117 of 2019
 
 
 **SYNOPSIS**
@@ -24,15 +24,6 @@
 
         otpcr  <cmd> [key=val] [key==val]
         otpcr  [-a] [-c] [-d] [-i] [-v]
-
-        options are:
-
-        -a     load all modules
-        -c     start console
-        -d     run in the background
-        -h     show help
-        -i     start services
-        -v     use verbose
 
 
 **DESCRIPTION**
@@ -60,17 +51,17 @@
     Current status is a :ref:`"no basis to proceed"
     <writings>` judgement of the prosecutor which
     requires a :ref:`"basis to prosecute" <reconsider>`
-    to have the king actually arrested :ref:`. <source>`
+    to have the king actually arrested.
 
 
 **INSTALL**
-
 
     ::
 
         $ pipx install otpcr
         $ pipx ensurepath
         $ mkdir ~/.otpcr
+
 
 **USAGE**
 
@@ -186,7 +177,7 @@
     ::
  
         [Unit]
-        Description=Office of the Prosecutor's Communication Record 117 of 2019.
+        Description=Office of the Prosecutor's Communication Record 117 of 2019
         Requires=network-online.target
         After=network-online.target
 
@@ -209,6 +200,23 @@
         $ sudo systemctl enable otpcr --now
 
     default channel/server is #otpcr on localhost
+
+
+**OPTIONS**
+
+    ::
+
+        -a     load all modules
+        -c     start console
+        -d     run in the background
+        -h     show help
+        -i     start services
+        -v     use verbose
+
+
+**CODE**
+
+    code is :ref:`here <source>`
 
 
 **FILES**
