@@ -65,7 +65,8 @@ def command(bot, evt):
 
 
 def modnames():
-    return sorted({x.split(".")[-1] for x in values(Commands.modnames)})
+    "return list of modules."
+    return sorted({x.split(".")[-1].lower() for x in values(Commands.modnames)})
 
 
 def __dir__():

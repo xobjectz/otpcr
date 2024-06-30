@@ -75,9 +75,9 @@ def laps(seconds, short=True):
 
 def named(obj):
     "return a full qualified name of an object/function/module."
-    typ = type(obj)
-    if isinstance(typ, types.ModuleType):
+    if isinstance(obj, types.ModuleType):
         return obj.__name__
+    typ = type(obj)
     if '__builtins__' in dir(typ):
         return obj.__name__
     if '__self__' in dir(obj):

@@ -46,7 +46,7 @@ Cfg         = Config()
 Cfg.dis     = ""
 Cfg.mod     = "cmd,err,mod,thr"
 Cfg.opts    = ""
-Cfg.name    = "objx"
+Cfg.name    = "otpcr"
 Cfg.wdr     = os.path.expanduser(f"~/.{Cfg.name}")
 Cfg.pidfile = os.path.join(Cfg.wdr, f"{Cfg.name}.pid")
 
@@ -110,7 +110,7 @@ def main():
     "main"
     parse(Cfg, " ".join(sys.argv[1:]))
     Cfg.dis = Cfg.sets.dis
-    Cfg.mod = ",".join([x.upper() for x in modnames()])
+    Cfg.mod = ",".join(modnames())
     if "h" in Cfg.opts:
         print(TXT)
         return

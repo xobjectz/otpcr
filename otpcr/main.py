@@ -9,7 +9,8 @@ from .cli   import CLI
 from .cmds  import command
 from .defer import later
 from .event import Event
-from .utils import spl
+from .table import load
+from .utils import named, spl
 
 
 def cmnd(txt, outer):
@@ -27,10 +28,13 @@ def cmnd(txt, outer):
 def init(pkg, modstr, disable=None):
     "scan modules for commands and classes"
     mds = []
+    if not modstr:
+        return
     for mod in spl(modstr):
         if disable and mod in spl(disable):
             continue
-        module = getattr(pkg, mod, None)
+        mname = f"{named(pkg)}.{mod}"
+        module = load(mname)
         if not module:
             continue
         if "init" not in dir(module):

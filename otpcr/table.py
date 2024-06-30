@@ -21,7 +21,12 @@ class Table:
 
 def load(mname):
     "load module."
-    setattr(Table.mods, mname, importlib.import_module(mname))
+    if mname not in Table.mods:
+        try:
+            setattr(Table.mods, mname, importlib.import_module(mname))
+        except ModuleNotFoundError:
+            pass
+    return getattr(Table.mods, mname, None)
 
 
 def ondemand(mname):

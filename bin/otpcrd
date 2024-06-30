@@ -16,6 +16,7 @@ import time
 
 from otpcr.cfg   import Config
 from otpcr.cli   import CLI
+from otpcr.cmds  import modnames
 from otpcr.defer import Errors, errors, later
 from otpcr.disk  import Persist
 from otpcr.log   import Logging
@@ -71,11 +72,6 @@ def forever():
         time.sleep(1.0)
 
 
-def modnames():
-    "list all modules."
-    return sorted({x for x in dir(modules) + dir(user) if not x.startswith("__")})
-
-
 def privileges(username):
     "drop privileges."
     pwnam = pwd.getpwnam(username)
@@ -99,9 +95,9 @@ def main():
     daemon(Cfg.pidfile, "-v" in sys.argv)
     privileges(Cfg.user)
     CLI.out = Errors.out = Logging.out = None
-    modstr = "," + ",".join(modnames())
-    init(modules, modstr)
-    init(user, modstr)
+    Cfg.mod = "," + ",".join(modnames())
+    init(modules, Cfg.mod)
+    init(user, Cfg.mod)
     forever()
 
 
