@@ -32,12 +32,6 @@ from otpcr import modules
 from otpcr import user
 
 
-if os.path.exists("mods"):
-    import mods as MODS
-else:
-    MODS = None
-
-
 Cfg         = Config()
 Cfg.dis     = ""
 Cfg.mod     = "cmd,err,mod,thr"
@@ -72,7 +66,7 @@ class Console(CLI):
 
 def modnames():
     "list all modules."
-    return sorted({x for x in dir(modules) + dir(user) + dir(MODS) if not x.startswith("__")})
+    return sorted({x for x in dir(modules) + dir(user) if not x.startswith("__")})
 
 
 def wrap(func):

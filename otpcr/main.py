@@ -30,7 +30,7 @@ def init(pkg, modstr, disable=None):
     for mod in spl(modstr):
         if disable and mod in spl(disable):
             continue
-        module = getattr(pkg, mod)
+        module = getattr(pkg, mod, None)
         if not module:
             continue
         if "init" not in dir(module):
