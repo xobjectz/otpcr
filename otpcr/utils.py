@@ -8,6 +8,7 @@
 import pathlib
 import time
 import types
+import _thread
 
 
 SEP = "/"
@@ -31,6 +32,15 @@ def fntime(daystr):
     if rest:
         timed += float('.' + rest)
     return timed
+
+
+def forever():
+    "it doesn't stop, until ctrl-c"
+    while True:
+        try:
+            time.sleep(1.0)
+        except (KeyboardInterrupt, EOFError):
+            _thread.interrupt_main()
 
 
 def laps(seconds, short=True):
