@@ -10,7 +10,7 @@
 
 .. raw:: html
 
-    <center><b>CORRESPONDENCE</b></center>
+    <center><b>WRITINGS</b></center>
     <br>
 
 **EMAIL 1**
