@@ -73,7 +73,7 @@ def forever():
 
 def modnames():
     "list all modules."
-    return sorted({x for x in dir(mods) + dir(user) if not x.startswith("__")})
+    return sorted({x for x in dir(modules) + dir(user) if not x.startswith("__")})
 
 
 def privileges(username):
@@ -100,7 +100,7 @@ def main():
     privileges(Cfg.user)
     CLI.out = Errors.out = Logging.out = None
     modstr = "," + ",".join(modnames())
-    init(mods, modstr)
+    init(modules, modstr)
     init(user, modstr)
     forever()
 

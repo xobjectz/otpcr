@@ -6,7 +6,7 @@
 "commands"
 
 
-from .object import Object, construct
+from .object import Object, construct, values
 from .parse  import parse
 from .table  import ondemand
 
@@ -64,9 +64,14 @@ def command(bot, evt):
     evt.ready()
 
 
+def modnames():
+    return sorted({x.split(".")[-1] for x in values(Commands.modnames)})
+
+
 def __dir__():
     return (
         'Commands',
         'add',
-        'command'
+        'command',
+        'modnames'
     )

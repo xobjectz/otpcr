@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # This file is placed in the Public Domain.
 #
-# pylint: disable=R0801,C0103,C0413,E0401
+# pylint: disable=C0413
 
 
 "tinder"
@@ -19,22 +19,19 @@ import _thread
 sys.path.insert(0, os.getcwd())
 
 
-from otpcr.commands import Commands
-from otpcr.cli      import CLI
-from otpcr.default  import Default
-from otpcr.errors   import Errors
-from otpcr.event    import Event
-from otpcr.log      import Logging
-from otpcr.main     import scan
-from otpcr.object   import Object, keys
-from otpcr.parse    import parse
-from otpcr.persist  import Persist
-from otpcr.thread   import launch
-from otpcr.utils    import laps
-
-
-from otpcr import modules
-from otpcr import user
+from otpcr.cmds   import Commands
+from otpcr.cli    import CLI
+from otpcr.dft    import Default
+from otpcr.defer  import Errors, errors
+from otpcr.event  import Event
+from otpcr.log    import Logging
+from otpcr.run    import broker
+from otpcr.object import Object, ident, keys
+from otpcr.parse  import parse
+from otpcr.disk   import Persist
+from otpcr.run    import broker
+from otpcr.launch import launch
+from otpcr.utils  import laps
 
 
 if os.path.exists("mods"):
@@ -57,7 +54,6 @@ Cfg.mod     = ""
 Cfg.name    = "tinder"
 Cfg.silent  = False
 Cfg.skip    = ["debug",]
-Cfg.version = "13"
 Cfg.wdr     = ".test"
 
 
@@ -71,7 +67,7 @@ paylock = _thread.allocate_lock()
 param = Object()
 param.cmd = [""]
 param.dpl = ["hnrss title,url"]
-param.fnd = ["log", "todo"]
+param.fnd = ["log", "todo", "rss", "config"]
 param.imp = ["tests/feeds.opml"]
 param.log = ["bla"]
 param.mod = [""]
@@ -80,13 +76,12 @@ param.nme = ["hnrss hackernews"]
 param.pwd = ["bla mekker"]
 param.rem = ["hnrss"]
 param.res = [""]
+param.rss = ["http://hnrss.org/newest",]
 param.tdo = ["mekker"]
 param.ver = [""]
 
 
 class CLII(CLI):
-
-    "commands line interface"
 
     def raw(self, txt):
         if "v" in Cfg.opts:
@@ -151,18 +146,16 @@ def main():
     "main"
     Logging.out = Errors.out = print
     Cfg.dis = Cfg.sets.dis
-    Cfg.mod = ",".join(modnames())
+    Cfg.mod = ",".join(Commands.modnames)
     if "v" in Cfg.opts:
         DTE = " ".join(time.ctime(time.time()).replace("  ", " ").split()[1:])
         print(f'{DTE} {Cfg.name.upper()} {Cfg.opts.upper()} {Cfg.mod.upper()}'.replace("  ", " "))
-    scan(modules, Cfg.mod, Cfg.dis)
-    scan(user, Cfg.mod, Cfg.dis)
-    scan(MODS, Cfg.mod, Cfg.dis)
     nrs = Cfg.index or 1
     nrcommand = len(Commands.cmds) or 1
-    thrs = []
     cli = CLII()
     cli.start()
+    cli.threaded = "t" in Cfg.opts
+    thrs = []
     for _nr in range(nrs):
         thrs.append(launch(payload, cli))
     for thr in thrs:
@@ -171,6 +164,11 @@ def main():
     endtime = time.time()
     lap = laps(endtime-STARTTIME)
     percall = (endtime-STARTTIME)/(nrs*nrcommand)
+    if not Errors.errors:
+        if "v" in Cfg.opts:
+            print("no errors")
+    else:
+        errors()
     if "v" in Cfg.opts:
         print(f"{lap} {nrs} {nrcommand} {percall}")
 

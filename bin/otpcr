@@ -21,7 +21,7 @@ sys.path.insert(0, os.getcwd())
 
 from otpcr.cfg    import Config
 from otpcr.cli    import CLI
-from otpcr.cmds   import Commands, add
+from otpcr.cmds   import Commands, add, modnames
 from otpcr.defer  import Errors, errors
 from otpcr.disk   import Persist
 from otpcr.encode import dumps
@@ -32,6 +32,7 @@ from otpcr.main   import cmnd, init
 from otpcr.parse  import parse
 
 
+from otpcr import modules
 from otpcr import user
 
 
@@ -108,8 +109,25 @@ def dmp(event):
 def main():
     "main"
     parse(Cfg, " ".join(sys.argv[1:]))
-    add(dmp)
     Cfg.dis = Cfg.sets.dis
+    Cfg.mod = ",".join([x.upper() for x in modnames()])
+    if "h" in Cfg.opts:
+        print(TXT)
+        return
+    if "v" in Cfg.opts:
+        dte = " ".join(time.ctime(time.time()).replace("  ", " ").split()[1:])
+        print(f'{dte} {Cfg.name.upper()} {Cfg.opts.upper()} {Cfg.mod}'.replace("  ", " "))
+    if "c" in Cfg.opts:
+        if "i" in Cfg.opts:
+            init(modules, Cfg.mod, Cfg.dis)
+            init(user, Cfg.mod, Cfg.dis)
+            init(MODS, Cfg.mod, Cfg.dis)
+        csl = Console(print)
+        csl.start()
+        cmnd(Cfg.otxt, print)
+        forever()
+        return
+    add(dmp)
     cmnd(Cfg.otxt, print)
 
 
