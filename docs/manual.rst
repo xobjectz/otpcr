@@ -7,6 +7,12 @@
 .. title:: Manual
 
 
+.. raw:: html
+
+    <center><b>MANUAL</b></center>
+    <br>
+
+
 **NAME**
 
     ``OTPCR`` - Office of the Prosecutor's Communication Record 117 of 2019

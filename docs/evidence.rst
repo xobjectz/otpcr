@@ -10,6 +10,12 @@
 .. _haldol:
 
 
+.. raw:: html
+
+    <center><b>EVIDENCE</b></center>
+    <br>
+
+
 **HALDOL**
 
 
