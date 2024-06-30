@@ -5,12 +5,10 @@
 "interface"
 
 
-from . import utils
 from . import cache, cli, cmds, defer, event, handle
-from . import help, log, parse, disk, repeat, launch, timer
+from . import log, parse, disk, repeat, launch, timer, utils
 
 
-from .utils  import *
 from .cache  import *
 from .cli    import *
 from .cmds   import *
@@ -24,6 +22,7 @@ from .disk   import *
 from .repeat import *
 from .launch import *
 from .timer  import *
+from .utils  import *
 
 
 def __dir__():

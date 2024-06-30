@@ -8,7 +8,6 @@
 
 import os
 import sys
-import termios
 
 
 sys.path.insert(0, os.getcwd())
@@ -64,25 +63,9 @@ def modnames():
     return sorted({x for x in dir(modules) + dir(user) if not x.startswith("__")})
 
 
-def wrap(func):
-    "reset terminal."
-    old3 = None
-    try:
-        old3 = termios.tcgetattr(sys.stdin.fileno())
-    except termios.error:
-        pass
-    try:
-        func()
-    except (KeyboardInterrupt, EOFError):
-        print("")
-    finally:
-        if old3:
-            termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, old3)
-
-
 def wrapped():
     "wrap main."
-    wrap(main)
+    main()
     errors()
 
 
