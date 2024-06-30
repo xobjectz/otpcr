@@ -393,11 +393,7 @@ add(rss)
 
 def syn(event):
     "synchronize feeds."
-    fetchers = list(broker.all("fetcher"))
-    if not fetchers:
-        event.reply("no fetcher found.")
-        return
-    fetcher = fetchers[0][-1]
+    fetcher = Fetcher()
     thrs = fetcher.run(True)
     nrs = 0
     for thr in thrs:

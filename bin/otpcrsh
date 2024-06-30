@@ -23,7 +23,6 @@ from otpcr.cfg   import Config
 from otpcr.cli   import CLI
 from otpcr.defer import Errors, errors
 from otpcr.event import Event
-from otpcr.help  import TXT
 from otpcr.log   import Logging
 from otpcr.main  import cmnd, init
 from otpcr.parse import parse
@@ -110,9 +109,6 @@ def main():
     parse(Cfg, " ".join(sys.argv[1:]))
     Cfg.dis = Cfg.sets.dis
     Cfg.mod += "," + ",".join(modnames())
-    if "h" in Cfg.opts:
-        print(TXT)
-        return
     if "v" in Cfg.opts:
         dte = " ".join(time.ctime(time.time()).replace("  ", " ").split()[1:])
         modiess = ",".join([x.upper() for x in modnames()])

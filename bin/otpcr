@@ -9,7 +9,6 @@
 import os
 import sys
 import termios
-import time
 
 
 sys.path.insert(0, os.getcwd())
@@ -17,15 +16,11 @@ sys.path.insert(0, os.getcwd())
 
 from otpcr.cfg    import Config
 from otpcr.cli    import CLI
-from otpcr.cmds   import Commands, add
 from otpcr.defer  import errors
 from otpcr.disk   import Persist
-from otpcr.encode import dumps
 from otpcr.event  import Event
-from otpcr.help   import TXT
-from otpcr.main   import cmnd, init
+from otpcr.main   import cmnd
 from otpcr.parse  import parse
-from otpcr.utils  import forever
 
 
 from otpcr import modules
