@@ -17,7 +17,7 @@ class CLI(Handler):
     cache = Object()
     out = None
 
-    def __init__(self, outer):
+    def __init__(self, outer=None):
         Handler.__init__(self)
         self.register("command", command)
         self.out = outer
