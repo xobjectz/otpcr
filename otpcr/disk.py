@@ -42,8 +42,7 @@ def fns(mtc=""):
             for dname in sorted(dirs):
                 if dname.count('-') == 2:
                     ddd = os.path.join(rootdir, dname)
-                    fls = sorted(os.scandir(ddd))
-                    for fll in fls:
+                    for fll in os.scandir(ddd):
                         yield strip(os.path.join(ddd, fll))
 
 
@@ -84,7 +83,7 @@ def long(name):
     "match from single name to long name."
     split = name.split(".")[-1].lower()
     res = name
-    for named in Persist.fqns:
+    for named in types():
         if split in named.split(".")[-1].lower():
             res = named
             break
@@ -118,7 +117,7 @@ def sync(obj, pth=None):
 
 def types():
     "return types stored."
-    return os.scandir(store())
+    return [x.name for x in os.scandir(store())]
 
 
 def whitelist(clz):
