@@ -1,201 +1,60 @@
-README
-######
+| **Information and Evidence Unit**
+| **Office of the Prosecutor**
+| **Post Office Box 19519**
+| **2500 CM The Hague**
+| **The Netherlands** 
+|
 
 
-**NAME**
+Hello Office of the Prosecutor, 
 
-::
+i write you in the context of communications and claims under art.15 of 
+the Rome Statute. i want to inform the prosecutor that the king of the 
+netherlands and his government are commiting 3 of the 5 crimes defined 
+in the Rome Statute. 
 
-   OTPCR - Office of the Prosecutor's Communication Rercord 117 of 2019
+The dutch government has introduced three new forced care laws, the Wfz 
+(wet forensische zorg) for criminals, the WvGGZ (Wet verplichte GGZ) for 
+the disturbed and addicted and the Wzd (Wet zorg en dwang) for the 
+handicapped.
 
-
-**SYNOPSIS**
-
-::
-
-    otpcr <cmd> [key=val] [key==val]
-    otpcr [-a] [-c] [-d] [-i] [-v]
-
-
-**DESCRIPTION**
-
-``OTPCR`` holds evidence that king netherlands
-is doing a genocide, a written response
-where king netherlands confirmed taking note
-of “what i have written”, namely proof that
-medicine he uses in treatement laws like
-zyprexa, haldol, abilify and clozapine are
-poison that make impotent, is both physical
-(contracted muscles) and mental (make people
-hallucinate) torture and kills members of the
-victim groups.
-
-``OTPCR`` contains correspondence with the
-International Criminal Court, asking for the
-arrest of king netherlands, for the genocide
-he is committing with his new treatement laws.
-
-Current status is a "no basis to proceed"
-judgement of the prosecutor which requires
-a "basis to prosecute" to have the king
-actually arrested and, thereby, his genocide
-stopped.
-
-
-**INSTALL**
-
-you can install ``otpcr`` with the use of pipx::
-
-    $ pipx install otpcr
-    $ pipx ensurepath
-    $ mkdir ~/.otpcr
-
-
-**USAGE**
-
-without any argument the bot does nothing::
-
-    $ otpcr
-    $
-
-see list of commands::
-
-    $ otpcr cmd
-    cmd,dne,err,log,mod,req,tdo,thr,tmr
-
-start a console::
-
-    $ otpcr -c 
-    >
-
-use -v for verbose::
-
-    $ otpcr -cv
-    May 12 05:51:49 2024 OTPCR CV CMD,ERR,LOG,MOD,REQ,TDO,THR,TMR
-    >
-
-use -i to run init on modules::
-
-    $ otpcr -caiv 
-
-start daemon::
-
-    $ otpcr -d
-
-show request to the prosecutor::
-
-    $ otpcr req
-    Information and Evidence Unit
-    Office of the Prosecutor
-    Post Office Box 19519
-    2500 CM The Hague
-    The Netherlands
-
-
-**CONFIGURATION**
-
-irc::
-
-    $ otpcr cfg server=<server>
-    $ otpcr cfg channel=<channel>
-    $ otpcr cfg nick=<nick>
-
-sasl::
-
-    $ otpcr pwd <nsvnick> <nspass>
-    $ otpcr cfg password=<frompwd>
-
-rss::
-
-    $ otpcr rss <url>
-    $ otpcr dpl <url> <item1,item2>
-    $ otpcr rem <url>
-    $ otpcr nme <url> <name>
-
-opml::
-
-    $ otpcr imp <filename>
-    $ otpcr exp
-
-
-**OPTIONS**
-
-here is a list of commandline options ``otpcr`` provides::
-
-    -a     load all modules
-    -c     start console
-    -d     run in the background
-    -h     show help
-    -i     start services
-    -v     use verbose
-
-
-**COMMANDS**
-
-commands are mostely for irc and rss management::
-
-    cfg - irc configuration
-    cmd - commands
-    dlt - remove a user
-    dpl - sets display items
-    exp - export opml
-    fnd - find objects 
-    imp - import opml
-    log - log some text
-    met - add a user
-    mre - displays cached output
-    pwd - sasl nickserv name/pass
-    rem - removes a rss feed
-    req - request 
-    rss - add a feed
-    thr - show the running threads
-
-
-**SYSTEMD**
-
-save the following it in /etc/systemd/system/otpcr.service and replace "<user>" with the user running pipx::
+Both the chamber suggesting these laws to the king and the king himself 
+have been informed about the fact the the substances administered under 
+these laws are proven to be poison.
  
-    [Unit]
-    Description=Office of the Prosecutor's Communication Record 117 of 2019.
-    Requires=network-online.target
-    After=network-online.target
+There is proof the medication used in forced treatements in the 
+netherlands are poison, see copies of the ECHA <`European Chemical Agency`>
+website for:
 
-    [Service]
-    Type=simple
-    User=<user>
-    Group=<user>
-    WorkingDirectory=/home/<user>/.otpcr
-    ExecStart=/home/<user>/.local/pipx/venvs/otpcr/bin/otpcr -d
-    RemainAfterExit=yes
+(1) :ref:`haldol <haldol>`
+(2) :ref:`clozapine <clozapine>`
+(3) :ref:`zyprexa <zyprexa>`
+(4) :ref:`abilify <abilify>`
 
-    [Install]
-    WantedBy=default.target
+With the mass scale torture with poison the king of the netherlands and 
+his chamber:
 
-then run this::
+(1) kills
+(2) does grave bodily and mental harm
+(3) makes impotent
 
-    $ sudo systemctl enable otpcr --now
+on the following victim groups here in the Netherlands:
 
-default channel/server is #otpcr on localhost
+(1) verslaafden (addicts)
+(2) bejaarden (elderly)
+(3) ggz patienten (psychiatric patients)
+(4) criminelen (criminials)
+(5) gehandicapten (handicapped)
 
-
-**FILES**
-
-pipx stores the ``otpcr`` documentation in it;s local pipx environment::
-
-    ~/.otpcr
-    ~/.local/bin/otpcr
-    ~/.local/pipx/venvs/otpcr/*
-
-
-**AUTHOR**
-
-I am reachable at the following email::
-
-    Bart Thate <bthate@dds.nl>
+Since the members of the :ref:`chamber <chamber>` and the :ref:`king <king>`
+were aware that these medicine are poison at the time they voted for this law
+and the day the Wfz law took effect (1-1-2019), i ask the prosecutor to
+prosecute the king for making the commiting of the above mentioned crimes
+(killing, torture and impotent making) possible.
 
 
-**COPYRIGHT**
+p.s.
 
-::
 
-    OTPCR is placed in the Public Domain.
+1) duly entered in the Communications Register of the Office on 4 march 2019
+2) your reference ``OTP-CR-117/19``

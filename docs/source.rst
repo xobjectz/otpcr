@@ -20,31 +20,34 @@
 
      <br>
 
+cache.py  cli.py   decode.py  dft.py   encode.py  face.py    __init__.py  lock.py  main.py  object.py  repeat.py  timer.py  utils.py
+cfg.py    cmds.py  defer.py   disk.py  event.py   handle.py  launch.py    log.py   modules  parse.py   run.py     user
+
+
 .. autosummary::
     :toctree: 
     :template: base.rst
 
-    otpcr.broker
+    otpcr.cache
     otpcr.cli
-    otpcr.commands
-    otpcr.config
-    otpcr.decoder
-    otpcr.default
-    otpcr.encoder
-    otpcr.errors
+    otpcr.cmds
+    otpcr.cfg
+    otpcr.decode
+    otpcr.defer
+    otpcr.dft
+    otpcr.encode
     otpcr.event
     otpcr.face
-    otpcr.handler
-    otpcr.help
-    otpcr.locks
+    otpcr.handle
+    otpcr.launch
+    otpcr.lock
     otpcr.log
     otpcr.main
     otpcr.object
     otpcr.parse
-    otpcr.persist
-    otpcr.repeater
+    otpcr.disk
+    otpcr.repeat
     otpcr.run
-    otpcr.thread
     otpcr.timer
     otpcr.utils
 
@@ -71,11 +74,9 @@
     otpcr.modules.irc
     otpcr.modules.log
     otpcr.modules.mod
-    otpcr.modules.opm
     otpcr.modules.req
     otpcr.modules.rss
     otpcr.modules.tdo
     otpcr.modules.thr
     otpcr.modules.tmr
     otpcr.modules.upt
-    otpcr.modules.ver
