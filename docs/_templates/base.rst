@@ -9,7 +9,7 @@
     <center>
     <h3>
 
-**{{ name }}** - :ref:`src <source>`
+:ref:`src <source>`/**{{ name }}**
 
 .. raw:: html
 
