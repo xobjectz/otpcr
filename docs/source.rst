@@ -20,9 +20,6 @@
 
      <br>
 
-cache.py  cli.py   decode.py  dft.py   encode.py  face.py    __init__.py  lock.py  main.py  object.py  repeat.py  timer.py  utils.py
-cfg.py    cmds.py  defer.py   disk.py  event.py   handle.py  launch.py    log.py   modules  parse.py   run.py     user
-
 
 .. autosummary::
     :toctree: 
