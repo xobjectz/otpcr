@@ -186,7 +186,7 @@
         User=<user>
         Group=<user>
         WorkingDirectory=/home/<user>/.otpcr
-        ExecStart=/home/<user>/.local/pipx/venvs/otpcr/bin/otpcr -d
+        ExecStart=/home/<user>/.local/pipx/venvs/otpcr/bin/otpcrd
         RemainAfterExit=yes
 
         [Install]

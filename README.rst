@@ -26,10 +26,10 @@ There is proof the medication used in forced treatements in the
 netherlands are poison, see copies of the ECHA <`European Chemical Agency`>
 website for:
 
-(1) :ref:`haldol <haldol>`
-(2) :ref:`clozapine <clozapine>`
-(3) :ref:`zyprexa <zyprexa>`
-(4) :ref:`abilify <abilify>`
+(1) haldol <haldol>
+(2) clozapine <clozapine>
+(3) zyprexa <zyprexa>
+(4) abilify <abilify>
 
 With the mass scale torture with poison the king of the netherlands and 
 his chamber:
@@ -46,7 +46,7 @@ on the following victim groups here in the Netherlands:
 (4) criminelen (criminials)
 (5) gehandicapten (handicapped)
 
-Since the members of the :ref:`chamber <chamber>` and the :ref:`king <king>`
+Since the members of the chamber <chamber> and the king <king>
 were aware that these medicine are poison at the time they voted for this law
 and the day the Wfz law took effect (1-1-2019), i ask the prosecutor to
 prosecute the king for making the commiting of the above mentioned crimes
