@@ -3,15 +3,10 @@
 
 .. raw:: html
 
-    <br>
+    <br><br>
 
 .. title:: Writings
 
-
-.. raw:: html
-
-    <center><b>WRITINGS</b></center>
-    <br>
 
 **EMAIL 1**
 
