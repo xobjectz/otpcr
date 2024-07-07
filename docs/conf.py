@@ -86,7 +86,7 @@ html_theme_options = {
     'sidebar_width': '0px',
 }
 html_favicon = "skull3.png"
-html_extra_path = []
+html_extra_path = ["files",]
 html_last_updated_fmt = '%Y-%b-%d'
 html_additional_pages = {}
 html_domain_indices = True

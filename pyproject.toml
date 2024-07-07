@@ -70,13 +70,16 @@ zip-safe = true
     "docs/OTP222.png",
     "docs/reconsider.rst",
     "docs/request.rst",
-    "docs/robots.txt",
     "docs/since.png",
     "docs/skull3.png",
     "docs/verbatim7.png",
     "docs/writings.rst"
 ]
 
+"share/doc/otpcr/docs/files" = [
+    "files/robots.txt",
+    "files/sitemap.xml"
+]
 "share/doc/otpcr/docs/_static" = [
     "docs/_static/otpcr.css",
 ]
