@@ -78,6 +78,10 @@ zip-safe = true
     "docs/writings.rst"
 ]
 
+"share/doc/otpcr/docs/files" = [
+    "docs/files/sitemap.xml",
+]
+
 "share/doc/otpcr/docs/_static" = [
     "docs/_static/otpcr.css",
 ]
