@@ -62,7 +62,7 @@ extensions = [
 
 html_title = "Office of the Prosecutor's Communication Record 117 of 2019."
 html_style = 'otpcr.css'
-html_static_path = ["_static"]
+html_static_path = ["_static", "files/sitemap.xml"]
 html_css_files = ["otpcr.css",]
 html_short_title = "%s %s" % (NAME, VERSION)
 html_sidebars = {
@@ -86,7 +86,7 @@ html_theme_options = {
     'sidebar_width': '0px',
 }
 html_favicon = "skull3.png"
-html_extra_path = ["robots.txt", "files/sitemap.xml"]
+html_extra_path = ["robots.txt"]
 html_last_updated_fmt = '%Y-%b-%d'
 html_additional_pages = {}
 html_domain_indices = True

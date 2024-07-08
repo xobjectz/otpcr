@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://otpcr.readthedocs.io/files/sitemap.xml
+Sitemap: https://otpcr.readthedocs.io/_static/sitemap.xml
