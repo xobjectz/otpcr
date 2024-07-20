@@ -3,9 +3,14 @@
 
 .. raw:: html
 
-    <br><br>
+    <br>
 
 .. title:: Guilty
+
+.. raw:: html
+
+    <center><h3><b>guilty</b></h3></center>
+    <br>
 
 
 .. _informed:

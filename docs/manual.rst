@@ -2,27 +2,43 @@
 
 .. raw:: html
 
-    <br><br>
+    <br>
 
 .. title:: Manual
 
 
+.. raw:: html
+
+    <center><h3><b>manual</b></h3></center>
+    <br>
+
+
+
 **NAME**
 
-    ``OTPCR`` - Office of the Prosecutor's Communication Record 117 of 2019
+    ``GENOCIDE`` - Elderly, Wicked, Criminals, Handicapped `. <source.html>`_
+
+
+**INSTALL**
+
+
+::
+
+    $ pipx install genocide
+    $ pipx ensurepath
 
 
 **SYNOPSIS**
 
-    ::
+::
 
-        otpcr  <cmd> [key=val] [key==val]
-        otpcr  [-a] [-c] [-d] [-i] [-v]
+    genocide <cmd> [key=val] [key==val]
+    genocide [-a] [-c] [-d] [-h] [-i] [-v]
 
 
 **DESCRIPTION**
 
-    ``OTPCR`` holds evidence that king
+    ``GENOCIDE`` holds evidence that king
     netherlands is doing a genocide, a
     written response where king
     netherlands confirmed taking note
@@ -36,7 +52,7 @@
     torture and kills members of the
     victim groups.
 
-    ``OTPCR`` contains :ref:`correspondence
+    ``GENOCIDE`` contains :ref:`correspondence
     <writings>` with the International Criminal
     Court, asking for arrest of the king of the
     netherlands, for the genocide he is committing
@@ -48,29 +64,20 @@
     to have the king actually arrested.
 
 
-**INSTALL**
-
-    ::
-
-        $ pipx install otpcr
-        $ pipx ensurepath
-        $ mkdir ~/.otpcr
-
-
 **USAGE**
 
     without any argument the bot does nothing
 
     ::
 
-        $ otpcr
+        $ genocide
         $
 
     see list of commands
 
     ::
 
-        $ otpcr cmd
+        $ genocide cmd
         cmd,dne,err,log,mod,req,tdo,thr,tmr
 
 
@@ -78,28 +85,22 @@
 
     ::
 
-        $ otpcr -c 
+        $ genocide -c 
         >
 
     use -v for verbose
 
     ::
 
-        $ otpcr -cv
-        May 12 05:51:49 2024 OTPCR CV CMD,ERR,LOG,MOD,REQ,TDO,THR,TMR
+        $ genocide -cv
+        May 12 05:51:49 2024 GENOCIDE CV CMD,ERR,LOG,MOD,REQ,TDO,THR,TMR
         >
-
-    use -i to run init on modules
-
-    ::
-
-        $ otpcr -caiv 
 
     start daemon
 
     ::
 
-        $ otpcr -d
+        $ genocided
         $ 
 
 
@@ -107,7 +108,7 @@
 
     ::
 
-        $ otpcr req
+        $ genocide req
         Information and Evidence Unit
         Office of the Prosecutor
         Post Office Box 19519
@@ -121,25 +122,25 @@
 
     ::
 
-        $ otpcr cfg server=<server>
-        $ otpcr cfg channel=<channel>
-        $ otpcr cfg nick=<nick>
+        $ genocide cfg server=<server>
+        $ genocide cfg channel=<channel>
+        $ genocide cfg nick=<nick>
 
     sasl
 
     ::
 
-        $ otpcr pwd <nsvnick> <nspass>
-        $ otpcr cfg password=<frompwd>
+        $ genocide pwd <nsvnick> <nspass>
+        $ genocide cfg password=<frompwd>
 
     rss
 
     ::
 
-        $ otpcr rss <url>
-        $ otpcr dpl <url> <item1,item2>
-        $ otpcr rem <url>
-        $ otpcr nme <url> <name>
+        $ genocide rss <url>
+        $ genocide dpl <url> <item1,item2>
+        $ genocide rem <url>
+        $ genocide nme <url> <name>
 
 
 **COMMANDS**
@@ -148,30 +149,20 @@
 
         cfg - irc configuration
         cmd - commands
-        dlt - remove a user
-        dpl - sets display items
-        exp - export opml
-        fnd - find objects 
-        imp - import opml
-        log - log some text
-        met - add a user
         mre - displays cached output
         pwd - sasl nickserv name/pass
-        rem - removes a rss feed
-        req - request 
-        rss - add a feed
-        thr - show the running threads
+        req - reconsider
 
 
 **SYSTEMD**
 
-    save the following it in /etc/systemd/system/otpcr.service
+    save the following it in /etc/systemd/system/genocide.service
     and replace "<user>" with the user running pipx
 
     ::
  
         [Unit]
-        Description=Office of the Prosecutor's Communication Record 117 of 2019
+        Description=Elderly, Wicked, Criminals, Handicapped.
         Requires=network-online.target
         After=network-online.target
 
@@ -179,8 +170,8 @@
         Type=simple
         User=<user>
         Group=<user>
-        WorkingDirectory=/home/<user>/.otpcr
-        ExecStart=/home/<user>/.local/pipx/venvs/otpcr/bin/otpcrd
+        WorkingDirectory=/home/<user>/.genocide
+        ExecStart=/home/<user>/.local/pipx/venvs/genocide/bin/genocide -d
         RemainAfterExit=yes
 
         [Install]
@@ -191,35 +182,19 @@
 
     ::
 
-        $ sudo systemctl enable otpcr --now
+        $ mkdir ~/.genocide
+        $ sudo systemctl enable genocide --now
 
-    default channel/server is #otpcr on localhost
-
-
-**OPTIONS**
-
-    ::
-
-        -a     load all modules
-        -c     start console
-        -d     run in the background
-        -h     show help
-        -i     start services
-        -v     use verbose
-
-
-**CODE**
-
-    code is :ref:`here <source>`
+    default channel/server is #genocide on localhost
 
 
 **FILES**
 
     ::
 
-        ~/.otpcr
-        ~/.local/bin/otpcr
-        ~/.local/pipx/venvs/otpcr/*
+        ~/.genocide
+        ~/.local/bin/genocide
+        ~/.local/pipx/venvs/genocide/*
 
 
 **AUTHOR**
@@ -229,4 +204,4 @@
 
 **COPYRIGHT**
 
-    ``OTPCR`` is Public Domain.
+    ``GENOCIDE`` is Public Domain.

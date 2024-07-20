@@ -3,12 +3,18 @@
 
 .. raw:: html
 
-     <br><br>
+     <br>
 
 .. title:: Source
 
 
-**OTPCR**
+.. raw:: html
+
+    <center><h3><b>source</b></h3></center>
+    <br>
+
+
+**GENOCIDE**
 
 .. raw:: html
 
@@ -61,7 +67,6 @@
 
     otpcr.modules.cmd
     otpcr.modules.err
-    otpcr.modules.fnd
     otpcr.modules.irc
     otpcr.modules.log
     otpcr.modules.mod
@@ -69,5 +74,4 @@
     otpcr.modules.rss
     otpcr.modules.tdo
     otpcr.modules.thr
-    otpcr.modules.tmr
     otpcr.modules.upt
