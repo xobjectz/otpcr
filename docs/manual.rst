@@ -7,13 +7,6 @@
 .. title:: Manual
 
 
-.. raw:: html
-
-    <center><h3><b>manual</b></h3></center>
-    <br>
-
-
-
 **NAME**
 
     ``GENOCIDE`` - Elderly, Wicked, Criminals, Handicapped `. <source.html>`_

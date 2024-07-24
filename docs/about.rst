@@ -3,15 +3,11 @@
 
 .. raw:: html
 
-    <br>
+    <br><br><br><br>
 
 .. title:: About
 
 
-.. raw:: html
-
-    <center><h3><b>about</b></h3></center>
-    <br>
 
 In 2018 i informed the king of the netherlands that what he calls
 medicine in his "care" laws are not medicine but poison. Proof of
@@ -29,7 +25,7 @@ stop), the prosecutor decided to call it a "no basis to proceed".
 
 .. raw:: html
 
-    <br><br>
+    <br><br><br>
     <center>
     <b>
 

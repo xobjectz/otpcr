@@ -8,13 +8,7 @@
 .. title:: Source
 
 
-.. raw:: html
-
-    <center><h3><b>source</b></h3></center>
-    <br>
-
-
-**GENOCIDE**
+**OTPCR**
 
 .. raw:: html
 
@@ -26,25 +20,28 @@
     :template: base.rst
 
     otpcr.cache
-    otpcr.cli
-    otpcr.cmds
     otpcr.cfg
+    otpcr.client
+    otpcr.cmds
     otpcr.decode
-    otpcr.defer
     otpcr.dft
+    otpcr.disk
     otpcr.encode
+    otpcr.errors
     otpcr.event
     otpcr.face
-    otpcr.handle
-    otpcr.launch
+    otpcr.fleet
     otpcr.lock
     otpcr.log
     otpcr.main
     otpcr.object
+    otpcr.ool
     otpcr.parse
-    otpcr.disk
+    otpcr.react
     otpcr.repeat
     otpcr.run
+    otpcr.term
+    otpcr.thread
     otpcr.timer
     otpcr.utils
 
@@ -72,6 +69,7 @@
     otpcr.modules.mod
     otpcr.modules.req
     otpcr.modules.rss
+    otpcr.modules.skl
     otpcr.modules.tdo
     otpcr.modules.thr
     otpcr.modules.upt
