@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # This file is placed in the Public Domain.
-# pylint: disable=C0413,W0212,W0718,E0401
+# pylint: disable=C0411,C0413,W0212,W0718,E0401
 
 
 "main"
@@ -8,27 +8,23 @@
 
 import getpass
 import os
-import pathlib
 import pwd
 import sys
-import time
 
 
-from otpcr.cfg   import Config
-from otpcr.cli   import CLI
-from otpcr.defer import Errors, errors, later
-from otpcr.disk  import Persist
-from otpcr.log   import Logging
-from otpcr.main  import init
+from otpcr.cfg    import Config
+from otpcr.errors import errors, later
+from otpcr.disk   import Persist, skel
+from otpcr.main   import enable, init
+from otpcr.utils  import forever, pidfile
 
 
-from otpcr import modules
-from otpcr import user
+from otpcr import modules, user
 
 
 Cfg         = Config()
 Cfg.dis     = ""
-Cfg.mod     = "cmd,err,mod,thr"
+Cfg.mod     = "irc,rss"
 Cfg.opts    = ""
 Cfg.name    = "otpcr"
 Cfg.user    = getpass.getuser()
@@ -39,7 +35,7 @@ Cfg.pidfile = os.path.join(Cfg.wdr, f"{Cfg.name}.pid")
 Persist.workdir = Cfg.wdr
 
 
-def daemon(pidfile, verbose=False):
+def daemon(verbose=False):
     "switch to background."
     pid = os.fork()
     if pid != 0:
@@ -57,23 +53,7 @@ def daemon(pidfile, verbose=False):
             os.dup2(ses.fileno(), sys.stderr.fileno())
     os.umask(0)
     os.chdir("/")
-    if os.path.exists(pidfile):
-        os.unlink(pidfile)
-    path = pathlib.Path(pidfile)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(pidfile, "w", encoding="utf-8") as fds:
-        fds.write(str(os.getpid()))
-
-
-def forever():
-    "it never ends, until ctl-c."
-    while True:
-        time.sleep(1.0)
-
-
-def modnames():
-    "list all modules."
-    return sorted({x for x in dir(modules) + dir(user) if not x.startswith("__")})
+    os.nice(10)
 
 
 def privileges(username):
@@ -96,12 +76,13 @@ def wrap(func):
 
 def main():
     "main"
-    daemon(Cfg.pidfile, "-v" in sys.argv)
+    daemon("-v" in sys.argv)
+    skel()
+    pidfile(Cfg.pidfile)
     privileges(Cfg.user)
-    CLI.out = Errors.out = Logging.out = None
-    Cfg.mod = "," + ",".join(modnames())
-    init(modules, Cfg.mod)
-    init(user, Cfg.mod)
+    if "-v" in sys.argv:
+        enable(print)
+    init(Cfg.mod, modules, user)
     forever()
 
 
