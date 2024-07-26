@@ -66,7 +66,7 @@ p.s.
 
 
 1) entered in the Communications Register of the Office on 4 march 2019
-2) your reference ``OTP-CR-117/19`` `. <about.html>`_
+2) your reference ``OTP-CR-117/19``
 
 
 .. toctree::
